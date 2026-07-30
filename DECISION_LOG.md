@@ -92,11 +92,89 @@ Implication For Phase 1:
 
 - Search for publications, returned results, derived variables, patents, clinical trials, policy outputs, follow-on grants, project completion, and continuation records.
 
+## 2026-07-28 - Phase 1 Authorized
+
+Decision: Begin Phase 1 after the user provided the exact approval token `APPROVE_PHASE_0`.
+
+Rationale:
+
+- The Phase 0 gate was satisfied.
+- The charter permits broad data and institutional exploration during Phase 1.
+
+Scope constraints followed:
+
+- no full-scale scraper;
+- no dataset build;
+- no regression;
+- no calibration;
+- no final causal claim;
+- no commitment to one research design.
+
+## 2026-07-28 - Broaden Beyond UKB For Phase 1
+
+Decision: Search across multiple controlled-access and secure data ecosystems rather than narrowing immediately to UK Biobank.
+
+Rationale:
+
+- Phase 0 showed that the theoretical mechanism can apply to many institutions with post-access monitoring and adaptive granularity.
+- The charter required at least five institutional settings and at least ten sources.
+- UKB is narratively strong but may not expose enough public project-level continuation and monitoring fields.
+
+Institutions explored:
+
+- UK Biobank;
+- NIH dbGaP/CADR;
+- All of Us;
+- NHS SDE;
+- OpenSAFELY;
+- ONS SRS/UKSA;
+- CMS/ResDAC;
+- Statistics Canada;
+- CASD;
+- EGA;
+- NCI CDAS;
+- commercial clean rooms;
+- GitHub incident ecosystem;
+- HHS OCR breach portal.
+
+## 2026-07-28 - Treat Incident Archives As Supplemental
+
+Decision: Do not treat GitHub DMCA, GitHub secret scanning, or HHS OCR as primary empirical settings unless future phases recover credible denominators and project-governance links.
+
+Rationale:
+
+- Observed incidents reflect detection and reporting intensity.
+- DMCA is not privacy-specific.
+- HHS OCR is not controlled-access research-project-specific.
+- GitHub secret alerts are mostly private.
+
+Implication:
+
+- Use these sources for incident taxonomy, detection-bias discussion, and possible calibration only.
+
+## 2026-07-28 - Most Promising Phase 2 Candidates
+
+Decision: Carry forward a short list for lightweight feasibility probes rather than final design selection.
+
+Short list:
+
+- UKB-first feasibility;
+- All of Us project directory;
+- OpenSAFELY output-checking and public code/output traces;
+- ONS SRS/UKSA project registers;
+- CASD project and denominator data;
+- NHS SDE Data Release Register and output-service materials;
+- CMS/ResDAC as a policy comparator.
+
+Rationale:
+
+- These settings offer the best combination of project denominators, governance controls, policy events, and research-value outcomes found in Phase 1.
+
 ## Current Gate
 
 Waiting for user decision.
 
 Valid next tokens:
 
-- `APPROVE_PHASE_0`: begin Phase 1 broad source and institutional exploration.
-- `REVISE_PHASE_0`: revise Phase 0 outputs only.
+- `APPROVE_PHASE_1`: begin Phase 2 feasibility probes.
+- `REVISE_PHASE_1`: revise Phase 1 outputs only.
