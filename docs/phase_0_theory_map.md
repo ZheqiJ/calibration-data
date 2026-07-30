@@ -1,6 +1,6 @@
 # Phase 0 Theory Map
 
-Source manuscript: `Data_Sharing (4).pdf`, supplied to Codex on 2026-07-26.
+Source manuscript: `Data_Sharing (4).pdf`.
 Scope: theory extraction only. No broad data search was conducted.
 
 ## 1. Core Research Question
