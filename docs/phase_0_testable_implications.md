@@ -1,6 +1,6 @@
 # Phase 0 Testable Implications
 
-Source manuscript: `Data_Sharing (4).pdf`, supplied to Codex on 2026-07-26.
+Source manuscript: `Data_Sharing (4).pdf`.
 Scope: Phase 0 theory-to-empirics map only. No broad data exploration was conducted.
 
 ## 1. What Counts As An Empirical Target
