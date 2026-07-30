@@ -1,6 +1,5 @@
 # Phase 1 Exploration Memo
 
-Date: 2026-07-28
 
 Scope: broad data and institutional exploration after `APPROVE_PHASE_0`. This memo does not choose a final design, build a dataset, run a scraper, estimate a model, or calibrate parameters.
 
