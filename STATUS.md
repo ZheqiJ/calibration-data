@@ -37,7 +37,7 @@ No datasets, full scrapers, regressions, causal claims, calibration exercises, o
 
 Phase 1 investigated more than the required minimum:
 
-- 14 institutional settings or data ecosystems;
+- 15 institutional settings or data ecosystems, after adding `github/dmca` as a separate takedown-notice archive;
 - 41 distinct source entries;
 - 16 candidate policy events;
 - multiple governance and leakage outcome classes;
@@ -56,6 +56,7 @@ Most promising sources for Phase 2 feasibility:
 - CASD;
 - NHS Secure Data Environment;
 - CMS/ResDAC as a policy comparator.
+- GitHub DMCA as a supplemental incident/takedown archive.
 
 ## Gate Status
 
@@ -74,7 +75,7 @@ If revisions are requested, use:
 - The manuscript appendix is still needed if later phases require exact symbolic thresholds.
 - UKB remains narratively attractive but does not yet have verified public fields for RAP use, access tier, output checks, withdrawals, or rejected applications.
 - All of Us, OpenSAFELY, ONS/UKSA, and CASD may have stronger public project/outcome data than UKB.
-- Incident archives such as GitHub DMCA and HHS OCR are useful but weak as main designs because of denominator and detection-bias problems.
+- The `github/dmca` repository is now tracked as its own data ecosystem, but remains supplemental because DMCA notices are copyright/takedown records rather than privacy-leakage facts.
 - Phase 2 should begin with lightweight feasibility probes, not final data collection.
 
 ## Decision Options At Checkpoint

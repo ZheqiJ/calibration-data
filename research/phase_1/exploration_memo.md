@@ -8,7 +8,7 @@ Scope: broad data and institutional exploration after `APPROVE_PHASE_0`. This me
 
 Phase 1 investigated more than the minimum required breadth:
 
-- 14 institutional settings or data ecosystems;
+- 15 institutional settings or data ecosystems after adding `github/dmca` as a separate takedown-notice archive;
 - 41 distinct source entries;
 - 16 candidate policy events;
 - both leakage/governance outcomes and research-value outcomes;
@@ -46,6 +46,7 @@ The Phase 1 inventory covers:
 - NCI Cancer Data Access System;
 - commercial clean rooms: AWS, Snowflake, Google Ads Data Hub;
 - GitHub public repository exposure ecosystem;
+- GitHub DMCA notices ecosystem;
 - HHS OCR breach portal.
 
 This satisfies and exceeds the requirement of at least five distinct institutional settings or data ecosystems.
@@ -260,6 +261,24 @@ Weaknesses:
 
 Assessment: useful for taxonomy and calibration analog only.
 
+## GitHub DMCA notices ecosystem
+
+Strengths:
+
+- Official public GitHub repository of DMCA takedown notices and counter-notices received by GitHub.
+- Organized by year, with repository/file URLs often embedded in notices unless redacted.
+- Includes GitHub processing annotations, including owner-contact and fork-network notes that became visible in March 2021.
+- Useful for studying takedown discovery, public repository exposure, fork propagation, and platform enforcement timing.
+
+Weaknesses:
+
+- DMCA notices are copyright allegations, not privacy leakage or controlled-access data misuse.
+- GitHub states that posting a notice does not mean the content was unlawful or that the identified user did anything wrong.
+- Notices do not provide a clean denominator of all repositories at risk, all data leaks, or all controlled-access data projects.
+- Rights-holder detection effort and GitHub processing practices can change observed notice counts.
+
+Assessment: add as a separate Phase 1 data ecosystem. It is useful for incident/takedown process measurement and detection-bias illustration, but it should remain supplemental unless Phase 2 finds a privacy-specific subset and a credible denominator.
+
 ## GitHub / HHS OCR incident sources
 
 Strengths:
@@ -377,6 +396,7 @@ The current best short list for Phase 2 feasibility is:
 - CASD;
 - NHS SDE;
 - CMS/ResDAC as a policy comparator.
+- GitHub DMCA as a supplemental takedown-notice ecosystem.
 
 Phase 1 is complete. Do not proceed to Phase 2 until the user provides:
 

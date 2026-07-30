@@ -72,6 +72,8 @@ Scope: questions to resolve before choosing a Phase 2 design. These are not requ
 3. Can HHS OCR breach records be linked to data providers or research institutions in a meaningful way?
 4. How should detection-intensity changes be coded when the same policy both prevents and detects leakage?
 5. What denominator is feasible for incident rates: projects, users, outputs, repositories, or project-years?
+6. For `github/dmca`, what share of notices include usable repository URLs, fork-network annotations, counter-notices, redactions, and restoration information?
+7. Can `github/dmca` be filtered to data, code, or model-weight exposure events in a way that is defensible, or is it only a takedown-process analog?
 
 ## 10. Legal And Ethical
 

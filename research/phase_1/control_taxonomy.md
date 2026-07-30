@@ -114,6 +114,14 @@ Mechanism: public code repositories generate visible exposure events and automat
 
 Likely theory region: detection and public exposure analogy, not main empirical setting.
 
+## Public takedown notice archive
+
+Example: `github/dmca`.
+
+Mechanism: a platform publicly archives legal takedown notices and counter-notices, with dates, repository references where not redacted, and platform processing annotations. This is a post hoc public enforcement archive rather than a secure data environment.
+
+Likely theory region: useful for observed-incident and detection-process measurement. It can illustrate how observed events depend on rights-holder detection, platform review, public posting, redaction, fork-network propagation, and takedown/restoration processes. It should not be treated as latent privacy leakage or project-level controlled-access misuse without additional filtering and denominators.
+
 ## 7. Phase 1 Takeaway
 
 The best empirical setting should include both sides of the control bundle:

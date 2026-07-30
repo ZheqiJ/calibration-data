@@ -170,6 +170,22 @@ Rationale:
 
 - These settings offer the best combination of project denominators, governance controls, policy events, and research-value outcomes found in Phase 1.
 
+## 2026-07-30 - Add github/dmca As Separate Data Ecosystem
+
+Decision: Add `github/dmca` as an explicit Phase 1 data ecosystem rather than leaving it only as a generic GitHub incident source.
+
+Rationale:
+
+- The user specifically requested adding `github/dmca`.
+- The repository is a public, official GitHub transparency archive of DMCA takedown notices and counter-notices.
+- It has a distinct unit of observation: notice files organized by date, with repository/file URLs, redactions, counter-notices, and GitHub processing annotations where present.
+
+Important limitation:
+
+- `github/dmca` remains a supplemental incident/takedown ecosystem.
+- It does not directly measure privacy leakage, controlled-access research data misuse, or latent leakage risk.
+- Any Phase 2 use should first sample fields, redactions, repository references, fork-network notes, and denominator feasibility.
+
 ## Current Gate
 
 Waiting for user decision.

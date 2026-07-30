@@ -53,7 +53,7 @@ The most useful denominator candidates found in Phase 1:
 - CMS/VRDC: output review limits and processing-time targets, but no public project denominator yet.
 - dbGaP/EGA: study and dataset metadata are public; request denominators likely internal.
 - HHS OCR: breach incidents and affected-person counts, but not project denominators.
-- GitHub: repository denominators can be constructed later, but incident definition would be difficult.
+- GitHub DMCA: notice-level counts can be constructed from year/month files; repository denominators and privacy-specific exposure denominators would need GitHub/GH Archive or another repository universe.
 
 ## 5. Best Near-Term Outcome Bundles
 
