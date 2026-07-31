@@ -1,0 +1,26 @@
+workspace_id,snapshot_id,title,purposes,access_tier,ubr_focus,categories,owner_institution,owner_role,owner_count,member_count,has_questions,has_approaches,has_findings,review_url_present
+1003,2267,Coalfire-Test,Disease Focused Research (test) | Educational | Commercial,Registered Tier,False,,Coalfire,Administrator,1,0,True,True,True,True
+1000109,2264,test,Control Set | Commercial,missing_or_false,True,Race / Ethnicity | Age | Sex at Birth | Gender Identity | Sexual Orientation | Geography | Disability Status | Access to Care | Education Level | Income Level | Others,Vanderbilt University Medical Center,Undergraduate Student,1,0,True,True,True,True
+1000114,2265,test,Social / Behavioral,missing_or_false,True,Race / Ethnicity,Vanderbilt University Medical Center,Undergraduate Student,1,0,True,True,True,True
+1000162,2263,Testing AI agents,Educational,missing_or_false,False,,All of Us Program Operational Use,Other,1,0,True,True,True,True
+1000146,2262,GitHub/AI Testing,Other Purpose (Security TestingSecurity TestingSecurity TestingSecurity TestingSecurity TestingSecurity TestingSecurity TestingSecurity Testing),missing_or_false,False,,All of Us Program Operational Use,Other,1,0,True,True,True,True
+1006,2112,Testing,Other Purpose (test),Controlled Tier,False,,Vanderbilt University Medical Center,Other,1,0,True,True,True,True
+1000053,2224,yonghao-test,,missing_or_false,False,,Verily LLC,Undergraduate Student,1,0,False,False,False,True
+1000048,2203,First Test,,missing_or_false,False,,All of Us Program Operational Use,Project Personnel,1,0,False,False,False,True
+1000015,2154,Justin 2 - All of Us Researcher Workbench 2.0 Tutorial Workspace,Other Purpose (This is a test workspace. This is a test workspace.This is a test workspace.This is a test workspace.This is a test workspace.),missing_or_false,False,,Vanderbilt University Medical Center,Administrator,1,0,True,True,True,True
+1000135,2235,AoU_Wiz_Pilot_4,"Other Purpose (Security Testing for Wiz Pilot Project, Security Testing for Wiz Pilot Project, Security Testing for Wiz Pilot Project)",missing_or_false,False,,All of Us Program Operational Use,Other,1,0,True,True,True,True
+1000080,2157,Test VWB,,missing_or_false,False,,All of Us Program Operational Use,Project Personnel,1,0,False,False,False,True
+1000128,2230,test,,missing_or_false,False,,Verily LLC,Other,1,0,False,False,False,True
+1000029,2253,Kristina's All of Us Researcher Tutorial Workspace ,,missing_or_false,False,,Verily LLC,Other,1,0,False,False,False,True
+1000122,2216,Justin - All of Us Researcher Workbench 2.0 Tutorial Workspace,Other Purpose (This is a test workspace. This is a test workspace.This is a test workspace.This is a test workspace.This is a test workspace.),missing_or_false,False,,Vanderbilt University Medical Center,Administrator,2,0,True,True,True,True
+1000132,2252,AoU_Wiz_Pilot_2,"Educational | Drug Development | Commercial | Ethical, Legal, and Social Implications (ELSI)",missing_or_false,True,Race / Ethnicity | Age | Sex at Birth | Gender Identity | Disability Status | Access to Care,All of Us Program Operational Use,Other,1,0,True,True,True,True
+1000041,2248,Test Workspace Verily,,missing_or_false,False,,National Institutes of Health,Other,1,0,False,False,False,True
+1000120,2237,Aaron Security Alert Workbook,Educational,missing_or_false,False,,All of Us Program Operational Use,Other,1,0,True,True,True,True
+1000051,2147,Alan's Study on Chronic Fatigue Syndrome,,missing_or_false,False,,All of Us Program Operational Use,Administrator,1,0,False,False,False,True
+1000061,2137,@.0 Test,,missing_or_false,False,,All of Us Program Operational Use,Project Personnel,1,0,False,False,False,True
+1000027,2220,RT July 2025,,missing_or_false,False,,Verily LLC,Other,1,0,False,False,False,True
+1000028,2155,CT July 2025,,missing_or_false,False,,Verily LLC,Other,1,0,False,False,False,True
+1000017,2250,TEST123,,missing_or_false,False,,All of Us Program Operational Use,Other,1,0,False,False,False,True
+1000084,2214,All of Us Researcher Workbench 2.0 Tutorial Workspace (Copy),,missing_or_false,False,,National Institutes of Health,Project Personnel,1,0,False,False,False,True
+1000112,2170,Demo workspace,,missing_or_false,False,,National Institutes of Health,Other,1,0,False,False,False,True
+1000036,2178,Template Workspace CT V5 stable,,missing_or_false,False,,Verily LLC,Administrator,1,0,False,False,False,True

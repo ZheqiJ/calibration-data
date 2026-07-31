@@ -186,11 +186,62 @@ Important limitation:
 - It does not directly measure privacy leakage, controlled-access research data misuse, or latent leakage risk.
 - Any Phase 2 use should first sample fields, redactions, repository references, fork-network notes, and denominator feasibility.
 
+## 2026-07-31 - Phase 2 Authorized
+
+Decision: Begin Phase 2 after the user provided the exact approval token `APPROVE_PHASE_1`.
+
+Rationale:
+
+- The Phase 1 checkpoint was complete.
+- The user requested a concise explanation of what Phase 1 produced and what to judge before approval.
+- After that explanation, the user supplied the approval token.
+
+Scope constraints followed:
+
+- small pilot samples only;
+- no full dataset;
+- no final scraper;
+- no regression;
+- no calibration;
+- no final design commitment before the Phase 2 proposal gate.
+
+## 2026-07-31 - Pilot Shortlist Chosen
+
+Decision: Run lightweight feasibility probes for All of Us, UK Biobank, OpenSAFELY, UKSA/ONS, and GitHub DMCA.
+
+Rationale:
+
+- All of Us offered potential access-tier and project-selection fields.
+- UK Biobank remained the strongest narrative setting but needed public-field validation.
+- OpenSAFELY offered the clearest observable monitoring and workflow traces.
+- UKSA/ONS offered a clean accredited-project denominator and accreditation dates.
+- GitHub DMCA was added because the user specifically requested this ecosystem, but it needed feasibility and theory-fit testing before elevation to a main design.
+
+## 2026-07-31 - Recommend Proposal B
+
+Decision: Recommend `PROPOSAL_B`: OpenSAFELY Monitoring And Output Workflow.
+
+Rationale:
+
+- The OpenSAFELY pilot exposed job-level status, timing, organization, project, and request identifiers.
+- These fields are closest to the manuscript mechanism around post-access monitoring, operational controls, and continuation/process outcomes.
+- UKSA/ONS is strong for denominator support but weak on direct outcomes.
+- All of Us is promising but has endpoint stability and workspace-filtering concerns.
+- UKB is narratively attractive but publicly weak for treatment and outcome assignment.
+- GitHub DMCA is technically strong but theoretically supplemental because it measures copyright/takedown events rather than privacy leakage or controlled-access research misuse.
+
+Implication:
+
+- Phase 3 should not start until the user selects exactly one proposal with `APPROVE_PHASE_2: PROPOSAL_A`, `APPROVE_PHASE_2: PROPOSAL_B`, `APPROVE_PHASE_2: PROPOSAL_C`, or `APPROVE_PHASE_2: PROPOSAL_D`.
+
 ## Current Gate
 
-Waiting for user decision.
+Waiting for user decision at the Phase 2 checkpoint.
 
 Valid next tokens:
 
-- `APPROVE_PHASE_1`: begin Phase 2 feasibility probes.
-- `REVISE_PHASE_1`: revise Phase 1 outputs only.
+- `APPROVE_PHASE_2: PROPOSAL_A`: begin Phase 3 for All of Us.
+- `APPROVE_PHASE_2: PROPOSAL_B`: begin Phase 3 for OpenSAFELY. Recommended.
+- `APPROVE_PHASE_2: PROPOSAL_C`: begin Phase 3 for UK Biobank.
+- `APPROVE_PHASE_2: PROPOSAL_D`: begin Phase 3 for GitHub DMCA.
+- `REVISE_PHASE_2`: revise Phase 2 outputs only.

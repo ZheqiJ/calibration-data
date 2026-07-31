@@ -2,14 +2,14 @@
 
 Repository: ZheqiJ/calibration-data
 Protocol: Phase-gated empirical / calibration project for responsible data supply chains
-Current phase: Phase 1 - broad data and institutional exploration
-Status date: 2026-07-28
+Current phase: Phase 2 - data feasibility pilot and proposal generation
+Status date: 2026-07-31
 
 ## Current Status
 
-Phase 1 has been completed to the checkpoint standard after the user provided `APPROVE_PHASE_0` on 2026-07-28.
+Phase 2 has been completed to the checkpoint standard after the user provided `APPROVE_PHASE_1`.
 
-No datasets, full scrapers, regressions, causal claims, calibration exercises, or final design commitments were produced. Phase 1 remained an exploratory inventory and feasibility-mapping exercise.
+No full dataset, final scraper, regression, causal claim, or calibration exercise was produced. Phase 2 remained a small pilot-data and design-feasibility checkpoint.
 
 ## Phase 0 Outputs
 
@@ -33,55 +33,73 @@ No datasets, full scrapers, regressions, causal claims, calibration exercises, o
 - updated `STATUS.md`
 - updated `DECISION_LOG.md`
 
-## Phase 1 Summary
+## Phase 2 Outputs
 
-Phase 1 investigated more than the required minimum:
+- `research/phase_2/pilot_data/`
+- `research/phase_2/pilot_data_dictionary.md`
+- `research/phase_2/pilot_quality_report.md`
+- `research/phase_2/linkage_feasibility.md`
+- `research/phase_2/design_feasibility_matrix.md`
+- `research/phase_2/proposal_A.md`
+- `research/phase_2/proposal_B.md`
+- `research/phase_2/proposal_C.md`
+- `research/phase_2/proposal_D.md`
+- `research/phase_2/recommendation_memo.md`
+- updated `STATUS.md`
+- updated `DECISION_LOG.md`
 
-- 15 institutional settings or data ecosystems, after adding `github/dmca` as a separate takedown-notice archive;
-- 41 distinct source entries;
-- 16 candidate policy events;
-- multiple governance and leakage outcome classes;
-- multiple research-value outcome classes;
-- more than two plausible comparison strategies;
-- more than three reasons why tempting designs may fail.
+## Phase 2 Summary
 
-The strongest direction is not a pure leak archive. The theory requires observing or reconstructing a chain from application risk to access granularity, monitoring/control regime, continuation or downgrade, leakage/governance outcomes, and research-value outcomes.
+Phase 2 created small pilot samples only:
 
-Most promising sources for Phase 2 feasibility:
+- All of Us project/workspace sample;
+- UK Biobank Showcase approved-application sample;
+- OpenSAFELY public jobs sample;
+- UKSA/ONS accredited-projects sample;
+- GitHub DMCA notice-metadata sample.
 
-- UK Biobank;
-- All of Us Research Program;
-- OpenSAFELY;
-- ONS SRS / UK Statistics Authority;
-- CASD;
-- NHS Secure Data Environment;
-- CMS/ResDAC as a policy comparator.
-- GitHub DMCA as a supplemental incident/takedown archive.
+The strongest recommended path is `PROPOSAL_B`: OpenSAFELY monitoring and output workflow. It has the best observed fit to post-access monitoring, timing, operational status, and continuation/process outcomes.
+
+## Main Feasibility Findings
+
+Confirmed:
+
+- OpenSAFELY exposes job-level status, organization, project, request ID, and timing.
+- UKSA/ONS exposes a clean project denominator with accreditation dates, legal gateway, protected data, and processing environment.
+- UKB Showcase exposes approved application IDs, titles, institutions, and project notes.
+- All of Us exposes promising project/workspace fields including access tier, purpose, UBR focus, categories, institution, and review URL, but endpoint stability remains an issue.
+- GitHub DMCA exposes clean notice-level metadata through the GitHub API.
+
+Weak or failed:
+
+- direct leakage, sanctions, revocations, downgrades, and output-airlock rejections were not observed in the pilot samples;
+- UKB public project-page access was blocked by a Cloudflare challenge in shell probes;
+- UKB Showcase schema 27 does not expose RAP treatment, approval date, access tier, monitoring, continuation, or output fields;
+- All of Us current `www` JSON endpoint returned HTTP 500 in shell probes, while a stable endpoint returned pilot JSON;
+- GitHub DMCA is copyright/takedown data, not direct privacy-leakage or controlled-access misuse data.
+
+## Ranked Proposal Options
+
+1. `PROPOSAL_B` - OpenSAFELY Monitoring And Output Workflow. Recommended.
+2. `PROPOSAL_A` - All of Us Access Tier And Project Selection.
+3. `PROPOSAL_D` - GitHub DMCA Takedown Notice Archive.
+4. `PROPOSAL_C` - UK Biobank RAP-Default Application And Output Linkage.
 
 ## Gate Status
 
-Required Phase 1 checkpoint is ready.
+Required Phase 2 checkpoint is ready.
 
-Do not proceed to Phase 2 until the user provides the exact approval token:
+Do not proceed to Phase 3 until the user provides one exact approval token:
 
-`APPROVE_PHASE_1`
+- `APPROVE_PHASE_2: PROPOSAL_A`
+- `APPROVE_PHASE_2: PROPOSAL_B`
+- `APPROVE_PHASE_2: PROPOSAL_C`
+- `APPROVE_PHASE_2: PROPOSAL_D`
+
+Recommended next token:
+
+`APPROVE_PHASE_2: PROPOSAL_B`
 
 If revisions are requested, use:
 
-`REVISE_PHASE_1`
-
-## Open Issues Before Phase 2
-
-- The manuscript appendix is still needed if later phases require exact symbolic thresholds.
-- UKB remains narratively attractive but does not yet have verified public fields for RAP use, access tier, output checks, withdrawals, or rejected applications.
-- All of Us, OpenSAFELY, ONS/UKSA, and CASD may have stronger public project/outcome data than UKB.
-- The `github/dmca` repository is now tracked as its own data ecosystem, but remains supplemental because DMCA notices are copyright/takedown records rather than privacy-leakage facts.
-- Phase 2 should begin with lightweight feasibility probes, not final data collection.
-
-## Decision Options At Checkpoint
-
-1. Approve Phase 1 and begin Phase 2 feasibility probes.
-2. Revise Phase 1 inventories or memo before proceeding.
-3. Prioritize a UKB-first Phase 2 path.
-4. Prioritize the richest public project-data source, likely All of Us, OpenSAFELY, ONS/UKSA, or CASD.
-5. Pursue a mixed empirical-calibration path rather than a single-institution causal design.
+`REVISE_PHASE_2`
