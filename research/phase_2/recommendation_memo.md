@@ -2,53 +2,80 @@
 
 Date: 2026-07-31
 
-## 1. What The Pilot Data Confirm
+Revision: incorporates user-requested checks on All of Us institutional/publication data and deeper UKB Showcase/project-page feasibility.
+
+## 1. What The Revised Pilot Confirms
 
 ## Confirmed
 
-- **OpenSAFELY** exposes job-level operational records with status, organization, project, request ID, and timestamp. This is the strongest direct mechanism pilot.
+- **UKB Showcase** is much stronger than initially assessed. It exposes applications, publications, official application-publication links, returned datasets, data-field properties, and schema inventory.
+- **UKB Existing projects** exposes `ID`, `Start date`, `Last updated`, and `Project status` in browser view. Shell extraction still hits Cloudflare.
+- **All of Us institutional agreements** expose institution-level Registered/Controlled Tier eligibility and individual-agreement friction for 1,457 observed institution rows.
+- **All of Us publication directory** exposes publication dates, PubMed IDs, DOI availability, institution counts, citation counts, RCR availability, focus flags, and a Resource Access Board review flag for 1,463 observed records.
+- **OpenSAFELY** exposes job-level operational records with status, organization, project, request ID, and timestamp.
 - **UKSA/ONS** exposes a clean project denominator with accreditation dates, protected data, legal gateway, and processing environment.
-- **UKB Showcase** exposes approved application IDs, titles, institutions, and project notes that can support text-coded risk proxies.
-- **All of Us** exposes workspace/project fields including access tier, purpose, UBR focus, categories, institution, and review URL, but the stable endpoint must be validated against production.
-- **GitHub DMCA** exposes clean notice-level metadata through the GitHub API, including filename date, path, SHA, size, and raw URL availability.
+- **GitHub DMCA** exposes clean notice-level metadata through the GitHub API.
 
 ## Not Confirmed
 
-- Direct leakage, sanctions, revocations, or output-airlock rejections were not observed in the pilot samples.
-- UKB RAP treatment cannot be assigned from Showcase schema 27 alone.
-- All of Us current `www` JSON endpoint did not return usable JSON in shell probes.
-- Publication/output linkage was not confirmed for UKB, All of Us, or UKSA.
+- Direct leakage, sanctions, revocations, downgrades, or output-airlock rejections were not observed.
+- UKB RAP access mode is not directly observed in downloaded Showcase schemas.
+- Reproducible extraction of UKB Existing projects timing/status fields is not solved because shell probes hit Cloudflare.
+- All of Us publication JSON did not expose a direct project/workspace key or access-tier field.
+- All of Us project records still lack project start/create/update dates in the pilot.
 - DMCA notices do not measure privacy leakage or controlled-access data misuse.
 
-## 2. What Failed Or Is Weak
+## 2. Direct Answer To The User's Two Checks
 
-1. UKB public project page access failed in shell probes because of a Cloudflare challenge.
-2. UKB application schema lacks treatment timing, RAP mode, access tier, continuation, and outputs.
-3. All of Us has promising fields, but the stable endpoint sample includes test/tutorial/operational workspaces.
-4. UKSA has excellent denominator fields but no output, sanction, or monitoring outcome.
-5. GitHub DMCA is technically easy but theoretically weak as a main design.
+## All of Us
 
-## 3. Ranked Proposals
+The institutional-agreements data are useful. They provide an institution-level denominator and tier eligibility: whether an institution permits Registered Tier, Controlled Tier, and whether individual agreements are required.
 
-1. **Proposal B: OpenSAFELY Monitoring And Output Workflow**
-   Recommended. Best balance of observable monitoring/process outcomes, timing, accessibility, and theory fit.
+The publication-directory data are also useful. They provide publication timing and research-value outcomes.
 
-2. **Proposal A: All of Us Access Tier And Project Selection**
-   Promising if the production endpoint is stabilized and non-research/test workspaces can be filtered.
+The main All of Us problem is therefore not "no time data" in general. It is more specific:
 
-3. **Proposal D: GitHub DMCA Takedown Notice Archive**
-   Useful as a supplemental detection/takedown archive, not as the main theory test.
+- no reliable project/workspace time field was observed;
+- no DURA agreement date was observed;
+- publication time exists, but no direct project-to-publication key or publication-level access-tier field was observed.
 
-4. **Proposal C: UK Biobank RAP-Default Application And Output Linkage**
-   Best narrative fit but weakest current public feasibility for treatment and outcome assignment.
+## UKB
+
+UKB should continue. The `biobank.ndph.ox.ac.uk` Showcase schemas provide much more than the initial Phase 2 report used:
+
+- applications;
+- publications;
+- official application-publication links;
+- returned datasets by application;
+- data-field properties and field-resource support.
+
+The UKB Existing projects page also matters because it exposes `Start date`, `Last updated`, and `Project status`. This potentially solves the timing/status weakness if Phase 3 can extract those fields reproducibly.
+
+## 3. Revised Ranked Proposals
+
+1. **Proposal C: UKB RAP/Application/Output Linkage**
+   Revised recommendation. Best fit with the manuscript and now strongest public-data linkage path.
+
+2. **Proposal B: OpenSAFELY Monitoring And Output Workflow**
+   Best direct monitoring-process source and strongest backup if UKB project-page extraction fails.
+
+3. **Proposal A: All of Us Tier/Institution/Publication**
+   Strong descriptive support source; weaker causal design because project timing and project-publication linkage remain unresolved.
+
+4. **Proposal D: GitHub DMCA Takedown Notice Archive**
+   Useful supplemental detection/takedown archive, not a main theory test.
 
 ## 4. Recommended Proposal
 
-I recommend:
+I now recommend:
 
-`PROPOSAL_B`
+`PROPOSAL_C`
 
-Reason: OpenSAFELY gives the clearest observable version of the manuscript's mechanism: controlled environment, monitoring/logging, job status, timing, and possible linkage to code/output/publications. It is not the cleanest causal design yet, but it is the strongest path toward publishable mechanism evidence.
+Reason: the revised UKB pilot finds official public joins from applications to publications and returned datasets, plus field-level metadata and browser-visible project timing/status fields. That is a better match to the UKB-centered paper than the initial OpenSAFELY recommendation.
+
+Important fallback:
+
+If Phase 3 cannot reproducibly extract UKB Existing projects `Start date`, `Last updated`, and `Project status`, then `PROPOSAL_B` should become the fallback main empirical design while UKB remains the main application-output linkage and calibration setting.
 
 ## 5. Explicit User Choice Required
 
@@ -61,19 +88,11 @@ To proceed, the user must select exactly one proposal with the Phase 2 approval 
 
 Do not proceed to Phase 3 without one of those exact tokens.
 
-## 6. If The User Wants A UKB-Centered Paper
+## 6. Best Mixed Path
 
-Choose `PROPOSAL_C` only if UKB narrative fit is more important than immediate public-data strength. Expect a higher chance that the empirical component becomes calibration or institutional illustration unless additional UKB fields are provided.
+If Phase 3 approves Proposal C, retain these support sources:
 
-## 7. If The User Wants A GitHub/DMCA Component
-
-Choose `PROPOSAL_D` only as a supplemental measurement/detection-bias design. It should not be the sole empirical design for this theory paper.
-
-## 8. Best Mixed Path
-
-If Phase 3 approves Proposal B, retain these support sources:
-
+- OpenSAFELY for monitoring-process comparison;
+- All of Us for access-tier and publication-output comparison;
 - UKSA/ONS for secure-environment denominator comparison;
-- UKB for motivation and calibration;
-- All of Us for access-tier taxonomy;
-- GitHub DMCA for observed-incident measurement caveats.
+- GitHub DMCA for observed-incident and detection-bias caveats.

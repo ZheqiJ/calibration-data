@@ -1,0 +1,8 @@
+schema_id,description,phase2_role
+27,Applications (researcher projects),project denominator and application text
+19,Publications,"research output dates, PubMed/DOI, citations"
+24,Links between Applications and Publications,official app-to-publication join key
+4,Returned datasets from Applications,returned-data/research-value outcome by application_id
+1,Data field properties,"field-level availability, privacy, stability, debut/version, participants/items"
+16,Data field summary,field-level summary support
+25,Links between Fields and Resources,field-resource linkage support

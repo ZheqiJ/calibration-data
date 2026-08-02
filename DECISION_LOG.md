@@ -234,6 +234,45 @@ Implication:
 
 - Phase 3 should not start until the user selects exactly one proposal with `APPROVE_PHASE_2: PROPOSAL_A`, `APPROVE_PHASE_2: PROPOSAL_B`, `APPROVE_PHASE_2: PROPOSAL_C`, or `APPROVE_PHASE_2: PROPOSAL_D`.
 
+## 2026-07-31 - Revise Phase 2 After All of Us And UKB Checks
+
+Decision: Revise Phase 2 after the user flagged additional All of Us and UKB sources.
+
+Checks added:
+
+- All of Us Registered Institutions page;
+- All of Us Publication Directory;
+- UKB Showcase schema index;
+- UKB publication schema 19;
+- UKB application-publication link schema 24;
+- UKB returned datasets schema 4;
+- UKB data field schema 1;
+- UKB Existing projects page.
+
+Revised findings:
+
+- All of Us institutional agreements are useful for institution-level Registered/Controlled Tier eligibility and access friction.
+- All of Us publication data are useful for publication timing and research-value outcomes.
+- The main All of Us weakness is project timing and project-to-publication linkage, not absence of publication time.
+- UKB Showcase has official application-publication and returned-dataset linkages.
+- UKB Existing projects exposes `Start date`, `Last updated`, and `Project status` in browser view, although shell access still hits Cloudflare.
+
+## 2026-07-31 - Revise Recommendation To Proposal C
+
+Decision: Change the recommended Phase 2 proposal from `PROPOSAL_B` to `PROPOSAL_C`.
+
+Rationale:
+
+- `PROPOSAL_C` now has official UKB application-to-publication linkage through schema 24.
+- UKB publication outcomes and returned-data outcomes are publicly observable through Showcase schemas.
+- UKB data-field metadata can support granularity, privacy, availability, and field-timing controls.
+- UKB Existing projects fields may solve the start/status/timing gap if reproducible extraction is solved in Phase 3.
+- This path better matches the UKB-centered manuscript.
+
+Fallback:
+
+- `PROPOSAL_B` remains the fallback main design if Phase 3 cannot reproducibly extract UKB Existing projects timing/status fields or map RAP-default timing to projects.
+
 ## Current Gate
 
 Waiting for user decision at the Phase 2 checkpoint.
@@ -241,7 +280,7 @@ Waiting for user decision at the Phase 2 checkpoint.
 Valid next tokens:
 
 - `APPROVE_PHASE_2: PROPOSAL_A`: begin Phase 3 for All of Us.
-- `APPROVE_PHASE_2: PROPOSAL_B`: begin Phase 3 for OpenSAFELY. Recommended.
-- `APPROVE_PHASE_2: PROPOSAL_C`: begin Phase 3 for UK Biobank.
+- `APPROVE_PHASE_2: PROPOSAL_B`: begin Phase 3 for OpenSAFELY fallback.
+- `APPROVE_PHASE_2: PROPOSAL_C`: begin Phase 3 for UK Biobank. Recommended.
 - `APPROVE_PHASE_2: PROPOSAL_D`: begin Phase 3 for GitHub DMCA.
 - `REVISE_PHASE_2`: revise Phase 2 outputs only.

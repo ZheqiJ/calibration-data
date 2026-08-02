@@ -45,6 +45,7 @@ No full dataset, final scraper, regression, causal claim, or calibration exercis
 - `research/phase_2/proposal_C.md`
 - `research/phase_2/proposal_D.md`
 - `research/phase_2/recommendation_memo.md`
+- `research/phase_2/revision_memo.md`
 - updated `STATUS.md`
 - updated `DECISION_LOG.md`
 
@@ -53,37 +54,49 @@ No full dataset, final scraper, regression, causal claim, or calibration exercis
 Phase 2 created small pilot samples only:
 
 - All of Us project/workspace sample;
+- All of Us institutional-agreements sample;
+- All of Us publication sample;
 - UK Biobank Showcase approved-application sample;
+- UK Biobank publication sample;
+- UK Biobank application-publication link sample;
+- UK Biobank joined application-publication sample;
+- UK Biobank returned-datasets sample;
+- UK Biobank data-fields sample;
+- UK Biobank schema-inventory sample;
 - OpenSAFELY public jobs sample;
 - UKSA/ONS accredited-projects sample;
 - GitHub DMCA notice-metadata sample.
 
-The strongest recommended path is `PROPOSAL_B`: OpenSAFELY monitoring and output workflow. It has the best observed fit to post-access monitoring, timing, operational status, and continuation/process outcomes.
+The revised strongest recommended path is `PROPOSAL_C`: UK Biobank RAP/application/output linkage. The recommendation changed after checking additional UKB Showcase schemas and the UKB Existing projects page. `PROPOSAL_B` remains the fallback if reproducible UKB project timing/status extraction fails.
 
 ## Main Feasibility Findings
 
 Confirmed:
 
+- UKB Showcase exposes applications, publications, official application-publication links, returned datasets, data-field metadata, and schema inventory.
+- UKB Existing projects page exposes `ID`, `Start date`, `Last updated`, and `Project status` in browser view.
+- All of Us institutional agreements expose institution-level Registered/Controlled Tier eligibility and individual-agreement friction.
+- All of Us publication directory exposes publication dates, PubMed IDs, DOI availability, institution counts, citation counts, RCR availability, focus flags, and a Resource Access Board review flag.
 - OpenSAFELY exposes job-level status, organization, project, request ID, and timing.
 - UKSA/ONS exposes a clean project denominator with accreditation dates, legal gateway, protected data, and processing environment.
-- UKB Showcase exposes approved application IDs, titles, institutions, and project notes.
-- All of Us exposes promising project/workspace fields including access tier, purpose, UBR focus, categories, institution, and review URL, but endpoint stability remains an issue.
 - GitHub DMCA exposes clean notice-level metadata through the GitHub API.
 
 Weak or failed:
 
 - direct leakage, sanctions, revocations, downgrades, and output-airlock rejections were not observed in the pilot samples;
-- UKB public project-page access was blocked by a Cloudflare challenge in shell probes;
-- UKB Showcase schema 27 does not expose RAP treatment, approval date, access tier, monitoring, continuation, or output fields;
-- All of Us current `www` JSON endpoint returned HTTP 500 in shell probes, while a stable endpoint returned pilot JSON;
+- UKB RAP access mode is not directly observed in the downloaded Showcase schemas;
+- UKB Existing projects page is browser-visible, but shell `curl` is blocked by a Cloudflare challenge;
+- All of Us project/workspace records still lack project start/create/update dates in the pilot;
+- All of Us publication JSON does not expose a direct project/workspace key or publication-level access-tier field;
+- All of Us current project-directory `www` JSON endpoint returned HTTP 500 in shell probes, while a stable endpoint returned pilot JSON;
 - GitHub DMCA is copyright/takedown data, not direct privacy-leakage or controlled-access misuse data.
 
 ## Ranked Proposal Options
 
-1. `PROPOSAL_B` - OpenSAFELY Monitoring And Output Workflow. Recommended.
-2. `PROPOSAL_A` - All of Us Access Tier And Project Selection.
-3. `PROPOSAL_D` - GitHub DMCA Takedown Notice Archive.
-4. `PROPOSAL_C` - UK Biobank RAP-Default Application And Output Linkage.
+1. `PROPOSAL_C` - UK Biobank RAP/Application/Output Linkage. Recommended.
+2. `PROPOSAL_B` - OpenSAFELY Monitoring And Output Workflow. Fallback.
+3. `PROPOSAL_A` - All of Us Access Tier, Institution Eligibility, And Publication Outputs.
+4. `PROPOSAL_D` - GitHub DMCA Takedown Notice Archive.
 
 ## Gate Status
 
@@ -98,7 +111,7 @@ Do not proceed to Phase 3 until the user provides one exact approval token:
 
 Recommended next token:
 
-`APPROVE_PHASE_2: PROPOSAL_B`
+`APPROVE_PHASE_2: PROPOSAL_C`
 
 If revisions are requested, use:
 

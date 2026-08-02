@@ -8,8 +8,10 @@ Scope: pilot linkage assessment only. No full linkage was built.
 
 | Source | Primary key | Linkable to | Feasibility | Main blocker |
 |---|---|---|---|---|
-| All of Us | `workspace_id`, `snapshot_id` | review URL, project directory card, possibly publications/workspaces | Medium | Current `www` API returned 500; publication/date linkage not in pilot fields. |
-| UKB | `app_id` | UKB Showcase/project schema, possibly publications and returned data | Medium-low | Schema lacks approval date, RAP use, access tier, continuation, and outcome fields. |
+| All of Us projects | `workspace_id`, `snapshot_id` | review URL, project directory card, institution fields | Medium | Project timing absent; current `www` endpoint returned 500. |
+| All of Us institutions | `institution` | Registered/Controlled Tier eligibility, DURA denominator | Medium-high | No agreement date and no project outcome link. |
+| All of Us publications | `record_id`, `pubmed_id`, DOI | publication date, journal, institution list, citations/RCR, focus flags | Medium | No direct project/workspace key or access-tier field observed in JSON. |
+| UKB | `app_id`, `pub_id`, `application_id`, `field_id` | applications, publications, app-pub links, returned datasets, field metadata, Existing projects timing/status | High for research-output linkage | RAP access mode still absent; Existing projects page needs reproducible extraction because shell hits Cloudflare. |
 | OpenSAFELY | `request_id`, project slug/name | job detail page, project workspace, GitHub code, possibly output release | High for operational linkage | Need detail-page sampling to distinguish job status from output-airlock approval. |
 | UKSA/ONS | `project_number` | accreditation register, processing environment, protected data | Medium | Publications/output-check outcomes not directly linked. |
 | GitHub DMCA | notice `path`, blob `sha`, raw URL | raw notice, repository URLs inside notice, GitHub repository metadata if parseable | Medium for takedown process; low for theory | Repository URLs may be redacted/multiple; no controlled-access project link. |
@@ -18,53 +20,77 @@ Scope: pilot linkage assessment only. No full linkage was built.
 
 ## Keys
 
-- `workspace_id`
-- `snapshot_id`
-- `reviewUrl` parameters
+- project/workspace: `workspace_id`, `snapshot_id`, `reviewUrl` parameters;
+- institution: normalized institution name;
+- publication: `record_id`, `pubmed_id`, DOI.
 
 ## Linkage Potential
 
-The public JSON provides stable-looking workspace and snapshot IDs. These can likely link back to project cards and review-request forms. The sample includes access tier, project purpose, focus/category fields, team-size proxy, and institution.
+All of Us now has three useful public layers:
+
+- project directory: project purpose, access tier, UBR focus, categories, institution, team-size proxy, and review URL;
+- institutional agreements: 1,457 observed institution rows with Registered/Controlled Tier eligibility and individual-agreement friction;
+- publication directory: 1,463 observed publication records with publication dates, PubMed/DOI, institution lists, citation counts, RCR, focus flags, and a Resource Access Board review flag.
+
+This combination is useful for a descriptive selection-and-output design. It can ask whether institutions and projects with Controlled Tier eligibility differ from Registered Tier projects, and whether publication outputs cluster by focus, institution type, or project text.
 
 ## Linkage Weaknesses
 
-- The current `www.researchallofus.org` endpoint returned HTTP 500 in shell probes.
-- The `stable.researchallofus.org` endpoint returned JSON but included many test/tutorial/operational workspaces.
-- No publication identifiers or dates were present in the pilot JSON.
-- Workspace snapshots may not equal research projects in the sense needed for publication outputs.
+- The publication JSON did not expose a direct `workspace_id`, `snapshot_id`, or `accessTier` field.
+- Project records did not expose project creation/start/update dates in the pilot sample.
+- Institution agreements did not expose agreement dates.
+- The current project-directory `www` endpoint returned HTTP 500; the `stable` endpoint returned JSON.
+- One publication record is future-dated after 2026-07-31, so date cleaning is required.
 
 ## Verdict
 
-Useful for project selection and access-tier classification if the production endpoint can be stabilized. Weak for outcome linkage unless publication directory linkage is found in Phase 3 or via an approved Phase 2 extension.
+All of Us is stronger than initially assessed. The main weakness is project timing and project-to-publication linkage, not the absence of publication timing.
 
 ## 3. UK Biobank
 
 ## Keys
 
-- `app_id`
+- `app_id` in applications;
+- `pub_id` in publications;
+- `app_id` + `pub_id` in the official application-publication link table;
+- `application_id` in returned datasets;
+- `field_id` in data field schemas;
+- Existing projects page `ID`.
 
 ## Linkage Potential
 
-The `app_id` is a strong project key. The Showcase application schema is downloadable and includes title, PI, institution, and project notes. Text fields can support risk/granularity proxies such as genetics, linkage, full cohort, HES, samples, and imaging.
+UKB now has high feasibility for official output linkage:
+
+- schema 27 gives approved applications;
+- schema 19 gives publications with dates, PubMed/DOI/URL, citations, and citation update dates;
+- schema 24 directly links applications to publications;
+- schema 4 gives returned datasets by `application_id`;
+- schema 1 gives data field properties including privacy/availability flags, debut/version dates, participants, item count, and cost/access flags;
+- schema 16 and 25 support data-field summary and field-resource linkage;
+- the Existing projects page exposes `ID`, `Start date`, `Last updated`, and `Project status` in browser view.
+
+The revised pilot successfully built `ukb_application_publication_join_sample.csv`, confirming that application records can be merged to publication outcomes through official Showcase IDs.
 
 ## Linkage Weaknesses
 
-- Main UKB projects page returned a Cloudflare challenge in shell probes.
-- Schema 27 has no approval date, RAP use, access tier, renewal, withdrawal, output check, publication, or returned-data field.
-- RAP-default policy timing cannot be assigned to applications without approval dates or access-mode fields.
+- RAP/default access mode is still not directly observed in the downloaded schemas.
+- Existing projects timing/status fields are visible in browser, but command-line probes returned a Cloudflare challenge.
+- Returned datasets are positive/selected outcomes and do not capture failed output checks or rejected returns.
+- Field-level schemas show data availability and sensitivity, but not application-specific field demand by themselves.
+- Publication outcomes are delayed and selected.
 
 ## Verdict
 
-Strong narrative and project text; weak treatment/outcome linkage from public fields alone. UKB should not be selected as the sole empirical design unless additional UKB fields are found.
+UKB should be upgraded from "narratively strong but publicly weak" to "strong main-design candidate with one reproducibility blocker." The blocker is not whether UKB has useful public data; it clearly does. The blocker is whether the Existing projects timing/status data can be harvested reproducibly in Phase 3.
 
 ## 4. OpenSAFELY
 
 ## Keys
 
-- `request_id`
-- project name/slug
-- organization
-- started timestamp
+- `request_id`;
+- project name/slug;
+- organization;
+- started timestamp.
 
 ## Linkage Potential
 
@@ -79,15 +105,15 @@ The Jobs homepage table parses cleanly into job-level status, organization, proj
 
 ## Verdict
 
-Best source for a mechanism-first feasibility design. It directly observes operational status and timing, which are close to monitoring/continuation processes.
+OpenSAFELY remains the best source for a pure monitoring-process design, but UKB is now stronger for project-to-output linkage.
 
 ## 5. UKSA/ONS
 
 ## Keys
 
-- `project_number`
-- accreditation date
-- processing environment
+- `project_number`;
+- accreditation date;
+- processing environment.
 
 ## Linkage Potential
 
@@ -107,11 +133,11 @@ Excellent denominator and institutional-control source. Better as comparison/cal
 
 ## Keys
 
-- notice path
-- blob SHA
-- raw download URL
-- date parsed from filename
-- slug parsed from filename
+- notice path;
+- blob SHA;
+- raw download URL;
+- date parsed from filename;
+- slug parsed from filename.
 
 ## Linkage Potential
 
@@ -128,10 +154,10 @@ The GitHub contents API provides clean monthly notice listings. Raw notice files
 
 Technically feasible as a takedown-process archive. It should remain supplemental unless a specific privacy/data-exposure subset and denominator can be constructed.
 
-## 7. Recommended Linkage Order If Phase 2 Is Approved Into Phase 3
+## 7. Revised Recommended Linkage Order
 
-1. OpenSAFELY request ID to detail page/project/code/output.
-2. All of Us workspace/snapshot ID to project directory/publication directory if endpoint stability is resolved.
-3. UKB app ID to publications/returned data only if additional public or provided UKB fields are available.
+1. UKB app ID to publication, returned dataset, data field, and Existing projects timing/status fields.
+2. OpenSAFELY request ID to detail page/project/code/output.
+3. All of Us project/institution/publication layers, with project-to-publication linkage as the key unresolved step.
 4. UKSA project number to external publication searches or institutional reporting.
-5. GitHub DMCA notice path to raw notice and repository metadata only as a supplemental detection/archive exercise.
+5. GitHub DMCA notice path to raw notice and repository metadata as a supplemental detection/archive exercise.

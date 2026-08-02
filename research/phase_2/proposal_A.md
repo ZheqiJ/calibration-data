@@ -1,28 +1,40 @@
-# Proposal A: All of Us Access Tier And Project Selection
+# Proposal A: All of Us Access Tier, Institution Eligibility, And Publication Outputs
 
 ## Research Question
 
-Do public project characteristics and access tier in All of Us reveal how higher-granularity data access is selected, justified, and monitored?
+Do public All of Us project characteristics, institutional tier eligibility, and publication outputs reveal how higher-granularity data access is selected and translated into research value?
 
 ## Theory Mechanism
 
-Data granularity and project risk shape access. Controlled Tier versus Registered Tier can proxy high- versus lower-granularity access. Public project descriptions and review-request mechanisms may reveal screening and participant-risk governance.
+Data granularity and project risk shape access. Controlled Tier versus Registered Tier can proxy higher versus lower data granularity. Institutional agreements determine whether researchers can enter those tiers. Publication outputs proxy research value after access.
 
 ## Institutional Setting
 
-All of Us Research Program Researcher Workbench and public Research Projects Directory.
+All of Us Research Program Researcher Workbench, public Research Project Directory, Registered Institutions page, and Publication Directory.
 
 ## Unit Of Observation
 
-Workspace snapshot or public project card.
+Primary units:
+
+- workspace/project snapshot;
+- institution agreement;
+- publication.
+
+Possible linked unit if Phase 3 succeeds:
+
+- project or institution by publication outcome.
 
 ## Sample Period
 
-Current public directory snapshot. A longitudinal sample would require archived endpoint snapshots or repeated future captures, which Phase 2 did not build.
+Current public directory snapshots as of 2026-07-31. The publication directory contains publication dates from 2015 through 2027 in the observed JSON; one 2027 date appears after the current date and must be cleaned or treated as online-ahead metadata.
 
 ## Treatment
 
-Primary treatment proxy: `access_tier`, especially Controlled Tier versus Registered Tier.
+Primary treatment proxies:
+
+- project `access_tier`, especially Controlled Tier versus Registered Tier;
+- institution-level Controlled Tier eligibility;
+- individual-agreement friction.
 
 Secondary risk/exposure proxies:
 
@@ -33,72 +45,116 @@ Secondary risk/exposure proxies:
 
 ## Control / Comparison
 
-Registered Tier projects, lower-risk project purposes, and projects without sensitive demographic categories.
+Potential controls:
+
+- Registered Tier projects;
+- institutions with Registered Tier only;
+- lower-risk project purposes;
+- projects without sensitive demographic categories;
+- publications by institution or focus category.
 
 ## Primary Outcomes
 
-- Access tier.
-- Presence/completeness of project purpose/questions/approach/findings.
-- Public review-request URL availability.
+Observed in revised pilot:
+
+- publication date;
+- PubMed ID;
+- DOI availability;
+- citation count;
+- RCR availability;
+- publication focus flags;
+- Resource Access Board review flag.
+
+Project-side outcomes:
+
+- project text completeness;
+- review URL availability;
+- access-tier distribution.
 
 ## Secondary Outcomes
 
-- Publication linkage if found later.
-- Project focus/category mix.
-- Institution and team-size patterns.
+- project focus/category mix;
+- institution eligibility and friction;
+- team-size patterns;
+- publication type/subtype.
 
 ## Data Sources
 
 - Pilot sample: `pilot_data/allofus_projects_sample.csv`.
-- Public directory endpoint found in page comments: `https://stable.researchallofus.org/wp-json/research-hub/projects-directory`.
-- Current directory page: `https://www.researchallofus.org/research-project-directory/`.
-- Data access tier documentation: `https://www.researchallofus.org/data-tools/data-access/`.
+- Pilot sample: `pilot_data/allofus_institutional_agreements_sample.csv`.
+- Pilot sample: `pilot_data/allofus_publications_sample.csv`.
+- Project endpoint: `https://stable.researchallofus.org/wp-json/research-hub/projects-directory`.
+- Registered Institutions page: `https://www.researchallofus.org/institutional-agreements/`.
+- Publication Directory page: `https://www.researchallofus.org/publication-directory/`.
 
 ## Linkage Strategy
 
-Use `workspace_id` and `snapshot_id` as keys. Link to review URL parameters and, if available in a later approved phase, publication-directory entries or public workspace pages.
+Project-level keys:
+
+- `workspace_id`;
+- `snapshot_id`;
+- review URL parameters.
+
+Institution-level key:
+
+- normalized institution name.
+
+Publication-level keys:
+
+- `record_id`;
+- `pubmed_id`;
+- DOI.
+
+The key Phase 3 task would be to test whether publications can be linked to projects by workspace ID, project title, institution, PubMed metadata, DOI, or manual/audited matching. The revised pilot did not observe a direct `workspace_id` or `accessTier` field in the publication JSON.
 
 ## Proposed Identification
 
-Primarily descriptive and selection-oriented. A causal design is not credible yet because no clean treatment timing was observed in the pilot.
+Most credible design:
 
-Possible later design:
+- descriptive selection and output analysis;
+- compare publication/output patterns across institution tier eligibility and project access-tier categories;
+- use matching or stratification by institution, focus area, and purpose.
 
-- compare Controlled Tier and Registered Tier projects after matching on purpose, institution, and focus;
-- test whether higher-risk categories are more likely to use Controlled Tier;
-- calibrate how granularity assignment maps to observed risk features.
+Less credible without additional timing:
+
+- policy-event design, because project start/approval dates and DURA agreement dates were not observed in Phase 2.
 
 ## Expected Sample Size
 
-Potentially large if the production directory endpoint is stable. Pilot saved 25 rows. The stable endpoint returned JSON but included test/tutorial/operational workspaces, so sample-size estimates require filtering.
+Observed in revised pilot:
+
+- 1,457 institution agreement rows;
+- 1,463 publication records;
+- project endpoint sample available but contaminated by test/tutorial/operational rows.
 
 ## Key Assumptions
 
-- Access tier reflects meaningful granularity differences.
-- Public project descriptions are sufficiently accurate.
+- Access tier reflects meaningful data granularity.
+- Institution tier eligibility shapes researcher access friction.
+- Publications can be linked to projects or institutions with acceptable error.
 - Test/tutorial/operational workspaces can be filtered out.
-- Public workspace snapshots correspond to research projects.
+- Publication dates can be cleaned, including the single future-dated record observed after 2026-07-31.
 
 ## Main Threats
 
-- Current `www` endpoint returned HTTP 500 in shell probes.
-- Stable endpoint may not match production directory exactly.
-- No project date or publication outcome in pilot fields.
-- Access tier may be user/workspace based, not treatment assignment.
-- Approved/public projects omit rejected or deterred projects.
+- No reliable project start/create/update date in the project sample.
+- No DURA agreement date in the institution sample.
+- No direct project-publication key observed in the publication JSON.
+- No direct `accessTier` field observed in the publication JSON.
+- Project endpoint stability issue: current `www` endpoint returned HTTP 500 while `stable` endpoint returned JSON.
 
 ## Likely Contribution
 
-Good descriptive evidence on project selection and access-tier governance in a major controlled health-data workbench.
+Good descriptive evidence on access-tier governance, institutional eligibility, and research-value outputs in a major controlled health-data workbench. Stronger than initially assessed, but still weaker than UKB for official project-output linkage.
 
 ## Implementation Cost
 
-Medium. Field extraction is feasible, but endpoint validation and filtering are nontrivial.
+Medium. The source data are accessible, but filtering and linkage are nontrivial.
 
 ## Fallback Design
 
-Use All of Us as a granularity/taxonomy and calibration source rather than the main empirical design.
+Use All of Us as a granularity/taxonomy and publication-output comparison source while UKB or OpenSAFELY carries the main empirical design.
 
 ## Evidence Type
 
-Descriptive evidence and calibration support. Causal inference is not currently supported.
+Descriptive evidence and calibration support. Causal inference requires project timing or a defensible policy event.
