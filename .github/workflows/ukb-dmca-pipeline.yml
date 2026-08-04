@@ -38,10 +38,13 @@ jobs:
           mkdir -p data
           if [ -s data/applications.tsv ]; then
             echo "Using data/applications.tsv"
+          elif [ -s data/application.tsv ]; then
+            echo "Using data/application.tsv"
+            cp data/application.tsv data/applications.tsv
           elif [ -n "${{ inputs.applications_url }}" ]; then
             curl -L --fail --retry 3 --retry-delay 10 "${{ inputs.applications_url }}" -o data/applications.tsv
           else
-            echo "Missing application input. Add data/applications.tsv or provide workflow_dispatch applications_url." >&2
+            echo "Missing application input. Add data/applications.tsv, data/application.tsv, or provide workflow_dispatch applications_url." >&2
             exit 1
           fi
 
