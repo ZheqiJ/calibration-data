@@ -17,6 +17,15 @@ on:
         required: false
         default: "10"
         type: string
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/ukb-dmca-pipeline.yml
+      - scripts/**
+      - tests/**
+      - data/applications.tsv
+      - data/application.tsv
 
 permissions:
   contents: write
