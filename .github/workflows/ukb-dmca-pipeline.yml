@@ -1,3 +1,4 @@
+# Touching this workflow can trigger a fresh output build on main.
 name: Build UKB DMCA Outputs
 
 on:
