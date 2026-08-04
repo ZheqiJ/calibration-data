@@ -1,0 +1,75 @@
+name: Build UKB DMCA Outputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      applications_url:
+        description: Optional URL for the UKB approved applications TSV.
+        required: false
+        type: string
+      scan_all_markdown:
+        description: Scan every github/dmca Markdown file body instead of relying on tree plus code search.
+        required: false
+        default: false
+        type: boolean
+      wayback_limit:
+        description: Internet Archive CDX captures per repository. Use 0 to disable.
+        required: false
+        default: "10"
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Prepare application input
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data
+          if [ -s data/applications.tsv ]; then
+            echo "Using data/applications.tsv"
+          elif [ -n "${{ inputs.applications_url }}" ]; then
+            curl -L --fail --retry 3 --retry-delay 10 "${{ inputs.applications_url }}" -o data/applications.tsv
+          else
+            echo "Missing application input. Add data/applications.tsv or provide workflow_dispatch applications_url." >&2
+            exit 1
+          fi
+
+      - name: Run tests
+        run: python3 -m unittest discover -s tests
+
+      - name: Build outputs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          SCAN_FLAG=""
+          if [ "${{ inputs.scan_all_markdown }}" = "true" ]; then
+            SCAN_FLAG="--scan-all-markdown"
+          fi
+          python3 scripts/ukb_dmca_pipeline.py \
+            --applications data/applications.tsv \
+            --output-dir . \
+            --cache-dir .cache/ukb_dmca \
+            --wayback-limit "${{ inputs.wayback_limit }}" \
+            ${SCAN_FLAG}
+
+      - name: Commit generated outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md ukb_dmca_*.csv evidence/
+          git commit -m "Generate UKB DMCA matching outputs" || exit 0
+          git push
