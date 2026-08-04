@@ -46,8 +46,8 @@ DATA_TYPES = {
     "covariates": ["covariate", "covariates"],
 }
 
-GITHUB_URL = re.compile(r"https?://(?:www\.)?github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+[^\s\]\)<> '\\"]*".replace(" ", ""), re.I)
-RAW_URL = re.compile(r"https?://raw\.githubusercontent\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/[^\s\]\)<> '\\"]+".replace(" ", ""), re.I)
+GITHUB_URL = re.compile(r"https?://(?:www\.)?github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+[^\s\]\)<>'\"]*", re.I)
+RAW_URL = re.compile(r"https?://raw\.githubusercontent\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/[^\s\]\)<>'\"]+", re.I)
 DOI = re.compile(r"\b10\.\d{4,9}/[-._;()/:A-Z0-9]+", re.I)
 PMID = re.compile(r"\b(?:PMID|PubMed(?:\s+ID)?)[:\s]+(\d{6,9})\b", re.I)
 APP_ID = re.compile(r"\b(?:UK\s*Biobank\s*)?(?:application|app|project)\s*(?:no\.?|number|id|#)?\s*[:#]?\s*(\d{2,6})\b", re.I)
