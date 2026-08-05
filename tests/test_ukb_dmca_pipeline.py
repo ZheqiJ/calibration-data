@@ -4,6 +4,8 @@ from pathlib import Path
 
 from scripts.ukb_dmca_pipeline import (
     extract_github_targets,
+    matched_notice_terms,
+    notice_matches,
     parse_applications_tsv,
     parse_notice_date,
     repo_enrich,
@@ -33,6 +35,25 @@ class PipelineParserTests(unittest.TestCase):
             parse_notice_date("2025/11/2025-11-13-uk-biobank-5.md"),
             "2025-11-13",
         )
+
+    def test_notice_match_requires_ukb_signal_in_notice_text(self):
+        text = "# UK Biobank\nReported content includes a UKB phenotype file."
+
+        self.assertTrue(notice_matches("2025/11/2025-11-13-uk-biobank.md", text))
+        self.assertIn("UK Biobank", matched_notice_terms(text))
+        self.assertIn("UKB", matched_notice_terms(text))
+
+    def test_notice_match_rejects_unrelated_notice(self):
+        text = "# JetBrains\nReported content includes cracked software keys."
+
+        self.assertFalse(notice_matches("2015/2015-07-06-jetbrains.md", text))
+        self.assertEqual(matched_notice_terms(text), "")
+
+    def test_notice_match_does_not_match_ukb_inside_longer_token(self):
+        text = "# Unrelated\nThis text mentions a token like aukbzz but not the acronym."
+
+        self.assertFalse(notice_matches("2025/05/2025-05-29-packt.md", text))
+        self.assertEqual(matched_notice_terms(text), "")
 
     def test_extract_file_target_from_blob_url(self):
         text = (
