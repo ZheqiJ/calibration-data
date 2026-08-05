@@ -89,6 +89,10 @@ def uniq(values: Iterable[Any]) -> str:
     return "; ".join(out)
 
 
+def join_text(values: Iterable[Any], sep: str = "\n") -> str:
+    return sep.join(str(v) for v in values if v is not None)
+
+
 def tokens(text: str) -> set[str]:
     text = re.sub(r"([a-z])([A-Z])", r"\1 \2", text)
     return {t for t in re.findall(r"[a-z0-9]+", text.lower()) if len(t) >= 3 and t not in STOP}
@@ -324,7 +328,7 @@ def repo_enrich(client: Client, targets: list[dict[str, str]], wayback_limit: in
         way = way_cache[url]
         source = (api.get("source") or {}).get("full_name") or (api.get("parent") or {}).get("full_name") or full
         role = "fork" if api.get("fork") else ("mirror" if "mirror" in (api.get("description") or "").lower() else "unknown")
-        if not api and re.search(r"forked repository", " ".join(t.values()), re.I):
+        if not api and re.search(r"forked repository", join_text(t.values(), " "), re.I):
             role = "fork"
         lineage = "lineage_" + slug(source.replace("/", "_"))
         ids = identifiers((api.get("description") or "") + "\n" + t.get("direct_app_ids", ""))
@@ -343,7 +347,7 @@ def repo_enrich(client: Client, targets: list[dict[str, str]], wayback_limit: in
             "evidence_urls": uniq([t.get("notice_url", ""), t.get("source_url", ""), url, way.get("wayback_urls", "")]),
             "uploader_attribution": "target repository owner/uploader only; not attributed to the UKB application team without independent evidence",
             "manual_review_needed": "true", "evidence_file": f"evidence/lineages/{lineage}.md",
-            "_text": "\n".join([url, full, t.get("offending_file_path", ""), t.get("alleged_data_type", ""), api.get("description", ""), t.get("direct_app_ids", "")]),
+            "_text": join_text([url, full, t.get("offending_file_path", ""), t.get("alleged_data_type", ""), api.get("description"), t.get("direct_app_ids", "")]),
             "_direct_app_ids": uniq([t.get("direct_app_ids", ""), *ids["app_id"]]),
         })
         rows.append(row)
@@ -383,7 +387,7 @@ def make_lineages(repo_rows: list[dict[str, str]]) -> list[dict[str, str]]:
             "alleged_data_types": uniq(r["alleged_data_type"] for r in rows), "doi": uniq(r["doi"] for r in rows),
             "pubmed_id": uniq(r["pubmed_id"] for r in rows), "evidence_urls": uniq(r["evidence_urls"] for r in rows),
             "manual_review_needed": "true", "evidence_file": f"evidence/lineages/{lid}.md",
-            "_text": "\n".join(r.get("_text", "") for r in rows), "_direct_app_ids": uniq(r.get("_direct_app_ids", "") for r in rows),
+            "_text": join_text(r.get("_text", "") for r in rows), "_direct_app_ids": uniq(r.get("_direct_app_ids", "") for r in rows),
         })
         out.append(row)
     return out
