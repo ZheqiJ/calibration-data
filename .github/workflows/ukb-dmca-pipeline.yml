@@ -16,7 +16,7 @@ on:
       wayback_limit:
         description: Internet Archive CDX captures per repository. Use 0 to disable.
         required: false
-        default: "10"
+        default: "0"
         type: string
   push:
     branches:
@@ -38,6 +38,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
@@ -72,7 +73,7 @@ jobs:
           set -euo pipefail
           SCAN_FLAG=""
           SCAN_ALL_MARKDOWN="${{ inputs.scan_all_markdown || 'false' }}"
-          WAYBACK_LIMIT="${{ inputs.wayback_limit || '10' }}"
+          WAYBACK_LIMIT="${{ inputs.wayback_limit || '0' }}"
           if [ "${SCAN_ALL_MARKDOWN}" = "true" ]; then
             SCAN_FLAG="--scan-all-markdown"
           fi
