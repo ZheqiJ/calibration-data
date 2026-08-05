@@ -6,6 +6,7 @@ from scripts.ukb_dmca_pipeline import (
     extract_github_targets,
     parse_applications_tsv,
     parse_notice_date,
+    repo_enrich,
 )
 
 
@@ -45,6 +46,41 @@ class PipelineParserTests(unittest.TestCase):
         self.assertEqual(targets[0]["repo_name"], "repo")
         self.assertEqual(targets[0]["offending_file_path"], "data/ukb_fields.csv")
         self.assertEqual(targets[0]["target_scope"], "single_file")
+
+    def test_repo_enrich_handles_null_github_description(self):
+        class FakeClient:
+            def fetch(self, url):
+                return {
+                    "status": 200,
+                    "body": (
+                        '{"id": 1, "description": null, "fork": false, '
+                        '"created_at": "2020-01-01T00:00:00Z", '
+                        '"pushed_at": "2020-01-02T00:00:00Z"}'
+                    ),
+                }
+
+        rows = repo_enrich(
+            FakeClient(),
+            [
+                {
+                    "repo_url": "https://github.com/example/repo",
+                    "repo_owner": "example",
+                    "repo_name": "repo",
+                    "offending_file_path": "data/ukb.csv",
+                    "offending_file_name": "ukb.csv",
+                    "target_scope": "single_file",
+                    "alleged_data_type": "phenotype",
+                    "direct_app_ids": "",
+                    "notice_id": "n1",
+                    "notice_date": "2024-01-01",
+                    "notice_path": "2024/01/notice.md",
+                }
+            ],
+            wayback_limit=0,
+        )
+
+        self.assertEqual(rows[0]["repo_status"], "live")
+        self.assertIn("https://github.com/example/repo", rows[0]["_text"])
 
 
 if __name__ == "__main__":
