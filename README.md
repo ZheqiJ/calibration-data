@@ -99,3 +99,18 @@ The code and workflow are ready, and parser tests pass locally. The full remote
 data run still needs a GitHub runner or another networked environment because
 this local shell cannot resolve external hosts. Run the workflow with the UKB
 application TSV available to populate the CSV result files and final counts.
+
+## Current Result Summary
+
+- UKB DMCA notices: 115
+- Unique repository URLs: 1216
+- Deduplicated repository lineages: 1216
+- Confirmed: 0
+- Probable: 0
+- Ambiguous: 0
+- Unresolved: 1216
+- Unique-application match ratio: 0.0
+- Unique applications linked: 0
+- Application input used: `data/applications.tsv`
+
+See `evidence/logs/result_summary.json` for remaining cases and role counts.

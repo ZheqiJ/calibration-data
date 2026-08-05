@@ -1,0 +1,16 @@
+{
+  "applications": "data/applications.tsv",
+  "output_dir": ".",
+  "cache_dir": ".cache/ukb_dmca",
+  "dmca_repo": "github/dmca",
+  "dmca_ref": "",
+  "notice_dir": "",
+  "scan_all_markdown": false,
+  "refresh_cache": false,
+  "request_delay": 0.25,
+  "request_timeout": 25.0,
+  "request_retries": 1,
+  "wayback_limit": 0,
+  "candidate_limit": 20,
+  "max_notices": 0
+}
