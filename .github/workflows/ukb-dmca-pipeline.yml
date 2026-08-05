@@ -31,6 +31,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: ukb-dmca-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -67,14 +71,16 @@ jobs:
         run: |
           set -euo pipefail
           SCAN_FLAG=""
-          if [ "${{ inputs.scan_all_markdown }}" = "true" ]; then
+          SCAN_ALL_MARKDOWN="${{ inputs.scan_all_markdown || 'false' }}"
+          WAYBACK_LIMIT="${{ inputs.wayback_limit || '10' }}"
+          if [ "${SCAN_ALL_MARKDOWN}" = "true" ]; then
             SCAN_FLAG="--scan-all-markdown"
           fi
           python3 scripts/ukb_dmca_pipeline.py \
             --applications data/applications.tsv \
             --output-dir . \
             --cache-dir .cache/ukb_dmca \
-            --wayback-limit "${{ inputs.wayback_limit }}" \
+            --wayback-limit "${WAYBACK_LIMIT}" \
             ${SCAN_FLAG}
 
       - name: Commit generated outputs
@@ -85,4 +91,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md ukb_dmca_*.csv evidence/
           git commit -m "Generate UKB DMCA matching outputs" || exit 0
-          git push
+          git push origin HEAD:main
