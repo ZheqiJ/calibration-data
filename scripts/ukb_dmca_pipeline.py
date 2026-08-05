@@ -14,6 +14,7 @@ import hashlib
 import json
 import os
 import re
+import socket
 import time
 import urllib.error
 import urllib.parse
@@ -111,18 +112,26 @@ def parse_applications_tsv(path: Path) -> list[dict[str, str]]:
 
 
 class Client:
-    def __init__(self, cache: Path, delay: float, refresh: bool) -> None:
+    def __init__(self, cache: Path, delay: float, refresh: bool, timeout: float, retries: int) -> None:
         self.dir = cache / "http"
         self.dir.mkdir(parents=True, exist_ok=True)
         self.delay = delay
         self.refresh = refresh
+        self.timeout = timeout
+        self.retries = retries
         self.log: list[dict[str, Any]] = []
         self.token = os.environ.get("GITHUB_TOKEN", "")
 
     def path(self, url: str) -> Path:
         return self.dir / (hashlib.sha256(url.encode()).hexdigest() + ".json")
 
-    def fetch(self, url: str, accept: str = "application/vnd.github+json, application/json, text/plain;q=0.9, */*;q=0.8") -> dict[str, Any]:
+    def fetch(
+        self,
+        url: str,
+        accept: str = "application/vnd.github+json, application/json, text/plain;q=0.9, */*;q=0.8",
+        timeout: float | None = None,
+        retries: int | None = None,
+    ) -> dict[str, Any]:
         p = self.path(url)
         if p.exists() and not self.refresh:
             data = json.loads(p.read_text())
@@ -132,19 +141,28 @@ class Client:
         headers = {"User-Agent": "ukb-dmca-application-matcher/1.0", "Accept": accept}
         if self.token and "api.github.com" in url:
             headers["Authorization"] = f"Bearer {self.token}"
-        req = urllib.request.Request(url, headers=headers)
         status, body, hdrs, fetched = 0, "", {}, now()
-        try:
-            with urllib.request.urlopen(req, timeout=45) as r:
-                status = int(r.status)
-                hdrs = {k.lower(): v for k, v in r.headers.items()}
-                body = r.read().decode(r.headers.get_content_charset() or "utf-8", "replace")
-        except urllib.error.HTTPError as e:
-            status = int(e.code)
-            hdrs = {k.lower(): v for k, v in e.headers.items()}
-            body = e.read().decode("utf-8", "replace")
-        except urllib.error.URLError as e:
-            body = json.dumps({"error": str(e.reason)})
+        max_retries = self.retries if retries is None else retries
+        request_timeout = self.timeout if timeout is None else timeout
+        for attempt in range(max_retries + 1):
+            req = urllib.request.Request(url, headers=headers)
+            fetched = now()
+            try:
+                with urllib.request.urlopen(req, timeout=request_timeout) as r:
+                    status = int(r.status)
+                    hdrs = {k.lower(): v for k, v in r.headers.items()}
+                    body = r.read().decode(r.headers.get_content_charset() or "utf-8", "replace")
+                break
+            except urllib.error.HTTPError as e:
+                status = int(e.code)
+                hdrs = {k.lower(): v for k, v in e.headers.items()}
+                body = e.read().decode("utf-8", "replace")
+                break
+            except (urllib.error.URLError, TimeoutError, socket.timeout) as e:
+                reason = getattr(e, "reason", e)
+                body = json.dumps({"error": str(reason), "attempt": attempt + 1, "max_attempts": max_retries + 1})
+                if attempt < max_retries:
+                    time.sleep(self.delay * (attempt + 1))
         data = {"url": url, "status": status, "headers": hdrs, "body": body, "fetched_at_utc": fetched, "from_cache": False}
         if status:
             p.write_text(json.dumps(data, indent=2), encoding="utf-8")
@@ -337,7 +355,7 @@ def wayback(client: Client, repo_url: str, limit: int) -> dict[str, str]:
         return {"wayback_first_capture": "", "wayback_capture_count": "0", "wayback_urls": ""}
     p = urllib.parse.urlparse(repo_url).path.strip("/")
     q = urllib.parse.urlencode({"url": f"github.com/{p}*", "output": "json", "fl": "timestamp,original,statuscode,mimetype,digest", "filter": "statuscode:200", "collapse": "digest", "limit": str(limit)})
-    r = client.fetch("https://web.archive.org/cdx?" + q, "application/json")
+    r = client.fetch("https://web.archive.org/cdx?" + q, "application/json", timeout=20, retries=0)
     if r["status"] != 200:
         return {"wayback_first_capture": "", "wayback_capture_count": "0", "wayback_urls": ""}
     try:
@@ -540,12 +558,14 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--scan-all-markdown", action="store_true")
     ap.add_argument("--refresh-cache", action="store_true")
     ap.add_argument("--request-delay", type=float, default=0.25)
+    ap.add_argument("--request-timeout", type=float, default=25.0)
+    ap.add_argument("--request-retries", type=int, default=1)
     ap.add_argument("--wayback-limit", type=int, default=10)
     ap.add_argument("--candidate-limit", type=int, default=20)
     ap.add_argument("--max-notices", type=int, default=0)
     args = ap.parse_args(argv)
     out = Path(args.output_dir); out.mkdir(parents=True, exist_ok=True)
-    client = Client(Path(args.cache_dir), args.request_delay, args.refresh_cache)
+    client = Client(Path(args.cache_dir), args.request_delay, args.refresh_cache, args.request_timeout, args.request_retries)
     apps = parse_applications_tsv(Path(args.applications))
     owner, repo = args.dmca_repo.split("/", 1)
     ref = args.dmca_ref
