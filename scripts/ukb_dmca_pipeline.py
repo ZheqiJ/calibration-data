@@ -25,6 +25,13 @@ from pathlib import Path
 from typing import Any, Iterable
 
 TERMS = ["UK Biobank", "uk biobank", "UKB", "ukbiobank", "uk-biobank"]
+NOTICE_TERM_PATTERNS = {
+    "UK Biobank": re.compile(r"\buk\s+biobank\b", re.I),
+    "UKB": re.compile(r"(?<![A-Za-z0-9])ukb(?![A-Za-z0-9])", re.I),
+    "ukbiobank": re.compile(r"\bukbiobank\b", re.I),
+    "uk-biobank": re.compile(r"\buk[-_]biobank\b", re.I),
+}
+UKB_FILENAME = re.compile(r"(uk[-_]?biobank|uk[-_]?b)(?:[-_.]|$)", re.I)
 STOP = {
     "about", "after", "also", "analysis", "and", "application", "applications",
     "are", "based", "been", "biobank", "can", "code", "cohort", "data",
@@ -189,13 +196,29 @@ def blob_dmca(owner: str, repo: str, ref: str, path: str) -> str:
     return f"https://github.com/{owner}/{repo}/blob/{urllib.parse.quote(ref)}/{path}"
 
 
+def matched_notice_terms(text: str) -> str:
+    return uniq(term for term, pattern in NOTICE_TERM_PATTERNS.items() if pattern.search(text))
+
+
+def notice_matches(path: str, text: str) -> bool:
+    """True when the notice body/title itself has a UK Biobank signal.
+
+    GitHub code search can return noisy candidates for short terms like UKB, so
+    candidate paths are always validated against the raw notice text before the
+    notice is included in outputs.
+    """
+    if matched_notice_terms(text):
+        return True
+    return bool(UKB_FILENAME.search(Path(path).name) and re.search(r"\bbiobank\b", text, re.I))
+
+
 def discover_remote(client: Client, dmca_repo: str, ref: str, scan_all: bool) -> dict[str, str]:
     owner, repo = dmca_repo.split("/", 1)
     if not ref:
         ref = client.json(f"https://api.github.com/repos/{owner}/{repo}").get("default_branch", "master")
     tree = client.json(f"https://api.github.com/repos/{owner}/{repo}/git/trees/{urllib.parse.quote(ref)}?recursive=1").get("tree", [])
     paths = [x["path"] for x in tree if x.get("type") == "blob" and x.get("path", "").endswith(".md")]
-    found = {p: "filename" for p in paths if re.search(r"(uk[-_]?biobank|uk[-_]?b)(?:[-_.]|$)", Path(p).name, re.I)}
+    found = {p: "filename" for p in paths if UKB_FILENAME.search(Path(p).name)}
     for term in TERMS:
         q = f'"{term}"' if " " in term else term
         for page in range(1, 11):
@@ -209,14 +232,20 @@ def discover_remote(client: Client, dmca_repo: str, ref: str, scan_all: bool) ->
             if len(items) < 100:
                 break
     if scan_all:
-        term_re = re.compile(r"\bUK\s*Biobank\b|\buk\s*biobank\b|\bUKB\b", re.I)
         for p in paths:
             if p in found:
                 continue
             r = client.fetch(raw_dmca(owner, repo, ref, p), "text/plain")
-            if r["status"] == 200 and term_re.search(r["body"]):
+            if r["status"] == 200 and notice_matches(p, r["body"]):
                 found[p] = "full_content_scan"
-    return dict(sorted((k, v) for k, v in found.items() if k))
+    validated = {}
+    for p, method in found.items():
+        if not p:
+            continue
+        r = client.fetch(raw_dmca(owner, repo, ref, p), "text/plain")
+        if r["status"] == 200 and notice_matches(p, r["body"]):
+            validated[p] = method
+    return dict(sorted(validated.items()))
 
 
 def discover_local(notice_dir: Path) -> dict[str, str]:
@@ -297,7 +326,7 @@ def parse_notice(path: str, text: str, dmca_repo: str, ref: str, method: str, fe
         "notice_title": title,
         "notice_url": blob_dmca(owner, repo, ref, path),
         "raw_url": raw_dmca(owner, repo, ref, path),
-        "matched_terms": uniq(t for t in TERMS if re.search(re.escape(t), title + "\n" + text, re.I)),
+        "matched_terms": matched_notice_terms(title + "\n" + text),
         "repository_urls": uniq(t["repo_url"] for t in targets),
         "repository_url_count": str(len({t["repo_url"].lower() for t in targets})),
         "has_counter_notice": str(bool(re.search(r"counter[- ]notice", text, re.I))).lower(),
@@ -590,6 +619,8 @@ def main(argv: list[str] | None = None) -> int:
             if r["status"] != 200:
                 continue
             text, fetched = r["body"], r["fetched_at_utc"]
+        if not notice_matches(path, text):
+            continue
         notice_text[path] = text
         n, ts = parse_notice(path, text, args.dmca_repo, ref, method, fetched)
         notices.append(n); targets += ts
