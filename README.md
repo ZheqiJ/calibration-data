@@ -102,13 +102,13 @@ application TSV available to populate the CSV result files and final counts.
 
 ## Current Result Summary
 
-- UKB DMCA notices: 115
-- Unique repository URLs: 1216
-- Deduplicated repository lineages: 1216
+- UKB DMCA notices: 110
+- Unique repository URLs: 193
+- Deduplicated repository lineages: 193
 - Confirmed: 0
 - Probable: 0
 - Ambiguous: 0
-- Unresolved: 1216
+- Unresolved: 193
 - Unique-application match ratio: 0.0
 - Unique applications linked: 0
 - Application input used: `data/applications.tsv`
