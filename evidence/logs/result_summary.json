@@ -1,17 +1,17 @@
 {
-  "generated_at_utc": "2026-08-06T08:44:28+00:00",
+  "generated_at_utc": "2026-08-06T09:37:07+00:00",
   "ukb_dmca_notice_total": 110,
   "repository_url_total": 193,
   "target_repository_row_total": 1826,
   "repository_owner_total": 170,
   "repository_lineage_total": 193,
   "match_grade_counts": {
-    "unresolved": 188,
-    "ambiguous": 4,
-    "confirmed": 1
+    "unresolved": 187,
+    "confirmed": 2,
+    "ambiguous": 4
   },
-  "unique_application_match_ratio": 0.0052,
-  "unique_application_count": 1,
+  "unique_application_match_ratio": 0.0104,
+  "unique_application_count": 2,
   "repo_role_counts": {
     "unknown": 193
   },
@@ -19,7 +19,6 @@
     "lineage_12sbxu_ukb-tools",
     "lineage_12sbxu_ukbb_data_r",
     "lineage_23andme-jaredo_shapeit5",
-    "lineage_adamelkholyy_ukbython",
     "lineage_adrianharris96_divergence_pipeline",
     "lineage_aishaalsuwaidi_genetic-annotation-aware-dimensionality-reduction-in-uk-biobank",
     "lineage_ajpag_ukb-brain-symptoms-clustering",

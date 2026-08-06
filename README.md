@@ -108,12 +108,12 @@ paper/application evidence is added or manually reviewed.
 - Unique repository URLs: 193
 - Unique repository owners: 170
 - Deduplicated repository lineages: 193
-- Confirmed: 1
+- Confirmed: 2
 - Probable: 0
 - Ambiguous: 4
-- Unresolved: 188
-- Unique-application match ratio: 0.0052
-- Unique applications linked: 1
+- Unresolved: 187
+- Unique-application match ratio: 0.0104
+- Unique applications linked: 2
 - Application input used: `data/applications.tsv`
 
 See `evidence/logs/result_summary.json` for remaining cases and role counts.
