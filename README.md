@@ -21,6 +21,13 @@ lineage-level evidence link, not a finding that an application violated policy.
   identifiers, and alleged data type cues.
 - Enriches each target with public GitHub repository metadata and optional
   Internet Archive CDX metadata.
+- Reads public repository README files only, extracts UK Biobank application
+  IDs, DOI/PMID identifiers, citation lines, paper titles, and public metadata
+  snippets, then uses Crossref/PubMed summaries when identifiers are available.
+- Runs the application evidence layer through
+  `scripts/ukb_dmca_enriched_appid_runner.py`, which reuses the existing notice
+  discovery/filtering code and changes only enrichment, scoring, and evidence
+  output.
 - Deduplicates fork/source lineages conservatively.
 - Scores all retained UKB application candidates and writes both candidate sets
   and final labels.
@@ -34,14 +41,16 @@ repositories.
 
 ```bash
 export GITHUB_TOKEN=YOUR_TOKEN
-python3 scripts/ukb_dmca_pipeline.py \
-  --applications "/mnt/data/application (1)(1).txt" \
+python3 scripts/ukb_dmca_enriched_appid_runner.py \
+  --applications "data/applications.tsv" \
   --output-dir . \
   --cache-dir .cache/ukb_dmca
 ```
 
-Use the local application file path that exists on your machine. In this Codex
-workspace the equivalent input was found at `/private/tmp/ukb_applications.txt`.
+Use the local application file path that exists on your machine. The GitHub
+workflow accepts `data/applications.tsv`, `data/application.tsv`, or uploaded
+`data/application*.txt` files and copies the first valid application table to
+`data/applications.tsv` before matching.
 
 To guarantee a no-clone body scan of every Markdown notice, add:
 
@@ -54,7 +63,8 @@ To guarantee a no-clone body scan of every Markdown notice, add:
 Open the `Build UKB DMCA Outputs` workflow from the Actions tab. It can use
 either:
 
-- `data/applications.tsv` committed to the private repository, or
+- `data/applications.tsv` committed to the private repository,
+- an uploaded `data/application*.txt` file, or
 - a temporary `applications_url` supplied in the workflow input.
 
 The workflow runs tests, generates all CSV/evidence outputs, and commits the
@@ -83,8 +93,21 @@ and `not_application_attributable`.
 notice/repository evidence, or a complete repo-to-paper-to-application chain
 from independent sources.
 
-`probable` requires at least three consistent non-direct evidence components
-and no close competing candidate.
+Direct application IDs are parsed from forms such as `UK Biobank application
+123`, `project number 123`, `app #123`, and compact strings such as
+`app103356`. The enriched runner scans public repository text, README excerpts,
+notice-derived evidence, paper metadata, and evidence URLs for these identifiers.
+
+For non-direct evidence, the matcher also compares repository-linked DOI/PMID
+values and paper-title tokens against the UKB application `notes` field. These
+signals are retained in `ukb_dmca_application_candidates.csv` as score
+components such as `application_note_doi`, `application_note_pubmed_id`, and
+`application_note_paper_title`; final labels remain conservative when the chain
+does not uniquely identify an application.
+
+`probable` requires paper/README-level evidence plus at least three consistent
+non-direct evidence components, or a paper identifier plus independent
+author/topic evidence and no close competing candidate.
 
 `ambiguous` is used when two or more applications are plausible.
 
@@ -98,9 +121,10 @@ the original UKB project cannot be determined.
 The code and workflow are ready, parser tests pass, and the GitHub Actions
 workflow has generated the current CSV/evidence outputs using
 `data/applications.tsv`. The current output is an audit-first automated pass:
-notice and repository discovery are now close to the external tracker counts,
-while application matching remains conservative and unresolved until additional
-paper/application evidence is added or manually reviewed.
+notice and repository discovery are now close to the external tracker counts.
+Application matching now enriches each lineage with public README, DOI, PubMed,
+and Crossref evidence where available, but still avoids treating third-party
+uploads as proof of conduct by a UKB application team.
 
 ## Current Result Summary
 
