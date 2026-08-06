@@ -132,4 +132,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2025/12/2025-12-10-uk-biobank-2.md; https://github.com/mariaratnasamy/ukb_bmi/blob/6f440e451a92e9db350a5e86dfc55446c011c697/0_data_download/ukb_field/src/0_download_fields_info.py; https://github.com/mariaratnasamy/ukb_bmi
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=40415; score=14.0; components=data_type; repo_name_or_path_topic; title=Burden of variants in obesity-related genes
+- rank 2: app_id=1038754; score=13.0; components=data_type; repo_name_or_path_topic; title=Exploring Risk and Protective Factors for Ocular Diseases
+- rank 3: app_id=15697; score=13.0; components=data_type; repo_name_or_path_topic; title=Lifestyle risk factors in association with dementia risk
+- rank 4: app_id=53061; score=13.0; components=data_type; repo_name_or_path_topic; title=Genotype-Phenotype analysis of genetic kidney and liver diseases
+- rank 5: app_id=54343; score=13.0; components=data_type; repo_name_or_path_topic; title=A multiscale genotype - phenotype map
+- rank 6: app_id=60239; score=13.0; components=data_type; repo_name_or_path_topic; title=To investigate the risk factors in the circadian rhythm-related diseases using the UK biobank data.
+- rank 7: app_id=69972; score=13.0; components=data_type; repo_name_or_path_topic; title=Risk and prognosis of estrogen-related diseases
+- rank 8: app_id=752310; score=13.0; components=data_type; repo_name_or_path_topic; title=The Impact of Lifestyle and Environmental Factors on Ocular Diseases
+- rank 9: app_id=84368; score=13.0; components=data_type; repo_name_or_path_topic; title=Genotype-Phenotype analyses of metabolic and inflammatory diseases
+- rank 10: app_id=87083; score=13.0; components=data_type; repo_name_or_path_topic; title=Big data-based analysis of genotype-phenotype correlations in eye diseases

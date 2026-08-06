@@ -36,4 +36,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2025/12/2025-12-08-uk-biobank-6.md; https://github.com/hewramanwaran/RetinaPD/blob/913a01fd19985b1b630a932e4981f26b7dd426dc/CSV_Population_Characteristics.ipynb; https://github.com/hewramanwaran/RetinaPD
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=19127; score=11.33; components=data_type; repo_name_or_path_topic; title=Assortative mating in the UK population
+- rank 2: app_id=19655; score=11.33; components=data_type; repo_name_or_path_topic; title=Quantitative and population genetics in UK Biobank
+- rank 3: app_id=27960; score=11.33; components=data_type; repo_name_or_path_topic; title=Population structure in the UK Biobank samples
+- rank 4: app_id=8764; score=11.33; components=data_type; repo_name_or_path_topic; title=The epidemiology of liver disease in a population-based cohort.
+- rank 5: app_id=40254; score=10.67; components=data_type; repo_name_or_path_topic; title=Geometry of Population Data from Images in the UK Biobank
+- rank 6: app_id=101900; score=10.5; components=data_type; repo_name_or_path_topic; title=Deep Learning based systemic disease screening at the population level using retinal images
+- rank 7: app_id=48012; score=10.5; components=data_type; repo_name_or_path_topic; title=Population Stratification in Risk Prediction Models
+- rank 8: app_id=48405; score=10.5; components=data_type; repo_name_or_path_topic; title=Understanding disease subtypes from genotype information
+- rank 9: app_id=53781; score=10.22; components=data_type; repo_name_or_path_topic; title=Comparison of HLA imputed genotype of the general population versus population with incidence of cancer.
+- rank 10: app_id=1064514; score=10.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype

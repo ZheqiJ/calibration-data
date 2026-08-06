@@ -48,4 +48,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2025/11/2025-11-13-ukbiobank.md; https://github.com/rrrrrs1/exposome-aging-ukb/blob/db5c05e6e271ec4ac01aa7737aec34b6b9c6877b/scripts/02-UKB_data_recoding.Rmd; https://github.com/rrrrrs1/exposome-aging-ukb
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=17346; score=11.33; components=data_type; repo_name_or_path_topic; title=Study of aging, genes, and environment
+- rank 2: app_id=56317; score=11.33; components=data_type; repo_name_or_path_topic; title=Aging Study by Genotype and DNA Methylation in Neural Networks
+- rank 3: app_id=103990; score=10.5; components=data_type; repo_name_or_path_topic; title=Genetic architecture of healthy aging
+- rank 4: app_id=124348; score=10.5; components=data_type; repo_name_or_path_topic; title=Exposome, Disease Trajectories and Multimorbidity Networks
+- rank 5: app_id=182419; score=10.5; components=data_type; repo_name_or_path_topic; title=Imaging Cardiovascular Aging in the UKBB
+- rank 6: app_id=48405; score=10.5; components=data_type; repo_name_or_path_topic; title=Understanding disease subtypes from genotype information
+- rank 7: app_id=533098; score=10.5; components=data_type; repo_name_or_path_topic; title=Unraveling the Genetic Architecture of Aging
+- rank 8: app_id=55337; score=10.5; components=data_type; repo_name_or_path_topic; title=Understanding Alzheimer's Disease in the Context of the Aging
+- rank 9: app_id=1037112; score=10.0; components=data_type; repo_name_or_path_topic; title=The Exposome, Genetics, and Aging: A Multi-omics Study of Cardiovascular Disease and Related Chronic Disorders Etiology
+- rank 10: app_id=1055001; score=10.0; components=data_type; repo_name_or_path_topic; title=Exploration of Brain Aging Using Multi-modal Data

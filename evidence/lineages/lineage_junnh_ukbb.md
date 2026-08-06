@@ -48,4 +48,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2025/12/2025-12-08-uk-biobank-2.md; https://github.com/Junnh/UKBB/blob/6de0602dd24396b589da8e56d09d2b9dad9d5fb3/make_col.py; https://github.com/Junnh/UKBB
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=182419; score=10.5; components=data_type; repo_name_or_path_topic; title=Imaging Cardiovascular Aging in the UKBB
+- rank 2: app_id=48405; score=10.5; components=data_type; repo_name_or_path_topic; title=Understanding disease subtypes from genotype information
+- rank 3: app_id=92363; score=10.5; components=data_type; repo_name_or_path_topic; title=Clinical and molecular heterogeneity of Kennedy's disease
+- rank 4: app_id=1064514; score=10.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype
+- rank 5: app_id=17984; score=10.0; components=data_type; repo_name_or_path_topic; title=Genotype-environment interactions and sub-classification of disease
+- rank 6: app_id=21988; score=10.0; components=data_type; repo_name_or_path_topic; title=The project of Quantum Pharmacutical company (q-pharm.com)
+- rank 7: app_id=575761; score=10.0; components=data_type; repo_name_or_path_topic; title=Genotype-to-phenotype mapping with artificial intelligence
+- rank 8: app_id=611093; score=10.0; components=data_type; repo_name_or_path_topic; title=Improving Disease Prediction with Polygenic Risk Scores & Clinical Data
+- rank 9: app_id=77596; score=10.0; components=data_type; repo_name_or_path_topic; title=Investigating genomic effects on clinical outcomes
+- rank 10: app_id=33751; score=9.67; components=data_type; repo_name_or_path_topic; title=Applying Deep Learning to Understand Disease-Genotype Relationships

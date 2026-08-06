@@ -84,4 +84,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2025/12/2025-12-15-uk-biobank.md; https://github.com/batmanlab/ukb_api/blob/b2c510defdbe505edffe86f31f3c03a572b791eb/notebooks/ukb_monai_demo.ipynb; https://github.com/batmanlab/ukb_api
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=182403; score=14.67; components=data_type; repo_name_or_path_topic; title=Longitudinal brain imaging in UK Biobank
+- rank 2: app_id=57854; score=12.0; components=data_type; repo_name_or_path_topic; title=Understanding brain development with imaging genomics
+- rank 3: app_id=97117; score=12.0; components=data_type; repo_name_or_path_topic; title=Impact of covariates on brain imaging biomarkers
+- rank 4: app_id=100773; score=11.33; components=data_type; repo_name_or_path_topic; title=Generative brain models in health and disease
+- rank 5: app_id=33278; score=11.33; components=data_type; repo_name_or_path_topic; title=Statistical Analysis of UK Biobank Imaging Database
+- rank 6: app_id=48134; score=11.33; components=data_type; repo_name_or_path_topic; title=Understand Alzheimer's disease characterized by brain imaging phenotype
+- rank 7: app_id=55929; score=11.33; components=data_type; repo_name_or_path_topic; title=Alcohol consumption and brain health
+- rank 8: app_id=57947; score=11.33; components=data_type; repo_name_or_path_topic; title=Genotype and phenotype analysis in human brain of mental disorders
+- rank 9: app_id=59867; score=11.33; components=data_type; repo_name_or_path_topic; title=Assessment of the heart-brain-liver-axis in the UK Biobank Imaging study
+- rank 10: app_id=62443; score=11.33; components=data_type; repo_name_or_path_topic; title=The eye and the brain

@@ -102,4 +102,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2025/08/2025-08-25-ukbiobank-2.md; https://raw.githubusercontent.com/12sbxu/ukb-tools/02a38d9389a04cb1442c44d990f8ff02a38ec43e/fid21022_age_at_recruitement.tsv; https://github.com/12sbxu/ukb-tools
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=61181; score=12.0; components=data_type; repo_name_or_path_topic; title=Designing and validating cancer risk and prognostic tools
+- rank 2: app_id=24456; score=11.33; components=data_type; repo_name_or_path_topic; title=Pan-cancer Genetic Analysis
+- rank 3: app_id=32341; score=11.33; components=data_type; repo_name_or_path_topic; title=UK Biobank Smoking-related Cancer Project
+- rank 4: app_id=43418; score=11.33; components=data_type; repo_name_or_path_topic; title=Cancer risk of FADS1 haplotypes
+- rank 5: app_id=51277; score=11.33; components=data_type; repo_name_or_path_topic; title=Epistasis analysis of cancer susceptibility
+- rank 6: app_id=70925; score=11.33; components=data_type; repo_name_or_path_topic; title=Genetic Epidemiology of Cancer
+- rank 7: app_id=32011; score=10.5; components=data_type; repo_name_or_path_topic; title=The effects of age, sex, genotype and systemic health on brain structure and function.
+- rank 8: app_id=42176; score=10.5; components=data_type; repo_name_or_path_topic; title=Association between cardiometabolic health and cancer
+- rank 9: app_id=45761; score=10.5; components=data_type; repo_name_or_path_topic; title=Genetics of cancer risk and therapy response
+- rank 10: app_id=46325; score=10.5; components=data_type; repo_name_or_path_topic; title=Immune genes and cancer susceptibility

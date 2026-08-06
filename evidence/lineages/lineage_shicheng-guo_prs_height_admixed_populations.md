@@ -54,4 +54,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2025/08/2025-08-11-ukbiobank.md; https://github.com/Shicheng-Guo/PRS_Height_Admixed_Populations/blob/e09bd3872f8d536a6245bdaf9396acedad52c76f/sib_betas/JHS/scripts/.RData; https://github.com/Shicheng-Guo/PRS_Height_Admixed_Populations
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=837784; score=13.0; components=data_type; repo_name_or_path_topic; title=Polygenic risk score in admixed populations
+- rank 2: app_id=21413; score=11.33; components=data_type; repo_name_or_path_topic; title=Phasing human populations
+- rank 3: app_id=90934; score=11.33; components=data_type; repo_name_or_path_topic; title=Pharmacogenomics in diverse populations
+- rank 4: app_id=95179; score=11.33; components=data_type; repo_name_or_path_topic; title=Advancing Genomics for Diverse and Admixed Populations
+- rank 5: app_id=17847; score=10.5; components=data_type; repo_name_or_path_topic; title=GWAS for risk for sports injuries
+- rank 6: app_id=18177; score=10.5; components=data_type; repo_name_or_path_topic; title=Multi-trait GWAS analyses in the UK Biobank
+- rank 7: app_id=32677; score=10.5; components=data_type; repo_name_or_path_topic; title=Methods for massive GWAS
+- rank 8: app_id=4372; score=10.5; components=data_type; repo_name_or_path_topic; title=GWAS on assoiations for hypertension
+- rank 9: app_id=48405; score=10.5; components=data_type; repo_name_or_path_topic; title=Understanding disease subtypes from genotype information
+- rank 10: app_id=51368; score=10.31; components=data_type; repo_name_or_path_topic; title=Evaluation of a hybrid whole exome sequencing panel combined with microarray data for genotype imputation into GWAS cohorts

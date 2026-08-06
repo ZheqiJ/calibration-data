@@ -282,4 +282,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2025/08/2025-08-22-uk-biobank.md; https://github.com/julyfish711/biomarkers/blob/1c0da07a271784cdcb890e5a7e4a97f03547e82b/clumping/clumped/GLOBAL_Vitamin_D.hh; https://github.com/julyfish711/biomarkers
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=181095; score=13.0; components=data_type; repo_name_or_path_topic; title=Exploring Parkinson's Disease Biomarkers Through UK Biobank Proteomics
+- rank 2: app_id=100584; score=11.33; components=data_type; repo_name_or_path_topic; title=Lipoprotein(a) and Cardiovascular Disease Risk
+- rank 3: app_id=10214; score=11.33; components=data_type; repo_name_or_path_topic; title=Vitamin D, genetics, and the risk of schizophrenia
+- rank 4: app_id=69067; score=11.0; components=data_type; repo_name_or_path_topic; title=Chronic pain, C-reactive protein, Vitamin D, psychosocial & lifestyle factors and medical comorbidities - a study using UK Biobank data
+- rank 5: app_id=477103; score=10.86; components=data_type; repo_name_or_path_topic; title=Identification of predictive risk Biomarkers for Chronic Non-communicable disease
+- rank 6: app_id=491942; score=10.86; components=data_type; repo_name_or_path_topic; title=Identification and Validation of  Biomarkers for Nonalcoholic Steatohepatitis  Using Proteomics
+- rank 7: app_id=62283; score=10.86; components=data_type; repo_name_or_path_topic; title=Assessment of vitamin D and calcium on the risk of sarcoidosis by Mendelian Randomization approach
+- rank 8: app_id=799199; score=10.86; components=data_type; repo_name_or_path_topic; title=Understanding factors influencing LDL cholesterol and Its management
+- rank 9: app_id=106345; score=10.5; components=data_type; repo_name_or_path_topic; title=The contribution of proteomics to multi-morbidity.
+- rank 10: app_id=108486; score=10.5; components=data_type; repo_name_or_path_topic; title=Use of protein biomarkers to estimate the morbidity and mortality risk of cardiovascular diseases

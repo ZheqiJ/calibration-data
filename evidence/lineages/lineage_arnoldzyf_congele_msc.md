@@ -168,4 +168,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2026/04/2026-04-01-uk-biobank-4.md; https://github.com/Arnoldzyf/ConGele_MSc/blob/37f0913ac82e816b3823137b7efd820f36fbbd95/R_mdd.ipynb; https://github.com/Arnoldzyf/ConGele_MSc
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=54343; score=13.0; components=data_type; repo_name_or_path_topic; title=A multiscale genotype - phenotype map
+- rank 2: app_id=57947; score=13.0; components=data_type; repo_name_or_path_topic; title=Genotype and phenotype analysis in human brain of mental disorders
+- rank 3: app_id=82975; score=12.29; components=data_type; repo_name_or_path_topic; title=Linked phenotype-genotype characterisation study of MDD with anhedonia in UK Psychiatric Cohort
+- rank 4: app_id=1064514; score=12.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype
+- rank 5: app_id=22627; score=12.0; components=data_type; repo_name_or_path_topic; title=Fine-mapping genotype-phenotype associations
+- rank 6: app_id=31224; score=12.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype
+- rank 7: app_id=49749; score=12.0; components=data_type; repo_name_or_path_topic; title=Neuroimaging-based prediction of brain age and cognition
+- rank 8: app_id=51573; score=12.0; components=data_type; repo_name_or_path_topic; title=Pathway and network analysis of the genotype to phenotype relationship
+- rank 9: app_id=575761; score=12.0; components=data_type; repo_name_or_path_topic; title=Genotype-to-phenotype mapping with artificial intelligence
+- rank 10: app_id=32011; score=11.75; components=data_type; repo_name_or_path_topic; title=The effects of age, sex, genotype and systemic health on brain structure and function.

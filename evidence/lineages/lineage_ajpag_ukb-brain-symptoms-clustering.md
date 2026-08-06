@@ -162,4 +162,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2025/10/2025-10-07-uk-biobank.md; https://github.com/ajpag/ukb-brain-symptoms-clustering/blob/1ccf51fd7b853704b73db661426f5c56b991174c/ml_andcols/2.3_EDA_1yr.ipynb; https://github.com/ajpag/ukb-brain-symptoms-clustering
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=1055001; score=12.0; components=data_type; repo_name_or_path_topic; title=Exploration of Brain Aging Using Multi-modal Data
+- rank 2: app_id=100773; score=11.33; components=data_type; repo_name_or_path_topic; title=Generative brain models in health and disease
+- rank 3: app_id=51518; score=11.33; components=data_type; repo_name_or_path_topic; title=Segmented Analysis of Whole Genomes.
+- rank 4: app_id=57947; score=11.33; components=data_type; repo_name_or_path_topic; title=Genotype and phenotype analysis in human brain of mental disorders
+- rank 5: app_id=75946; score=11.33; components=data_type; repo_name_or_path_topic; title=Sex, Gender and Brain Health
+- rank 6: app_id=946023; score=11.33; components=data_type; repo_name_or_path_topic; title=A foundation model for brain-eye connection
+- rank 7: app_id=282742; score=10.86; components=data_type; repo_name_or_path_topic; title=Integrating Multi-omics to Predict and Understand Ovarian Aging
+- rank 8: app_id=30544; score=10.86; components=data_type; repo_name_or_path_topic; title=Diet, body fat and brain health: a multi-organ imaging study in the UK Biobank
+- rank 9: app_id=37212; score=10.86; components=data_type; repo_name_or_path_topic; title=Deep Learning Model to Predict Physiological Ageing Rate
+- rank 10: app_id=82382; score=10.86; components=data_type; repo_name_or_path_topic; title=Multi-modal genomic analyses of brain function and connectivity

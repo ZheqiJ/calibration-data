@@ -114,4 +114,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2025/10/2025-10-20-uk-biobank.md; https://github.com/tenayatherapeutics/Genetic-Survival-Analysis-in-UKB/blob/57d4098d69bab490fb8e88a9ceef3d28793316f6/Example/example_CV_outcome; https://github.com/tenayatherapeutics/Genetic-Survival-Analysis-in-UKB
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=3071; score=13.0; components=data_type; repo_name_or_path_topic; title=Genetic epidemiology of melanoma and melanoma survival
+- rank 2: app_id=53061; score=13.0; components=data_type; repo_name_or_path_topic; title=Genotype-Phenotype analysis of genetic kidney and liver diseases
+- rank 3: app_id=54343; score=13.0; components=data_type; repo_name_or_path_topic; title=A multiscale genotype - phenotype map
+- rank 4: app_id=1064514; score=12.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype
+- rank 5: app_id=22627; score=12.0; components=data_type; repo_name_or_path_topic; title=Fine-mapping genotype-phenotype associations
+- rank 6: app_id=31224; score=12.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype
+- rank 7: app_id=51573; score=12.0; components=data_type; repo_name_or_path_topic; title=Pathway and network analysis of the genotype to phenotype relationship
+- rank 8: app_id=575761; score=12.0; components=data_type; repo_name_or_path_topic; title=Genotype-to-phenotype mapping with artificial intelligence
+- rank 9: app_id=13399; score=11.33; components=data_type; repo_name_or_path_topic; title=Genetic epidemiology of M�ni�re disease in UK Biobank
+- rank 10: app_id=16583; score=11.33; components=data_type; repo_name_or_path_topic; title=The Genetic Epidemiology of AML

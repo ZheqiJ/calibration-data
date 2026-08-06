@@ -240,4 +240,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2026/03/2026-03-31-uk-biobank-4.md; https://raw.githubusercontent.com/harpak-lab/GxSex/3bd6831a85cb9dc12094c7fd66e1edd59db18fea/GWAS_Results/diastolicBP_auto/female_mash_diastolicBP_auto.1.profile; https://github.com/harpak-lab/GxSex
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=54343; score=13.0; components=data_type; repo_name_or_path_topic; title=A multiscale genotype - phenotype map
+- rank 2: app_id=9072; score=13.0; components=data_type; repo_name_or_path_topic; title=The Genetics of anthropometric traits ? Height, weight, BMI and waist circumference
+- rank 3: app_id=1064514; score=12.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype
+- rank 4: app_id=22627; score=12.0; components=data_type; repo_name_or_path_topic; title=Fine-mapping genotype-phenotype associations
+- rank 5: app_id=31224; score=12.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype
+- rank 6: app_id=51573; score=12.0; components=data_type; repo_name_or_path_topic; title=Pathway and network analysis of the genotype to phenotype relationship
+- rank 7: app_id=575761; score=12.0; components=data_type; repo_name_or_path_topic; title=Genotype-to-phenotype mapping with artificial intelligence
+- rank 8: app_id=66377; score=12.0; components=data_type; repo_name_or_path_topic; title=The Association of Sex Hormones with Stroke: Results from the UK Biobank
+- rank 9: app_id=1006787; score=11.33; components=data_type; repo_name_or_path_topic; title=Investigating sex differences in aging using plasma proteomics in the UK Biobank
+- rank 10: app_id=238831; score=11.33; components=data_type; repo_name_or_path_topic; title=Modifiable predictors of total hip and knee arthroplasty

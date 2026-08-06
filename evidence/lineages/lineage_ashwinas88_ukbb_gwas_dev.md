@@ -2022,4 +2022,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2025/08/2025-08-25-ukbiobank.md; https://github.com/ashwinas88/UKBB_GWAS_dev/blob/b3f0efb00c35da8d9784cf58e535e113c5b4c91b/workflow/VCF_QC.ipynb; https://github.com/ashwinas88/UKBB_GWAS_dev
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=34201; score=14.0; components=data_type; repo_name_or_path_topic; title=Epigenomics-mediated blood pressure and QT GWAS
+- rank 2: app_id=41250; score=13.0; components=data_type; repo_name_or_path_topic; title=Prioritizing Mendelian variants using GWAS and exome sequencing data
+- rank 3: app_id=44080; score=13.0; components=data_type; repo_name_or_path_topic; title=SNP-Biomarker Interactions in Blood Pressure Regulation
+- rank 4: app_id=54343; score=13.0; components=data_type; repo_name_or_path_topic; title=A multiscale genotype - phenotype map
+- rank 5: app_id=31984; score=12.29; components=data_type; repo_name_or_path_topic; title=Defining disease risk with genotype and phenotype integration using machine learning methods
+- rank 6: app_id=66057; score=12.29; components=data_type; repo_name_or_path_topic; title=Correlating Genotype with Phenotype for Variants in Rare Disease Genes in the UK Biobank
+- rank 7: app_id=75038; score=12.29; components=data_type; repo_name_or_path_topic; title=Glycosaminoglycan polymorphism x sodium interaction effect on blood pressure
+- rank 8: app_id=1064514; score=12.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype
+- rank 9: app_id=19705; score=12.0; components=data_type; repo_name_or_path_topic; title=Analysis of sleep phenotypes, genotypes and associated conditions
+- rank 10: app_id=22627; score=12.0; components=data_type; repo_name_or_path_topic; title=Fine-mapping genotype-phenotype associations

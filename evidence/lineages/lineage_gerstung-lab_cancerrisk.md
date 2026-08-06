@@ -30,4 +30,13 @@
 - evidence_urls: https://github.com/github/dmca/blob/master/2025/11/2025-11-25-uk-biobank-6.md; https://github.com/gerstung-lab/CancerRisk/blob/0f496ae2aaf37d17ee81fb60746cc354ee2e4567/main/UKB/scripts/00_ukb_pred.py; https://github.com/gerstung-lab/CancerRisk
 
 ## Application Candidates
-- rank : app_id=; score=0; components=; title=
+- rank 1: app_id=24456; score=11.33; components=data_type; repo_name_or_path_topic; title=Pan-cancer Genetic Analysis
+- rank 2: app_id=32341; score=11.33; components=data_type; repo_name_or_path_topic; title=UK Biobank Smoking-related Cancer Project
+- rank 3: app_id=43418; score=11.33; components=data_type; repo_name_or_path_topic; title=Cancer risk of FADS1 haplotypes
+- rank 4: app_id=51277; score=11.33; components=data_type; repo_name_or_path_topic; title=Epistasis analysis of cancer susceptibility
+- rank 5: app_id=70925; score=11.33; components=data_type; repo_name_or_path_topic; title=Genetic Epidemiology of Cancer
+- rank 6: app_id=788; score=11.33; components=data_type; repo_name_or_path_topic; title=Heritability of disease frequency
+- rank 7: app_id=42176; score=10.5; components=data_type; repo_name_or_path_topic; title=Association between cardiometabolic health and cancer
+- rank 8: app_id=45761; score=10.5; components=data_type; repo_name_or_path_topic; title=Genetics of cancer risk and therapy response
+- rank 9: app_id=46325; score=10.5; components=data_type; repo_name_or_path_topic; title=Immune genes and cancer susceptibility
+- rank 10: app_id=48405; score=10.5; components=data_type; repo_name_or_path_topic; title=Understanding disease subtypes from genotype information

@@ -1,15 +1,17 @@
 {
-  "generated_at_utc": "2026-08-06T04:34:47+00:00",
+  "generated_at_utc": "2026-08-06T07:28:43+00:00",
   "ukb_dmca_notice_total": 110,
   "repository_url_total": 193,
   "target_repository_row_total": 1826,
   "repository_owner_total": 170,
   "repository_lineage_total": 193,
   "match_grade_counts": {
-    "unresolved": 193
+    "unresolved": 188,
+    "ambiguous": 4,
+    "confirmed": 1
   },
-  "unique_application_match_ratio": 0.0,
-  "unique_application_count": 0,
+  "unique_application_match_ratio": 0.0052,
+  "unique_application_count": 1,
   "repo_role_counts": {
     "unknown": 193
   },
@@ -139,7 +141,6 @@
     "lineage_oxwearables_ukb_exome",
     "lineage_parsboy1987_genepy-2",
     "lineage_pebblets_jm-gwas",
-    "lineage_personomicslab_popmodel_ml_mh",
     "lineage_petergerlach1_gogogpcr",
     "lineage_postincredible_ukbb",
     "lineage_ran485_biomarkers",
