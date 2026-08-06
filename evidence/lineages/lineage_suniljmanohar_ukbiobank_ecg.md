@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/suniljmanohar/UKBiobank_ECG
 - notice_ids: 2025-11-25-uk-biobank-2
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

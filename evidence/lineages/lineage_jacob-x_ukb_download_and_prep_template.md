@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/Jacob-X/ukb_download_and_prep_template
 - notice_ids: 2025-11-04-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/Fmerella/Proteomics_UKBB-
 - notice_ids: 2025-11-25-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/tenayatherapeutics/Genetic-Survival-Analysis-in-UKB
 - notice_ids: 2025-10-15-uk-biobank-8; 2025-10-20-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

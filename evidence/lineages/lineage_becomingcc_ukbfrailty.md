@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/becomingcc/ukbfrailty
 - notice_ids: 2025-11-07-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

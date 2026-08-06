@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/zlpsophina/MetabolomicsCommonDiseases
 - notice_ids: 2025-10-02-uk-biobank-2; 2025-10-02-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

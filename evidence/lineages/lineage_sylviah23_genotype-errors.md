@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/sylviah23/genotype-errors
 - notice_ids: 2026-03-31-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

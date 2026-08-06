@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/Ikram-c/multi_outcome
 - notice_ids: 2026-04-10-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/song88180/Human_sex_ratio
 - notice_ids: 2025-12-08-uk-biobank-7
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

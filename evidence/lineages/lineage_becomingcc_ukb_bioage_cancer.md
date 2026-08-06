@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/becomingcc/UKB_bioage_cancer
 - notice_ids: 2025-10-15-uk-biobank-4
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

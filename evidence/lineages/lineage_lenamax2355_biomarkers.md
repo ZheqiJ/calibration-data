@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/lenamax2355/biomarkers
 - notice_ids: 2025-08-22-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

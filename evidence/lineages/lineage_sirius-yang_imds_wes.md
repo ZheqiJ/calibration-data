@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/Sirius-Yang/IMDs_WES
 - notice_ids: 2025-12-01-uk-biobank-2
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

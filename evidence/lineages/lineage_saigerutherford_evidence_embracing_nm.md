@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/saigerutherford/evidence_embracing_nm
 - notice_ids: 2025-11-07-uk-biobank-6
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

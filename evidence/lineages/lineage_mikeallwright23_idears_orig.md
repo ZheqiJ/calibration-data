@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/MikeAllwright23/idears_orig
 - notice_ids: 2025-11-07-uk-biobank-5
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

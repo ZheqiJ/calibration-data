@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/JialingFan1/moodie-geneexpression-cognition
 - notice_ids: 2025-10-17-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

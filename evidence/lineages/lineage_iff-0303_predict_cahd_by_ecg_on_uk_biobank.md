@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/IFF-0303/Predict_CAHD_by_ECG_on_UK_Biobank
 - notice_ids: 2025-08-11-ukbiobank-2
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

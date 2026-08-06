@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/keerveer/ukbb_asthma
 - notice_ids: 2025-11-06-ukbiobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

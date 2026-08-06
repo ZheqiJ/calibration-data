@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/deep-learning-and-aging/main-pipeline-and-images-based-models-pipeline; https://github.com/Deep-Learning-and-Aging/Main-pipeline-and-Images-based-models-pipeline
 - notice_ids: 2026-03-25-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

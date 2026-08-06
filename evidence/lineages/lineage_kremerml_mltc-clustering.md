@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/KremerML/MLTC-clustering
 - notice_ids: 2026-04-01-uk-biobank-3
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/hewramanwaran/RetinaPD
 - notice_ids: 2025-12-08-uk-biobank-6
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

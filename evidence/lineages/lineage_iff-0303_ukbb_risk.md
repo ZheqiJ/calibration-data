@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/IFF-0303/ukbb_risk
 - notice_ids: 2025-12-02-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

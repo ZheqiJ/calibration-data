@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/YanLuoCityU/NeuralCVD
 - notice_ids: 2025-09-16-ukbiobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

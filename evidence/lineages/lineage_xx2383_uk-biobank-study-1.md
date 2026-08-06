@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/xx2383/UK-Biobank-study-1
 - notice_ids: 2025-10-15-uk-biobank-6; 2025-10-15-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

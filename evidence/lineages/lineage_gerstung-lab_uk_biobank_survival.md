@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/gerstung-lab/uk_biobank_survival
 - notice_ids: 2025-11-04-uk-biobank-2
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

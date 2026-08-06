@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/yzharold/BiobankRead
 - notice_ids: 2025-07-18-ukbiobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

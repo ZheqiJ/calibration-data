@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/tolism/ukbbprodromalpd
 - notice_ids: 2025-10-02-uk-biobank-3
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

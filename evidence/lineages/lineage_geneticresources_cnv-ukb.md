@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/GeneticResources/cnv-ukb
 - notice_ids: 2025-10-02-uk-biobank-4
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

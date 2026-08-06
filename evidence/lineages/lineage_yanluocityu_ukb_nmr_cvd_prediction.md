@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/YanLuoCityU/UKB_NMR_CVD_prediction
 - notice_ids: 2025-11-18-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

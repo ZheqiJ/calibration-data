@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/kiwixiao/biv-volumetric-meshing
 - notice_ids: 2025-12-09-uk-biobank-3
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

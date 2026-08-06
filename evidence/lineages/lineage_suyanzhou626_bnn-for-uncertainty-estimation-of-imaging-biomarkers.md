@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/suyanzhou626/BNN-for-Uncertainty-Estimation-of-Imaging-Biomarkers
 - notice_ids: 2025-09-12-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

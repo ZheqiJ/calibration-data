@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/LingTuo/UKBB_GWAS_dev
 - notice_ids: 2025-08-25-ukbiobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

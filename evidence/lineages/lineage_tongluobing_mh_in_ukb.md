@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/tongluobing/MH_in_UKB
 - notice_ids: 2025-10-20-uk-biobank-2
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

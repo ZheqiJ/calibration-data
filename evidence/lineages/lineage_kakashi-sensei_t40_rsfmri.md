@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/Kakashi-sensei/T40_rsfMRI
 - notice_ids: 2026-03-27-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

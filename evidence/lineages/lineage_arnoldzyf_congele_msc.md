@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/Arnoldzyf/ConGele_MSc
 - notice_ids: 2026-04-01-uk-biobank-4
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

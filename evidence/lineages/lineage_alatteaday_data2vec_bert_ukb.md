@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/alatteaday/data2vec_bert_ukb
 - notice_ids: 2025-10-15-uk-biobank-7
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

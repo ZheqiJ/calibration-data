@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/laura-riedel/IM
 - notice_ids: 2026-03-23-uk-biobank-3
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

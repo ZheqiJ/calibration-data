@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/OmriGruman/ukb-atherosclerosis-prediction
 - notice_ids: 2025-11-07-uk-biobank-2
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

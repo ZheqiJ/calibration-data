@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/viciousjoon/ukbiobank
 - notice_ids: 2025-11-25-uk-biobank-3
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

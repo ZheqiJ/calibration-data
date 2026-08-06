@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/mariaratnasamy/ukb_oligo
 - notice_ids: 2025-12-10-uk-biobank-3
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

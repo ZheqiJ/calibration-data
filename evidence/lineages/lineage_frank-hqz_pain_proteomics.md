@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/Frank-HQZ/Pain_Proteomics
 - notice_ids: 2025-10-15-uk-biobank-3
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

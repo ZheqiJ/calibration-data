@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/ajpag/ukb-brain-symptoms-clustering
 - notice_ids: 2025-10-07-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

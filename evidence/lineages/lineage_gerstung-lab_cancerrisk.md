@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/gerstung-lab/CancerRisk
 - notice_ids: 2025-11-25-uk-biobank-6
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

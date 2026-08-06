@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/tzhang-nmdp/Epi-PRS
 - notice_ids: 2025-12-08-uk-biobank-4
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

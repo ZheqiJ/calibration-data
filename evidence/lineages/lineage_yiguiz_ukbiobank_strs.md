@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/YIGUIz/ukbiobank_strs
 - notice_ids: 2025-10-03-uk-biobank
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 

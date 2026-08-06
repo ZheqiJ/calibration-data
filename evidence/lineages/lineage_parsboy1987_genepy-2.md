@@ -4,6 +4,10 @@
 - repo_urls: https://github.com/parsboy1987/GenePy-2
 - notice_ids: 2025-11-14-uk-biobank-2
 - final_match_grade: unresolved
+- paper_title: 
+- doi: 
+- pubmed_id: 
+- paper_authors: 
 
 ## Repository Evidence
 
