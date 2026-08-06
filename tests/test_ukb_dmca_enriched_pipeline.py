@@ -3,6 +3,7 @@ import json
 import unittest
 
 from scripts import ukb_dmca_enriched_pipeline as enriched
+from scripts import ukb_dmca_enriched_appid_runner as appid_runner
 from scripts import ukb_dmca_pipeline as base
 
 
@@ -68,7 +69,62 @@ class EnrichedMatchingTests(unittest.TestCase):
 
         self.assertEqual(final[lineages[0]["lineage_id"]]["grade"], "confirmed")
 
+    def test_concatenated_app_id_becomes_confirmed(self):
+        appid_runner.install()
+
+        class FakeClient:
+            def fetch(self, url, *args, **kwargs):
+                if url.endswith("/readme"):
+                    body = {
+                        "encoding": "base64",
+                        "content": base64.b64encode(b"Running on database app103356 for cardiac MRI.").decode(),
+                        "html_url": "https://github.com/example/repo/blob/main/README.md",
+                    }
+                    return {"status": 200, "body": json.dumps(body)}
+                return {
+                    "status": 200,
+                    "body": json.dumps({"id": 1, "description": "Cardiac MRI model", "fork": False}),
+                }
+
+        repos = base.repo_enrich(
+            FakeClient(),
+            [
+                {
+                    "repo_url": "https://github.com/example/repo",
+                    "repo_owner": "example",
+                    "repo_name": "repo",
+                    "offending_file_path": "README.md",
+                    "offending_file_name": "README.md",
+                    "target_scope": "repository",
+                    "alleged_data_type": "imaging",
+                    "direct_app_ids": "",
+                    "notice_id": "n1",
+                    "notice_date": "2024-01-01",
+                    "notice_path": "2024/01/notice.md",
+                }
+            ],
+            wayback_limit=0,
+        )
+        lineages = base.make_lineages(repos)
+        _, final = base.candidate_tables(
+            lineages,
+            [
+                {
+                    "app_id": "103356",
+                    "title": "Cardiac MRI model",
+                    "pi": "Dr Ada Smith",
+                    "institution": "Example University",
+                    "notes": "UK Biobank imaging",
+                }
+            ],
+            limit=10,
+        )
+
+        self.assertEqual(final[lineages[0]["lineage_id"]]["grade"], "confirmed")
+
     def test_paper_identifier_plus_public_text_scores_probable(self):
+        appid_runner.install()
+
         lineage = {
             "lineage_id": "lineage_example",
             "_direct_app_ids": "",
@@ -103,6 +159,44 @@ class EnrichedMatchingTests(unittest.TestCase):
 
         self.assertEqual(level, "B")
         self.assertEqual(grade, "probable")
+
+    def test_application_note_doi_is_retained_as_strong_candidate_evidence(self):
+        appid_runner.install()
+        lineage = {
+            "lineage_id": "lineage_example",
+            "_direct_app_ids": "",
+            "_repo_text": "https://github.com/example/repo phenotype",
+            "_paper_text": "10.1234/example",
+            "_readme_text": "Replication code for Example disease prediction",
+            "paper_title": "Example disease prediction in UK Biobank",
+            "doi": "10.1234/example",
+            "pubmed_id": "",
+            "alleged_data_types": "phenotype",
+            "evidence_urls": "https://doi.org/10.1234/example",
+        }
+        app = {
+            "app_id": "789",
+            "title": "Disease prediction in UK Biobank",
+            "pi": "Dr Ada Smith",
+            "institution": "Example University",
+            "notes": "Publication DOI: 10.1234/example. Example disease prediction in UK Biobank.",
+        }
+        indexed = dict(app)
+        indexed.update(
+            {
+                "_title": base.tokens(app["title"]),
+                "_pi": base.tokens(app["pi"]),
+                "_inst": base.tokens(app["institution"]),
+                "_notes": base.tokens(app["notes"]),
+            }
+        )
+
+        score, components, details, level = base.score(lineage, indexed)
+
+        self.assertGreaterEqual(score, 45)
+        self.assertEqual(level, "B")
+        self.assertIn("application_note_doi", components)
+        self.assertEqual(details["application_note_doi"], ["10.1234/example"])
 
 
 if __name__ == "__main__":
