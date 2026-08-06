@@ -1,5 +1,5 @@
 # Touching this workflow can trigger a fresh output build on main.
-# Refreshed after validated notice filtering and summary count updates.
+# Refreshed after application evidence enrichment updates.
 name: Build UKB DMCA Outputs
 
 on:
@@ -78,7 +78,7 @@ jobs:
           if [ "${SCAN_ALL_MARKDOWN}" = "true" ]; then
             SCAN_FLAG="--scan-all-markdown"
           fi
-          python3 scripts/ukb_dmca_pipeline.py \
+          python3 scripts/ukb_dmca_enriched_pipeline.py \
             --applications data/applications.tsv \
             --output-dir . \
             --cache-dir .cache/ukb_dmca \
