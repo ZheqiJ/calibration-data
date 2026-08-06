@@ -19,13 +19,13 @@
 - public_metadata_excerpts: Citation | If you use SHAPEIT5 in your research work, please cite the following paper:
 
 ## Application Candidates
-- rank 1: app_id=80917; score=56.36; components=data_type; notes_topic; paper_title_topic; readme_title_topic; title=Whole exome sequencing to identify rare variants in autoinflammatory disease
-- rank 2: app_id=95030; score=55.5; components=data_type; notes_topic; paper_title_topic; readme_title_topic; title=Whole genome and exome sequencing to implicate genetic variants in rare dementia syndromes
-- rank 3: app_id=49978; score=50.5; components=data_type; notes_topic; paper_title_topic; readme_title_topic; title=Copy number variation from whole exome sequencing in the UK Biobank
-- rank 4: app_id=9616; score=49.29; components=data_type; notes_topic; paper_title_topic; readme_title_topic; title=The Genetics of Extreme Blood Indices by Whole Genome Sequencing
-- rank 5: app_id=102655; score=48.5; components=data_type; institution; notes_topic; paper_title_topic; readme_title_topic; title=Evaluation of rare and common variants in common cancers
-- rank 6: app_id=190333; score=46.79; components=data_type; notes_topic; paper_title_topic; readme_title_topic; title=Whole-genome identification of rare variants in UK Biobank Glaucoma patients
-- rank 7: app_id=14048; score=46.57; components=data_type; notes_topic; paper_title_topic; readme_title_topic; repo_name_or_path_topic; title=Fast and accurate phasing and imputation using identity-by-descent (IBD)
-- rank 8: app_id=65027; score=46.55; components=data_type; notes_topic; paper_title_topic; readme_title_topic; title=Large-scale genome-wide rare-variant analysis of asthma in a diverse cohort of patients with whole genome sequencing data
-- rank 9: app_id=21413; score=46.33; components=data_type; notes_topic; paper_title_topic; readme_title_topic; repo_name_or_path_topic; title=Phasing human populations
-- rank 10: app_id=48335; score=46.0; components=data_type; notes_topic; paper_title_topic; readme_title_topic; title=Whole-Genome Genetic Risk Factors
+- rank 1: app_id=95030; score=66.09; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Whole genome and exome sequencing to implicate genetic variants in rare dementia syndromes
+- rank 2: app_id=190333; score=57.38; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Whole-genome identification of rare variants in UK Biobank Glaucoma patients
+- rank 3: app_id=80917; score=56.36; components=data_type; notes_topic; paper_title_topic; readme_title_topic; title=Whole exome sequencing to identify rare variants in autoinflammatory disease
+- rank 4: app_id=98772; score=55.67; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Search for inborn errors of immunity underlying infectious diseases using whole exome and whole genome sequencing data.
+- rank 5: app_id=65027; score=55.37; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Large-scale genome-wide rare-variant analysis of asthma in a diverse cohort of patients with whole genome sequencing data
+- rank 6: app_id=107152; score=53.59; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Quantifying the dynamics of clonal haematopoiesis in individuals using snapshot whole genome sequencing data
+- rank 7: app_id=53953; score=53.59; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Methods to facilitate variant interpretation in genomic sequencing
+- rank 8: app_id=100014; score=52.37; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Whole-genome sequencing studies for disease-related and imaging phenotypes using UKBB data.
+- rank 9: app_id=180759; score=52.07; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Whole genome sequencing analysis of rare and common variants in relation to lipids.
+- rank 10: app_id=74025; score=51.49; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Pan-cancer analysis of whole-exome germline variants
