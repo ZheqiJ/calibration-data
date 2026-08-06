@@ -95,22 +95,9 @@ the original UKB project cannot be determined.
 
 ## Current Status
 
-The code and workflow are ready, and parser tests pass locally. The full remote
-data run still needs a GitHub runner or another networked environment because
-this local shell cannot resolve external hosts. Run the workflow with the UKB
-application TSV available to populate the CSV result files and final counts.
-
-## Current Result Summary
-
-- UKB DMCA notices: 110
-- Unique repository URLs: 193
-- Deduplicated repository lineages: 193
-- Confirmed: 0
-- Probable: 0
-- Ambiguous: 0
-- Unresolved: 193
-- Unique-application match ratio: 0.0
-- Unique applications linked: 0
-- Application input used: `data/applications.tsv`
-
-See `evidence/logs/result_summary.json` for remaining cases and role counts.
+The code and workflow are ready, parser tests pass, and the GitHub Actions
+workflow has generated the current CSV/evidence outputs using
+`data/applications.tsv`. The current output is an audit-first automated pass:
+notice and repository discovery are now close to the external tracker counts,
+while application matching remains conservative and unresolved until additional
+paper/application evidence is added or manually reviewed.
