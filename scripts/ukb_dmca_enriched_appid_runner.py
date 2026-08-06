@@ -15,6 +15,8 @@ except ImportError:
 
 _ENRICHED_SCORE = enriched.score
 _ENRICHED_FINAL_LABEL = enriched.final_label
+_ENRICHED_REPO_ENRICH = enriched.repo_enrich
+_ENRICHED_MAKE_LINEAGES = enriched.make_lineages
 
 DIRECT_APP_ID = re.compile(
     r"\b(?:UK\s*Biobank\s*)?(?:application|project)\s*(?:no\.?|number|id|#)?\s*:?\s*(\d{2,6})\b"
@@ -39,6 +41,31 @@ def identifiers(text: str) -> dict[str, list[str]]:
 
 def _parts(value: str) -> list[str]:
     return [x.strip() for x in (value or "").split(";") if x.strip()]
+
+
+def _append_direct_app_ids(row: dict[str, str]) -> dict[str, str]:
+    public_text = " ".join(
+        row.get(k, "")
+        for k in (
+            "_direct_app_ids",
+            "_readme_text",
+            "_evidence_excerpts",
+            "_text",
+            "paper_title",
+            "evidence_urls",
+        )
+    )
+    row["_direct_app_ids"] = base.uniq([*_parts(row.get("_direct_app_ids", "")), *identifiers(public_text)["app_id"]])
+    return row
+
+
+def repo_enrich(client, targets: list[dict[str, str]], wayback_limit: int) -> list[dict[str, str]]:
+    return [_append_direct_app_ids(row) for row in _ENRICHED_REPO_ENRICH(client, targets, wayback_limit)]
+
+
+def make_lineages(repo_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    rows = _ENRICHED_MAKE_LINEAGES(repo_rows)
+    return [_append_direct_app_ids(row) for row in rows]
 
 
 def score(lineage: dict[str, str], app: dict[str, object]):
@@ -95,8 +122,12 @@ def install() -> None:
     enriched.install_enrichment()
     base.identifiers = identifiers
     enriched.identifiers = identifiers
+    enriched.repo_enrich = repo_enrich
+    enriched.make_lineages = make_lineages
     enriched.score = score
     enriched.final_label = final_label
+    base.repo_enrich = repo_enrich
+    base.make_lineages = make_lineages
     base.score = score
     base.final_label = final_label
 
