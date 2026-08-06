@@ -101,3 +101,19 @@ workflow has generated the current CSV/evidence outputs using
 notice and repository discovery are now close to the external tracker counts,
 while application matching remains conservative and unresolved until additional
 paper/application evidence is added or manually reviewed.
+
+## Current Result Summary
+
+- UKB DMCA notices: 110
+- Unique repository URLs: 193
+- Unique repository owners: 170
+- Deduplicated repository lineages: 193
+- Confirmed: 0
+- Probable: 0
+- Ambiguous: 0
+- Unresolved: 193
+- Unique-application match ratio: 0.0
+- Unique applications linked: 0
+- Application input used: `data/applications.tsv`
+
+See `evidence/logs/result_summary.json` for remaining cases and role counts.
