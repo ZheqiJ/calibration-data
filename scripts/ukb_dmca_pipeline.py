@@ -545,8 +545,12 @@ def summary(out: Path, notices: list[dict[str, str]], repos: list[dict[str, str]
     grades = Counter(v.get("grade", "unresolved") for v in final.values())
     matched = {v.get("candidate", {}).get("candidate_app_id") for v in final.values() if v.get("grade") in ("confirmed", "probable") and v.get("candidate")}
     matched.discard("")
-    roles = Counter(r.get("repo_role", "unknown") for r in repos)
-    data = {"generated_at_utc": now(), "ukb_dmca_notice_total": len(notices), "repository_url_total": len({r["repo_url"].lower() for r in repos}), "repository_lineage_total": len(lineages), "match_grade_counts": dict(grades), "unique_application_match_ratio": round(sum(1 for v in final.values() if v.get("grade") in ("confirmed", "probable")) / len(lineages), 4) if lineages else 0, "unique_application_count": len(matched), "repo_role_counts": dict(roles), "cases_needing_extra_data": [l["lineage_id"] for l in lineages if final.get(l["lineage_id"], {}).get("grade") not in ("confirmed", "probable")]}
+    unique_repos = {}
+    for r in repos:
+        unique_repos.setdefault(r["repo_url"].lower(), r)
+    roles = Counter((r.get("repo_role") or "unknown") for r in unique_repos.values())
+    owners = {r.get("repo_owner", "").lower() for r in unique_repos.values() if r.get("repo_owner")}
+    data = {"generated_at_utc": now(), "ukb_dmca_notice_total": len(notices), "repository_url_total": len(unique_repos), "target_repository_row_total": len(repos), "repository_owner_total": len(owners), "repository_lineage_total": len(lineages), "match_grade_counts": dict(grades), "unique_application_match_ratio": round(sum(1 for v in final.values() if v.get("grade") in ("confirmed", "probable")) / len(lineages), 4) if lineages else 0, "unique_application_count": len(matched), "repo_role_counts": dict(roles), "cases_needing_extra_data": [l["lineage_id"] for l in lineages if final.get(l["lineage_id"], {}).get("grade") not in ("confirmed", "probable")]}
     (out / "evidence/logs").mkdir(parents=True, exist_ok=True)
     (out / "evidence/logs/result_summary.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
     with (out / "evidence/logs/fetch_log.jsonl").open("w", encoding="utf-8") as f:
@@ -566,6 +570,7 @@ def refresh_readme(out: Path, s: dict[str, Any], app_path: str) -> None:
 
 - UKB DMCA notices: {s.get('ukb_dmca_notice_total', 0)}
 - Unique repository URLs: {s.get('repository_url_total', 0)}
+- Unique repository owners: {s.get('repository_owner_total', 0)}
 - Deduplicated repository lineages: {s.get('repository_lineage_total', 0)}
 - Confirmed: {grades.get('confirmed', 0)}
 - Probable: {grades.get('probable', 0)}
