@@ -1,4 +1,5 @@
 # Touching this workflow can trigger a fresh output build on main.
+# Refreshed after validated notice filtering and summary count updates.
 name: Build UKB DMCA Outputs
 
 on:
