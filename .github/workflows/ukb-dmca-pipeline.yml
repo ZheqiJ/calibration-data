@@ -18,6 +18,14 @@ on:
         required: false
         default: "0"
         type: string
+      schema19_url:
+        description: Optional URL for UKB Schema 19 publication metadata CSV/TSV.
+        required: false
+        type: string
+      schema24_url:
+        description: Optional URL for UKB Schema 24 publication-application mapping CSV/TSV.
+        required: false
+        type: string
   push:
     branches:
       - main
@@ -28,6 +36,10 @@ on:
       - data/applications.tsv
       - data/application.tsv
       - data/application*.txt
+      - data/schema19*
+      - data/schema_19*
+      - data/schema24*
+      - data/schema_24*
 
 permissions:
   contents: write
@@ -94,23 +106,62 @@ jobs:
       - name: Run tests
         run: python3 -m unittest discover -s tests
 
+      - name: Prepare optional publication schemas
+        shell: bash
+        run: |
+          set -euo pipefail
+          SCHEMA19=""
+          SCHEMA24=""
+          for candidate in data/schema19.tsv data/schema19.csv data/schema_19.tsv data/schema_19.csv data/schema19* data/schema_19*; do
+            if [ -f "${candidate}" ]; then
+              SCHEMA19="${candidate}"
+              break
+            fi
+          done
+          for candidate in data/schema24.tsv data/schema24.csv data/schema_24.tsv data/schema_24.csv data/schema24* data/schema_24*; do
+            if [ -f "${candidate}" ]; then
+              SCHEMA24="${candidate}"
+              break
+            fi
+          done
+          if [ -z "${SCHEMA19}" ] && [ -n "${{ inputs.schema19_url }}" ]; then
+            curl -L --fail --retry 3 --retry-delay 10 "${{ inputs.schema19_url }}" -o data/schema19.tsv
+            SCHEMA19="data/schema19.tsv"
+          fi
+          if [ -z "${SCHEMA24}" ] && [ -n "${{ inputs.schema24_url }}" ]; then
+            curl -L --fail --retry 3 --retry-delay 10 "${{ inputs.schema24_url }}" -o data/schema24.tsv
+            SCHEMA24="data/schema24.tsv"
+          fi
+          echo "SCHEMA19=${SCHEMA19}" >> "${GITHUB_ENV}"
+          echo "SCHEMA24=${SCHEMA24}" >> "${GITHUB_ENV}"
+
       - name: Build outputs
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          SCAN_FLAG=""
+          SCAN_ARGS=()
+          SCHEMA_ARGS=()
+          FIXED_NOTICE_ARGS=()
           SCAN_ALL_MARKDOWN="${{ inputs.scan_all_markdown || 'false' }}"
           WAYBACK_LIMIT="${{ inputs.wayback_limit || '0' }}"
           if [ "${SCAN_ALL_MARKDOWN}" = "true" ]; then
-            SCAN_FLAG="--scan-all-markdown"
+            SCAN_ARGS+=(--scan-all-markdown)
+          fi
+          if [ -n "${SCHEMA19:-}" ] && [ -n "${SCHEMA24:-}" ]; then
+            SCHEMA_ARGS+=(--schema19 "${SCHEMA19}" --schema24 "${SCHEMA24}")
+          fi
+          if [ -f ukb_dmca_notices.csv ]; then
+            FIXED_NOTICE_ARGS+=(--fixed-notices-csv ukb_dmca_notices.csv)
           fi
           python3 scripts/ukb_dmca_enriched_appid_runner.py \
             --applications data/applications.tsv \
             --output-dir . \
             --cache-dir .cache/ukb_dmca \
             --wayback-limit "${WAYBACK_LIMIT}" \
-            ${SCAN_FLAG}
+            "${SCHEMA_ARGS[@]}" \
+            "${FIXED_NOTICE_ARGS[@]}" \
+            "${SCAN_ARGS[@]}"
 
       - name: Commit generated outputs
         shell: bash
