@@ -3,7 +3,11 @@
 
 from __future__ import annotations
 
+import csv
 import re
+import sys
+import tempfile
+from pathlib import Path
 
 try:
     import ukb_dmca_enriched_pipeline as enriched
@@ -26,6 +30,19 @@ DIRECT_APP_ID = re.compile(
 )
 
 
+def normalize_doi(value: str) -> str:
+    text = str(value or "").strip().lower()
+    text = re.sub(r"^https?://(?:dx\.)?doi\.org/", "", text)
+    text = re.sub(r"^doi:\s*", "", text)
+    text = text.strip(" \t\r\n<>[](){}.,;:")
+    return text if re.match(r"^10\.\d{4,9}/", text, re.I) else ""
+
+
+def normalize_pmid(value: str) -> str:
+    match = re.search(r"\d{6,9}", str(value or ""))
+    return match.group(0) if match else ""
+
+
 def identifiers(text: str) -> dict[str, list[str]]:
     app_ids = []
     for match in DIRECT_APP_ID.finditer(text or ""):
@@ -33,8 +50,8 @@ def identifiers(text: str) -> dict[str, list[str]]:
         if app_id:
             app_ids.append(app_id)
     return {
-        "doi": list(dict.fromkeys(enriched.normalize_doi(x) for x in base.DOI.findall(text or "") if enriched.normalize_doi(x))),
-        "pubmed_id": list(dict.fromkeys(enriched.normalize_pmid(x) for x in base.PMID.findall(text or "") if enriched.normalize_pmid(x))),
+        "doi": list(dict.fromkeys(normalize_doi(x) for x in base.DOI.findall(text or "") if normalize_doi(x))),
+        "pubmed_id": list(dict.fromkeys(normalize_pmid(x) for x in base.PMID.findall(text or "") if normalize_pmid(x))),
         "app_id": list(dict.fromkeys(app_ids)),
     }
 
@@ -72,9 +89,9 @@ def score(lineage: dict[str, str], app: dict[str, object]):
     score_value, components, details, level = _ENRICHED_SCORE(lineage, app)
     existing = set(components)
 
-    lineage_doi = {enriched.normalize_doi(x) for x in [*_parts(lineage.get("repo_linked_doi", "")), *_parts(lineage.get("doi", ""))]}
+    lineage_doi = {normalize_doi(x) for x in [*_parts(lineage.get("repo_linked_doi", "")), *_parts(lineage.get("doi", ""))]}
     lineage_doi.discard("")
-    lineage_pmid = {enriched.normalize_pmid(x) for x in [*_parts(lineage.get("repo_linked_pmid", "")), *_parts(lineage.get("pubmed_id", ""))]}
+    lineage_pmid = {normalize_pmid(x) for x in [*_parts(lineage.get("repo_linked_pmid", "")), *_parts(lineage.get("pubmed_id", ""))]}
     lineage_pmid.discard("")
     app_ids = identifiers(" ".join(str(app.get(k, "")) for k in ("title", "notes")))
     app_doi = {x.lower() for x in app_ids["doi"]}
@@ -93,8 +110,9 @@ def score(lineage: dict[str, str], app: dict[str, object]):
         details["application_note_pubmed_id"] = pmid_hits[:5]
         level = "B"
 
-    paper_tokens = enriched.text_tokens(lineage.get("paper_title", ""))
-    app_text_tokens = enriched.text_tokens(" ".join(str(app.get(k, "")) for k in ("title", "notes")))
+    token_func = getattr(enriched, "text_tokens", base.tokens)
+    paper_tokens = token_func(lineage.get("paper_title", ""))
+    app_text_tokens = token_func(" ".join(str(app.get(k, "")) for k in ("title", "notes")))
     paper_title_hits = paper_tokens & app_text_tokens
     if paper_tokens and len(paper_title_hits) >= 5 and "application_note_paper_title" not in existing:
         score_value += min(30.0, 30.0 * len(paper_title_hits) / max(5, len(paper_tokens)))
@@ -135,9 +153,69 @@ def install() -> None:
     base.final_label = final_label
 
 
+def _arg_value(argv: list[str], name: str) -> str:
+    if name not in argv:
+        return ""
+    idx = argv.index(name)
+    return argv[idx + 1] if idx + 1 < len(argv) else ""
+
+
+def _drop_args(argv: list[str], names: set[str]) -> list[str]:
+    out = []
+    skip = False
+    for arg in argv:
+        if skip:
+            skip = False
+            continue
+        if arg in names:
+            skip = True
+            continue
+        out.append(arg)
+    return out
+
+
+def _materialize_fixed_notice_dir(argv: list[str]) -> tuple[list[str], tempfile.TemporaryDirectory[str] | None]:
+    """Run old pipeline code on the fixed notice CSV without rediscovery."""
+    fixed_csv = _arg_value(argv, "--fixed-notices-csv")
+    stripped = _drop_args(argv, {"--fixed-notices-csv", "--schema19", "--schema24"})
+    if not fixed_csv:
+        return stripped, None
+    dmca_repo = _arg_value(stripped, "--dmca-repo") or "github/dmca"
+    ref = _arg_value(stripped, "--dmca-ref")
+    cache_dir = Path(_arg_value(stripped, "--cache-dir") or ".cache/ukb_dmca") / "fixed_notices"
+    delay = float(_arg_value(stripped, "--request-delay") or 0.25)
+    timeout = float(_arg_value(stripped, "--request-timeout") or 25.0)
+    retries = int(_arg_value(stripped, "--request-retries") or 1)
+    owner, repo = dmca_repo.split("/", 1)
+    client = base.Client(cache_dir, delay, False, timeout, retries)
+    if not ref:
+        ref = client.json(f"https://api.github.com/repos/{owner}/{repo}").get("default_branch", "master")
+    tmp = tempfile.TemporaryDirectory(prefix="ukb-fixed-notices-")
+    tmp_path = Path(tmp.name)
+    with Path(fixed_csv).open("r", encoding="utf-8-sig", errors="replace", newline="") as handle:
+        notice_paths = [
+            row.get("notice_path", "").strip()
+            for row in csv.DictReader(handle)
+            if row.get("notice_path", "").strip()
+        ]
+    for path in dict.fromkeys(notice_paths):
+        response = client.fetch(base.raw_dmca(owner, repo, ref, path), "text/plain")
+        if response["status"] != 200:
+            continue
+        target = tmp_path / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(response["body"], encoding="utf-8")
+    return [*stripped, "--notice-dir", tmp.name, "--dmca-ref", ref], tmp
+
+
 def main(argv: list[str] | None = None) -> int:
     install()
-    return base.main(argv)
+    prepared, tmp = _materialize_fixed_notice_dir(list(sys.argv[1:] if argv is None else argv))
+    try:
+        return base.main(prepared)
+    finally:
+        if tmp is not None:
+            tmp.cleanup()
 
 
 if __name__ == "__main__":
