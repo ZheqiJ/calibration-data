@@ -33,8 +33,8 @@ def identifiers(text: str) -> dict[str, list[str]]:
         if app_id:
             app_ids.append(app_id)
     return {
-        "doi": list(dict.fromkeys(x.rstrip(".,;:)").lower() for x in base.DOI.findall(text or ""))),
-        "pubmed_id": list(dict.fromkeys(base.PMID.findall(text or ""))),
+        "doi": list(dict.fromkeys(enriched.normalize_doi(x) for x in base.DOI.findall(text or "") if enriched.normalize_doi(x))),
+        "pubmed_id": list(dict.fromkeys(enriched.normalize_pmid(x) for x in base.PMID.findall(text or "") if enriched.normalize_pmid(x))),
         "app_id": list(dict.fromkeys(app_ids)),
     }
 
@@ -70,30 +70,33 @@ def make_lineages(repo_rows: list[dict[str, str]]) -> list[dict[str, str]]:
 
 def score(lineage: dict[str, str], app: dict[str, object]):
     score_value, components, details, level = _ENRICHED_SCORE(lineage, app)
+    existing = set(components)
 
-    lineage_doi = {x.lower() for x in _parts(lineage.get("doi", ""))}
-    lineage_pmid = set(_parts(lineage.get("pubmed_id", "")))
+    lineage_doi = {enriched.normalize_doi(x) for x in [*_parts(lineage.get("repo_linked_doi", "")), *_parts(lineage.get("doi", ""))]}
+    lineage_doi.discard("")
+    lineage_pmid = {enriched.normalize_pmid(x) for x in [*_parts(lineage.get("repo_linked_pmid", "")), *_parts(lineage.get("pubmed_id", ""))]}
+    lineage_pmid.discard("")
     app_ids = identifiers(" ".join(str(app.get(k, "")) for k in ("title", "notes")))
     app_doi = {x.lower() for x in app_ids["doi"]}
     app_pmid = set(app_ids["pubmed_id"])
 
     doi_hits = sorted(lineage_doi & app_doi)
     pmid_hits = sorted(lineage_pmid & app_pmid)
-    if doi_hits:
+    if doi_hits and "application_note_doi" not in existing:
         score_value += 45.0
         components.append("application_note_doi")
         details["application_note_doi"] = doi_hits[:5]
         level = "B"
-    if pmid_hits:
+    if pmid_hits and "application_note_pubmed_id" not in existing:
         score_value += 45.0
         components.append("application_note_pubmed_id")
         details["application_note_pubmed_id"] = pmid_hits[:5]
         level = "B"
 
-    paper_tokens = base.tokens(lineage.get("paper_title", ""))
-    app_text_tokens = base.tokens(" ".join(str(app.get(k, "")) for k in ("title", "notes")))
+    paper_tokens = enriched.text_tokens(lineage.get("paper_title", ""))
+    app_text_tokens = enriched.text_tokens(" ".join(str(app.get(k, "")) for k in ("title", "notes")))
     paper_title_hits = paper_tokens & app_text_tokens
-    if paper_tokens and len(paper_title_hits) >= 5:
+    if paper_tokens and len(paper_title_hits) >= 5 and "application_note_paper_title" not in existing:
         score_value += min(30.0, 30.0 * len(paper_title_hits) / max(5, len(paper_tokens)))
         components.append("application_note_paper_title")
         details["application_note_paper_title_tokens"] = sorted(paper_title_hits)[:20]
