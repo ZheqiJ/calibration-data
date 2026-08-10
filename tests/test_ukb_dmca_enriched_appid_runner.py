@@ -1,6 +1,7 @@
 import csv
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 
 from scripts import ukb_dmca_enriched_appid_runner as runner
@@ -25,6 +26,23 @@ class EnrichedAppIdRunnerTests(unittest.TestCase):
             self.assertEqual(hits["pub_ids"], ["100"])
             self.assertEqual(hits["app_ids"], ["1001"])
             self.assertEqual(hits["evidence_classes"], ["A2_DOI_UKB_CROSSWALK"])
+
+    def test_schema_crosswalk_reads_zipped_txt_uploads(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            schema19 = root / "schema19.txt.zip"
+            schema24 = root / "schema24.txt.zip"
+            with zipfile.ZipFile(schema19, "w") as archive:
+                archive.writestr("schema19.txt", "publication_id\tdoi\ttitle\tauthors\nP200\t10.5555/zipped\tZip paper\tA Lee\n")
+            with zipfile.ZipFile(schema24, "w") as archive:
+                archive.writestr("schema24.txt", "publication_id\tapp_id\nP200\t2002\n")
+
+            crosswalk = runner.load_schema_crosswalk(str(schema19), str(schema24))
+            hits = runner._crosswalk_hits({"doi": "10.5555/zipped", "pubmed_id": ""}, crosswalk)
+
+            self.assertTrue(crosswalk["loaded"])
+            self.assertEqual(hits["pub_ids"], ["200"])
+            self.assertEqual(hits["app_ids"], ["2002"])
 
     def test_postprocess_confirms_unique_crosswalk_application(self):
         with tempfile.TemporaryDirectory() as tmp:
