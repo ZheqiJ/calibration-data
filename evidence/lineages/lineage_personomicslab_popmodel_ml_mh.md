@@ -20,3 +20,12 @@
 
 ## Application Candidates
 - rank 1: app_id=47267; score=100.0; components=direct_application_id; title=Cross-diagnostic and cross-platform multimodal analysis of UK Biobank imaging data
+
+## Application Enrichment Audit
+- final_match_grade: confirmed
+- candidate_app_id: 47267
+- evidence_class: 
+- evidence_components: direct_application_id
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Direct UK Biobank application ID appears in repository/notice evidence.

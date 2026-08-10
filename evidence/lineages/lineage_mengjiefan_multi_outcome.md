@@ -52,3 +52,12 @@
 - rank 8: app_id=1079350; score=11.33; components=data_type; repo_name_or_path_topic; title=Determinants of women's health and cancer outcomes: a multi-omics study in the UK Biobank
 - rank 9: app_id=151418; score=11.33; components=data_type; repo_name_or_path_topic; title=Genomic and multi-modal prediction of disease risk, trajectory, and outcome
 - rank 10: app_id=53061; score=11.33; components=data_type; repo_name_or_path_topic; title=Genotype-Phenotype analysis of genetic kidney and liver diseases
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 54343
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

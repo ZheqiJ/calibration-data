@@ -250,3 +250,12 @@
 - rank 8: app_id=66377; score=12.0; components=data_type; repo_name_or_path_topic; title=The Association of Sex Hormones with Stroke: Results from the UK Biobank
 - rank 9: app_id=1006787; score=11.33; components=data_type; repo_name_or_path_topic; title=Investigating sex differences in aging using plasma proteomics in the UK Biobank
 - rank 10: app_id=238831; score=11.33; components=data_type; repo_name_or_path_topic; title=Modifiable predictors of total hip and knee arthroplasty
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 54343
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

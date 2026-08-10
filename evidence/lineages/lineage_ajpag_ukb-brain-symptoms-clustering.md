@@ -172,3 +172,12 @@
 - rank 8: app_id=30544; score=10.86; components=data_type; repo_name_or_path_topic; title=Diet, body fat and brain health: a multi-organ imaging study in the UK Biobank
 - rank 9: app_id=37212; score=10.86; components=data_type; repo_name_or_path_topic; title=Deep Learning Model to Predict Physiological Ageing Rate
 - rank 10: app_id=82382; score=10.86; components=data_type; repo_name_or_path_topic; title=Multi-modal genomic analyses of brain function and connectivity
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 1055001
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

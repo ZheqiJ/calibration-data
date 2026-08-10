@@ -28,3 +28,12 @@
 - rank 8: app_id=42176; score=10.5; components=data_type; repo_name_or_path_topic; title=Association between cardiometabolic health and cancer
 - rank 9: app_id=45761; score=10.5; components=data_type; repo_name_or_path_topic; title=Genetics of cancer risk and therapy response
 - rank 10: app_id=46325; score=10.5; components=data_type; repo_name_or_path_topic; title=Immune genes and cancer susceptibility
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 24456
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

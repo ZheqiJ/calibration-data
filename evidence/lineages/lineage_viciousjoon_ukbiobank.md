@@ -34,3 +34,12 @@
 - rank 8: app_id=30931; score=10.22; components=data_type; repo_name_or_path_topic; title=Methods development for improved inference from meta-GWAS summary statistics.
 - rank 9: app_id=103076; score=10.0; components=data_type; repo_name_or_path_topic; title=Understanding and leveraging correlation structures in GWAS
 - rank 10: app_id=1064514; score=10.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 17847
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

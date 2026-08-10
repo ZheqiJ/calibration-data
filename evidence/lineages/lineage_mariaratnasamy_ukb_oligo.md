@@ -34,3 +34,12 @@
 - rank 8: app_id=74629; score=10.0; components=data_type; repo_name_or_path_topic; title=Gene burden and variant frequency analysis using UK Biobank samples
 - rank 9: app_id=75142; score=10.0; components=data_type; repo_name_or_path_topic; title=Enhancing EHR based risk scores with genotyping and metabolomics.
 - rank 10: app_id=920302; score=10.0; components=data_type; repo_name_or_path_topic; title=Integrative Analysis of Inflammatory Disease Risk, Burden, and Therapeutic Opportunities in the UK Biobank
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 106206
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

@@ -142,3 +142,12 @@
 - rank 8: app_id=752310; score=13.0; components=data_type; repo_name_or_path_topic; title=The Impact of Lifestyle and Environmental Factors on Ocular Diseases
 - rank 9: app_id=84368; score=13.0; components=data_type; repo_name_or_path_topic; title=Genotype-Phenotype analyses of metabolic and inflammatory diseases
 - rank 10: app_id=87083; score=13.0; components=data_type; repo_name_or_path_topic; title=Big data-based analysis of genotype-phenotype correlations in eye diseases
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 40415
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

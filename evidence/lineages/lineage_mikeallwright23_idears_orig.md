@@ -28,3 +28,12 @@
 - rank 8: app_id=63533; score=10.0; components=data_type; repo_name_or_path_topic; title=Complementing rare disease studies with data from national cohort projects.
 - rank 9: app_id=107065; score=9.67; components=data_type; repo_name_or_path_topic; title=Effects of medication on mortality risks in the general population.
 - rank 10: app_id=17379; score=9.67; components=data_type; repo_name_or_path_topic; title=Phenotyping Airways Dysfunction in the General Population: A UK Biobank Evaluation
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 48008
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

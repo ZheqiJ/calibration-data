@@ -64,3 +64,12 @@
 - rank 8: app_id=4372; score=10.5; components=data_type; repo_name_or_path_topic; title=GWAS on assoiations for hypertension
 - rank 9: app_id=48405; score=10.5; components=data_type; repo_name_or_path_topic; title=Understanding disease subtypes from genotype information
 - rank 10: app_id=51368; score=10.31; components=data_type; repo_name_or_path_topic; title=Evaluation of a hybrid whole exome sequencing panel combined with microarray data for genotype imputation into GWAS cohorts
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 837784
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

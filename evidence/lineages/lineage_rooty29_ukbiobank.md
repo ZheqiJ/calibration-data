@@ -28,3 +28,12 @@
 - rank 8: app_id=491285; score=9.67; components=data_type; repo_name_or_path_topic; title=Identifying Novel Drug Targets Using Genetic Data from UKBiobank
 - rank 9: app_id=54701; score=9.67; components=data_type; repo_name_or_path_topic; title=Functional study of primate-specific genes based on genotype-phenotype data of UK Biobank.
 - rank 10: app_id=55681; score=9.67; components=data_type; repo_name_or_path_topic; title=Analysis of variants with low minor allele frequency in the UKBiobank cohort
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 48405
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

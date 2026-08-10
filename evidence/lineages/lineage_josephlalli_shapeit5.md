@@ -29,3 +29,12 @@
 - rank 8: app_id=100014; score=52.37; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Whole-genome sequencing studies for disease-related and imaging phenotypes using UKBB data.
 - rank 9: app_id=180759; score=52.07; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Whole genome sequencing analysis of rare and common variants in relation to lipids.
 - rank 10: app_id=74025; score=51.49; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Pan-cancer analysis of whole-exome germline variants
+
+## Application Enrichment Audit
+- final_match_grade: ambiguous
+- candidate_app_id: 95030
+- evidence_class: 
+- evidence_components: application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Two or more candidate applications have similar evidence scores.

@@ -34,3 +34,12 @@
 - rank 8: app_id=86776; score=43.0; components=data_type; institution; notes_topic; readme_title_topic; repo_name_or_path_topic; title=Analysis of the features related to healthy aging
 - rank 9: app_id=1104420; score=42.5; components=data_type; institution; notes_topic; readme_title_topic; repo_name_or_path_topic; title=Identification of Risk Markers, Progression Patterns and Predictive Models for Pregnancy-Related Disorders
 - rank 10: app_id=179760; score=41.57; components=data_type; institution; notes_topic; readme_title_topic; repo_name_or_path_topic; title=Investigating the clinical and genetic epidemiology, risk factors, treatment, and patient outcomes of cardiovascular diseases, endocrine and metabolic disorders, and immunoinflammatory diseases.
+
+## Application Enrichment Audit
+- final_match_grade: ambiguous
+- candidate_app_id: 146079
+- evidence_class: 
+- evidence_components: data_type; institution; notes_topic; readme_title_topic; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Two or more candidate applications have similar evidence scores.

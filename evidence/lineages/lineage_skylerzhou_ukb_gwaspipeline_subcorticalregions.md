@@ -34,3 +34,12 @@
 - rank 8: app_id=1064514; score=10.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype
 - rank 9: app_id=17984; score=10.0; components=data_type; repo_name_or_path_topic; title=Genotype-environment interactions and sub-classification of disease
 - rank 10: app_id=20272; score=10.0; components=data_type; repo_name_or_path_topic; title=GWAS of kidney function related traits and kidney disease
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 17847
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

@@ -36,3 +36,12 @@
 - rank 8: app_id=929569; score=27.64; components=data_type; notes_topic; paper_title_topic; readme_title_topic; title=Investigating AI-Derived Cardiovascular Phenotypes Using Imaging, Signals, and Genomic Analysis
 - rank 9: app_id=568177; score=27.62; components=data_type; notes_topic; paper_title_topic; readme_title_topic; title=Deep Learning for Causal Inference on Genetic and Medical Imaging Data
 - rank 10: app_id=926220; score=27.33; components=data_type; notes_topic; paper_title_topic; readme_title_topic; title=AI-Driven Understanding of the Brain Imaging and Genetic Basis of Complex Diseases/Traits
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 898202
+- evidence_class: 
+- evidence_components: notes_topic; paper_title_topic; readme_title_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

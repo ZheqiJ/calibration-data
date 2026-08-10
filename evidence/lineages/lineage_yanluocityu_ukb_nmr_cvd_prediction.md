@@ -34,3 +34,12 @@
 - rank 8: app_id=77583; score=10.86; components=data_type; repo_name_or_path_topic; title=A combined risk prediction model for type 1 diabetes mellitus
 - rank 9: app_id=30418; score=10.5; components=data_type; repo_name_or_path_topic; title=Biomarker profiling by NMR metabolomics for the study of chronic disease risk and underlying risk factors
 - rank 10: app_id=31269; score=10.5; components=data_type; repo_name_or_path_topic; title=Genomic feature prediction models
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 1097167
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

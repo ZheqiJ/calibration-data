@@ -58,3 +58,12 @@
 - rank 8: app_id=611093; score=10.0; components=data_type; repo_name_or_path_topic; title=Improving Disease Prediction with Polygenic Risk Scores & Clinical Data
 - rank 9: app_id=77596; score=10.0; components=data_type; repo_name_or_path_topic; title=Investigating genomic effects on clinical outcomes
 - rank 10: app_id=33751; score=9.67; components=data_type; repo_name_or_path_topic; title=Applying Deep Learning to Understand Disease-Genotype Relationships
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 182419
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

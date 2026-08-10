@@ -82,3 +82,12 @@
 - rank 8: app_id=11138; score=10.0; components=data_type; repo_name_or_path_topic; title=Genomic and evolutionary analyses of common disease in a large cohort
 - rank 9: app_id=176723; score=10.0; components=data_type; repo_name_or_path_topic; title=FOODGENICS: Food and Genetics in UK Cancer Incidence
 - rank 10: app_id=17984; score=10.0; components=data_type; repo_name_or_path_topic; title=Genotype-environment interactions and sub-classification of disease
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 84368
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

@@ -58,3 +58,12 @@
 - rank 8: app_id=491612; score=36.33; components=data_type; institution; notes_topic; readme_title_topic; title=Identification of Disease-Specific Biomarkers for FET Biosensor Application via Machine Learning on Biobank Data
 - rank 9: app_id=66591; score=36.0; components=data_type; institution; notes_topic; readme_title_topic; title=Genetic and environmental factors involved in cancer risk and prognosis
 - rank 10: app_id=99470; score=36.0; components=data_type; institution; notes_topic; readme_title_topic; title=Multi-task Learning for Cancer Phenotypes
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 843724
+- evidence_class: 
+- evidence_components: data_type; institution; notes_topic; readme_title_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

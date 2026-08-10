@@ -28,3 +28,12 @@
 - rank 8: app_id=206872; score=11.33; components=data_type; repo_name_or_path_topic; title=Investigating Cognitive and Imaging Biomarkers of Multiple Sclerosis
 - rank 9: app_id=209139; score=11.33; components=data_type; repo_name_or_path_topic; title=Discovery, development, and validation of biomarkers and imaging phenotypes for neurodegenerative diseases
 - rank 10: app_id=299228; score=11.33; components=data_type; repo_name_or_path_topic; title=Multiomics approach for novel biomarkers for cardiovascular disease
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 541112
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

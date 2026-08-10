@@ -94,3 +94,12 @@
 - rank 8: app_id=57947; score=11.33; components=data_type; repo_name_or_path_topic; title=Genotype and phenotype analysis in human brain of mental disorders
 - rank 9: app_id=59867; score=11.33; components=data_type; repo_name_or_path_topic; title=Assessment of the heart-brain-liver-axis in the UK Biobank Imaging study
 - rank 10: app_id=62443; score=11.33; components=data_type; repo_name_or_path_topic; title=The eye and the brain
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 182403
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

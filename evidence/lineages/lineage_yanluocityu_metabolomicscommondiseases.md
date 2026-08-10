@@ -52,3 +52,12 @@
 - rank 8: app_id=34684; score=11.33; components=data_type; repo_name_or_path_topic; title=Multimorbidity and dementia: an observational cohort study using the UK Biobank.
 - rank 9: app_id=40055; score=11.33; components=data_type; repo_name_or_path_topic; title=Dementia risk in South Asians: data from the UK
 - rank 10: app_id=65592; score=11.33; components=data_type; repo_name_or_path_topic; title=Multi-omics polygenic architecture of common diseases
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 103608
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

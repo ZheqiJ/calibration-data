@@ -29,3 +29,12 @@
 - rank 8: app_id=80154; score=61.67; components=notes_topic; paper_identifier; paper_title_topic; pi_or_author; readme_title_topic; repo_name_or_path_topic; title=Project for distribution of Olink data
 - rank 9: app_id=1016672; score=60.73; components=data_type; institution; notes_topic; paper_identifier; paper_title_topic; readme_title_topic; repo_name_or_path_topic; title=Pan-cancer multi-omics in UK Biobank to identify shared and cancer-specific signatures for risk, progression and outcomes.
 - rank 10: app_id=107083; score=60.5; components=data_type; notes_topic; paper_identifier; paper_title_topic; readme_title_topic; repo_name_or_path_topic; title=Deep phenotyping for common and rare diseases
+
+## Application Enrichment Audit
+- final_match_grade: ambiguous
+- candidate_app_id: 45227
+- evidence_class: 
+- evidence_components: data_type; notes_topic; paper_identifier; paper_title_topic; readme_title_topic; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Two or more candidate applications have similar evidence scores.

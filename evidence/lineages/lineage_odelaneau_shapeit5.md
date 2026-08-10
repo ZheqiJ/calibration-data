@@ -28,3 +28,12 @@
 - rank 8: app_id=17984; score=10.0; components=data_type; repo_name_or_path_topic; title=Genotype-environment interactions and sub-classification of disease
 - rank 9: app_id=21988; score=10.0; components=data_type; repo_name_or_path_topic; title=The project of Quantum Pharmacutical company (q-pharm.com)
 - rank 10: app_id=575761; score=10.0; components=data_type; repo_name_or_path_topic; title=Genotype-to-phenotype mapping with artificial intelligence
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 21413
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

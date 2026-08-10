@@ -28,3 +28,12 @@
 - rank 8: app_id=850689; score=11.33; components=data_type; repo_name_or_path_topic; title=Genetic Basis of Innovation: A UK Biobank Study
 - rank 9: app_id=103990; score=10.5; components=data_type; repo_name_or_path_topic; title=Genetic architecture of healthy aging
 - rank 10: app_id=104323; score=10.5; components=data_type; repo_name_or_path_topic; title=A study on genetic variations associated with dizziness using the UK Biobank data.
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 13399
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

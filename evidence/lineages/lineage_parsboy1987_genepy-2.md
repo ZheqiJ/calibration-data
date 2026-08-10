@@ -28,3 +28,12 @@
 - rank 8: app_id=21988; score=10.0; components=data_type; repo_name_or_path_topic; title=The project of Quantum Pharmacutical company (q-pharm.com)
 - rank 9: app_id=43015; score=10.0; components=data_type; repo_name_or_path_topic; title=Melatonin, lifestyle, and health: a gene-environmental investigation in the UK Biobank
 - rank 10: app_id=575761; score=10.0; components=data_type; repo_name_or_path_topic; title=Genotype-to-phenotype mapping with artificial intelligence
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 182419
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

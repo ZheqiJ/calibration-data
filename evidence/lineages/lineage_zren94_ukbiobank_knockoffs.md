@@ -28,3 +28,12 @@
 - rank 8: app_id=43332; score=11.33; components=data_type; repo_name_or_path_topic; title=Latent phenotypes of impulsivity
 - rank 9: app_id=53061; score=11.33; components=data_type; repo_name_or_path_topic; title=Genotype-Phenotype analysis of genetic kidney and liver diseases
 - rank 10: app_id=54701; score=11.33; components=data_type; repo_name_or_path_topic; title=Functional study of primate-specific genes based on genotype-phenotype data of UK Biobank.
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 54343
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

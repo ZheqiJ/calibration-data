@@ -50,3 +50,12 @@
 - rank 8: app_id=77717; score=40.14; components=data_type; institution; notes_topic; readme_title_topic; repo_name_or_path_topic; title=Learning disease characteristics from multi-modal data for precision medicine
 - rank 9: app_id=93085; score=39.0; components=data_type; institution; notes_topic; readme_title_topic; title=Genetic basis for resistance or susceptibility to diseases conferred by the HLA and KIR loci.
 - rank 10: app_id=803130; score=38.62; components=data_type; institution; notes_topic; readme_title_topic; repo_name_or_path_topic; title=Novel and Interpretable Statistical Learning for Brain Images in AD/ADRDs
+
+## Application Enrichment Audit
+- final_match_grade: ambiguous
+- candidate_app_id: 96326
+- evidence_class: 
+- evidence_components: data_type; institution; notes_topic; readme_title_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Two or more candidate applications have similar evidence scores.

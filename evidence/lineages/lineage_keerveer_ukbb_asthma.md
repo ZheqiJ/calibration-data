@@ -28,3 +28,12 @@
 - rank 8: app_id=171293; score=9.82; components=data_type; repo_name_or_path_topic; title=Enhancer RNA-based filtering of UK Biobank genotype data for discovery of functional SNPs associated with COPD and asthma risk.
 - rank 9: app_id=102849; score=9.67; components=data_type; repo_name_or_path_topic; title=Genome-wide association study of asthma-COPD overlap in UK Biobank
 - rank 10: app_id=172001; score=9.67; components=data_type; repo_name_or_path_topic; title=MORSE - MultiOmics pRoject Study gEnomics Asthma project
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 182419
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

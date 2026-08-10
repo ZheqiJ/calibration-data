@@ -1,20 +1,5 @@
 {
-  "generated_at_utc": "2026-08-08T10:28:18+00:00",
-  "ukb_dmca_notice_total": 110,
-  "repository_url_total": 193,
-  "target_repository_row_total": 1826,
-  "repository_owner_total": 170,
-  "repository_lineage_total": 193,
-  "match_grade_counts": {
-    "unresolved": 187,
-    "confirmed": 2,
-    "ambiguous": 4
-  },
-  "unique_application_match_ratio": 0.0104,
-  "unique_application_count": 2,
-  "repo_role_counts": {
-    "unknown": 193
-  },
+  "ambiguous": 4,
   "cases_needing_extra_data": [
     "lineage_12sbxu_ukb-tools",
     "lineage_12sbxu_ukbb_data_r",
@@ -207,5 +192,36 @@
     "lineage_zoonono_ukb",
     "lineage_zren94_ukbiobank_knockoffs",
     "lineage_zscu_sophia_cross_sectional"
-  ]
+  ],
+  "direct_app_id_confirmed_matches": 2,
+  "doi_crosswalk_confirmed_matches": 0,
+  "fixed_notice_count": 110,
+  "generated_at_utc": "2026-08-10T06:48:26+00:00",
+  "lineages_mapped_through_schema19_24": 0,
+  "lineages_with_doi": 1,
+  "lineages_with_pmid": 0,
+  "match_grade_counts": {
+    "ambiguous": 4,
+    "confirmed": 2,
+    "unresolved": 187
+  },
+  "matching_layer_contributions": {
+    "A1_DIRECT_APP_ID": 2,
+    "A2_DOI_UKB_CROSSWALK": 0,
+    "A3_PMID_UKB_CROSSWALK": 0
+  },
+  "not_application_attributable": 0,
+  "pmid_crosswalk_confirmed_matches": 0,
+  "probable": 0,
+  "repo_role_counts": {
+    "unknown": 193
+  },
+  "repository_lineage_total": 193,
+  "repository_owner_total": 170,
+  "repository_url_total": 193,
+  "target_repository_row_total": 1826,
+  "ukb_dmca_notice_total": 110,
+  "unique_application_count": 2,
+  "unique_application_match_ratio": 0.0104,
+  "unresolved": 187
 }

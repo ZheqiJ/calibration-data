@@ -2032,3 +2032,12 @@
 - rank 8: app_id=1064514; score=12.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype
 - rank 9: app_id=19705; score=12.0; components=data_type; repo_name_or_path_topic; title=Analysis of sleep phenotypes, genotypes and associated conditions
 - rank 10: app_id=22627; score=12.0; components=data_type; repo_name_or_path_topic; title=Fine-mapping genotype-phenotype associations
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 34201
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

@@ -34,3 +34,12 @@
 - rank 8: app_id=182403; score=11.33; components=data_type; repo_name_or_path_topic; title=Longitudinal brain imaging in UK Biobank
 - rank 9: app_id=33278; score=11.33; components=data_type; repo_name_or_path_topic; title=Statistical Analysis of UK Biobank Imaging Database
 - rank 10: app_id=48134; score=11.33; components=data_type; repo_name_or_path_topic; title=Understand Alzheimer's disease characterized by brain imaging phenotype
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 182419
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

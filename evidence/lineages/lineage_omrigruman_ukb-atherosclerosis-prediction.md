@@ -28,3 +28,12 @@
 - rank 8: app_id=182419; score=10.5; components=data_type; repo_name_or_path_topic; title=Imaging Cardiovascular Aging in the UKBB
 - rank 9: app_id=31269; score=10.5; components=data_type; repo_name_or_path_topic; title=Genomic feature prediction models
 - rank 10: app_id=48012; score=10.5; components=data_type; repo_name_or_path_topic; title=Population Stratification in Risk Prediction Models
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 1097167
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

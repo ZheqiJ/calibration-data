@@ -40,3 +40,12 @@
 - rank 8: app_id=1054018; score=9.67; components=data_type; repo_name_or_path_topic; title=Epidemiology and Health Outcomes of Sarcopenia and Sarcopenic Obesity: Evidence from the UK Biobank
 - rank 9: app_id=111780; score=9.67; components=data_type; repo_name_or_path_topic; title=Exploring the aging blood proteome across the lifespan
 - rank 10: app_id=33751; score=9.67; components=data_type; repo_name_or_path_topic; title=Applying Deep Learning to Understand Disease-Genotype Relationships
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 48405
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

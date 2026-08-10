@@ -88,3 +88,12 @@
 - rank 8: app_id=40616; score=11.75; components=data_type; repo_name_or_path_topic; title=Machine learning discovery of genotype-phenotype associations in cardiovascular science.
 - rank 9: app_id=49966; score=11.75; components=data_type; repo_name_or_path_topic; title=Learning Intergenic Interactions Shaping Human Genotype-Phenotype Relations
 - rank 10: app_id=100773; score=11.33; components=data_type; repo_name_or_path_topic; title=Generative brain models in health and disease
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 1064514
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

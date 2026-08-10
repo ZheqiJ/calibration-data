@@ -40,3 +40,12 @@
 - rank 8: app_id=58024; score=10.0; components=data_type; repo_name_or_path_topic; title=Combining Genetic and Environmental Information to Predict Disease Risk
 - rank 9: app_id=66128; score=10.0; components=data_type; repo_name_or_path_topic; title=Genetic profiling to predict longitudinal trajectories of disease
 - rank 10: app_id=1131176; score=9.82; components=data_type; repo_name_or_path_topic; title=Multimodal Cardio-Neuro Modelling: Integrating ECG, Imaging and Structured Data with AI to Predict Major Outcomes
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 31269
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

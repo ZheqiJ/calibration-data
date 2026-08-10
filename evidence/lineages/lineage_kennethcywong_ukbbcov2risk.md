@@ -28,3 +28,12 @@
 - rank 8: app_id=29755; score=10.0; components=data_type; repo_name_or_path_topic; title=The contribution of PAR1 and PAR2 on the sex chromosomes to disease
 - rank 9: app_id=575761; score=10.0; components=data_type; repo_name_or_path_topic; title=Genotype-to-phenotype mapping with artificial intelligence
 - rank 10: app_id=63973; score=9.82; components=data_type; repo_name_or_path_topic; title=Sex Differences in Brain Structure and Function Related to Cigarette Smoking: Neuroimaging, Behavior and Genotype
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 75946
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

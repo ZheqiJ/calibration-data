@@ -46,3 +46,12 @@
 - rank 8: app_id=33278; score=11.33; components=data_type; repo_name_or_path_topic; title=Statistical Analysis of UK Biobank Imaging Database
 - rank 9: app_id=48134; score=11.33; components=data_type; repo_name_or_path_topic; title=Understand Alzheimer's disease characterized by brain imaging phenotype
 - rank 10: app_id=53061; score=11.33; components=data_type; repo_name_or_path_topic; title=Genotype-Phenotype analysis of genetic kidney and liver diseases
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 54343
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

@@ -34,3 +34,12 @@
 - rank 8: app_id=48405; score=38.0; components=data_type; notes_topic; readme_title_topic; repo_name_or_path_topic; title=Understanding disease subtypes from genotype information
 - rank 9: app_id=1290541; score=37.17; components=data_type; institution; notes_topic; readme_title_topic; title=Comparative proteogenomics of neurodegenerative disease for precision medicine
 - rank 10: app_id=51830; score=37.17; components=data_type; institution; notes_topic; readme_title_topic; title=Identifying genetic factors for brain ageing
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 82213
+- evidence_class: 
+- evidence_components: data_type; institution; notes_topic; readme_title_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

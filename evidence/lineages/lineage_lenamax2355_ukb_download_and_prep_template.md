@@ -52,3 +52,12 @@
 - rank 8: app_id=71993; score=37.17; components=data_type; institution; notes_topic; readme_title_topic; repo_name_or_path_topic; title=Machine-Learning and classic statistic models for predicting common chronic diseases risk and clinical outcomes
 - rank 9: app_id=33883; score=36.33; components=data_type; institution; notes_topic; readme_title_topic; title=Multiscale regulation of motor activity and the risk for Alzheimer's disease
 - rank 10: app_id=346418; score=36.33; components=data_type; institution; notes_topic; readme_title_topic; title=Development of medical imaging foundation model for brain and abdominal diseases
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 1061558
+- evidence_class: 
+- evidence_components: data_type; institution; notes_topic; readme_title_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

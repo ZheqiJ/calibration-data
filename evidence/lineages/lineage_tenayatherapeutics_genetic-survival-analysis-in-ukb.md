@@ -124,3 +124,12 @@
 - rank 8: app_id=575761; score=12.0; components=data_type; repo_name_or_path_topic; title=Genotype-to-phenotype mapping with artificial intelligence
 - rank 9: app_id=13399; score=11.33; components=data_type; repo_name_or_path_topic; title=Genetic epidemiology of M�ni�re disease in UK Biobank
 - rank 10: app_id=16583; score=11.33; components=data_type; repo_name_or_path_topic; title=The Genetic Epidemiology of AML
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 3071
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.

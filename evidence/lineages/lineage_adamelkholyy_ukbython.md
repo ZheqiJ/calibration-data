@@ -20,3 +20,12 @@
 
 ## Application Candidates
 - rank 1: app_id=103356; score=100.0; components=direct_application_id; title=Understanding the role of rare and common genetic variation in human phenotypes
+
+## Application Enrichment Audit
+- final_match_grade: confirmed
+- candidate_app_id: 103356
+- evidence_class: 
+- evidence_components: direct_application_id
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Direct UK Biobank application ID appears in repository/notice evidence.

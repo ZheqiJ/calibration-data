@@ -46,3 +46,12 @@
 - rank 8: app_id=48405; score=10.5; components=data_type; repo_name_or_path_topic; title=Understanding disease subtypes from genotype information
 - rank 9: app_id=53781; score=10.22; components=data_type; repo_name_or_path_topic; title=Comparison of HLA imputed genotype of the general population versus population with incidence of cancer.
 - rank 10: app_id=1064514; score=10.0; components=data_type; repo_name_or_path_topic; title=Explanatory epidemiological models from genotype to phenotype
+
+## Application Enrichment Audit
+- final_match_grade: unresolved
+- candidate_app_id: 19127
+- evidence_class: 
+- evidence_components: data_type; repo_name_or_path_topic
+- crosswalk_pub_ids: 
+- crosswalk_app_ids: 
+- match_reason: Evidence is too generic to assign an application.
