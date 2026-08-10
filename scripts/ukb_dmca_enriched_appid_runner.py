@@ -4,10 +4,13 @@
 from __future__ import annotations
 
 import csv
+import gzip
+import io
 import json
 import re
 import sys
 import tempfile
+import zipfile
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
@@ -237,10 +240,33 @@ def _table_rows(path: str) -> list[dict[str, str]]:
     p = Path(path)
     if not p.exists():
         return []
-    sample = p.read_text(encoding="utf-8-sig", errors="replace")[:4096]
+    text = _read_table_text(p)
+    sample = text[:4096]
     delimiter = "\t" if sample.count("\t") >= sample.count(",") else ","
-    with p.open("r", encoding="utf-8-sig", errors="replace", newline="") as handle:
-        return list(csv.DictReader(handle, delimiter=delimiter))
+    return list(csv.DictReader(io.StringIO(text), delimiter=delimiter))
+
+
+def _read_table_text(path: Path) -> str:
+    suffixes = [s.lower() for s in path.suffixes]
+    if suffixes[-1:] == [".gz"]:
+        with gzip.open(path, "rt", encoding="utf-8-sig", errors="replace", newline="") as handle:
+            return handle.read()
+    if suffixes[-1:] == [".zip"]:
+        with zipfile.ZipFile(path) as archive:
+            names = [
+                name
+                for name in archive.namelist()
+                if not name.endswith("/")
+                and Path(name).suffix.lower() in {".txt", ".tsv", ".csv"}
+                and not Path(name).name.startswith(".")
+            ]
+            if not names:
+                names = [name for name in archive.namelist() if not name.endswith("/")]
+            if not names:
+                return ""
+            with archive.open(names[0]) as member:
+                return io.TextIOWrapper(member, encoding="utf-8-sig", errors="replace", newline="").read()
+    return path.read_text(encoding="utf-8-sig", errors="replace")
 
 
 def _norm_col(name: str) -> str:
