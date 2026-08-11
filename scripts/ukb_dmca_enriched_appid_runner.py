@@ -504,7 +504,17 @@ def _read_lineage_evidence_text(output_dir: Path, lineage: dict[str, str]) -> st
 def _enrich_lineage_from_evidence(output_dir: Path, lineage: dict[str, str]) -> None:
     text = _read_lineage_evidence_text(output_dir, lineage)
     lineage["_evidence_text"] = text
-    ids = identifiers(text)
+    public_text = " ".join(
+        lineage.get(key, "")
+        for key in (
+            "paper_title",
+            "repo_linked_publication_title",
+            "evidence_urls",
+            "doi",
+            "pubmed_id",
+        )
+    )
+    ids = identifiers(" ".join([text, public_text]))
     lineage["repo_linked_doi"] = base.uniq([*_parts(lineage.get("repo_linked_doi", "")), *_parts(lineage.get("doi", "")), *ids["doi"]])
     lineage["repo_linked_pmid"] = base.uniq([*_parts(lineage.get("repo_linked_pmid", "")), *_parts(lineage.get("pubmed_id", "")), *ids["pubmed_id"]])
     lineage["repo_linked_publication_title"] = lineage.get("repo_linked_publication_title") or lineage.get("paper_title", "")
