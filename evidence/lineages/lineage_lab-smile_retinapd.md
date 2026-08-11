@@ -52,10 +52,10 @@
 - rank 10: app_id=803130; score=38.62; components=data_type; institution; notes_topic; readme_title_topic; repo_name_or_path_topic; title=Novel and Interpretable Statistical Learning for Brain Images in AD/ADRDs
 
 ## Application Enrichment Audit
-- final_match_grade: ambiguous
-- candidate_app_id: 96326
-- evidence_class: 
-- evidence_components: data_type; institution; notes_topic; readme_title_topic
-- crosswalk_pub_ids: 
-- crosswalk_app_ids: 
-- match_reason: Two or more candidate applications have similar evidence scores.
+- final_match_grade: confirmed
+- candidate_app_id: 48388
+- evidence_class: A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN
+- evidence_components: A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN; exact_publication_identifier
+- crosswalk_pub_ids: 8744
+- crosswalk_app_ids: 48388
+- match_reason: Unique repository-linked DOI/PMID maps through UKB Schema 19/24 to one application.

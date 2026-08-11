@@ -31,10 +31,10 @@
 - rank 10: app_id=74025; score=51.49; components=application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic; title=Pan-cancer analysis of whole-exome germline variants
 
 ## Application Enrichment Audit
-- final_match_grade: ambiguous
-- candidate_app_id: 95030
-- evidence_class: 
-- evidence_components: application_note_paper_title; data_type; notes_topic; paper_title_topic; readme_title_topic
-- crosswalk_pub_ids: 
-- crosswalk_app_ids: 
-- match_reason: Two or more candidate applications have similar evidence scores.
+- final_match_grade: confirmed
+- candidate_app_id: 66995
+- evidence_class: A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN
+- evidence_components: A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN; exact_publication_identifier
+- crosswalk_pub_ids: 7739
+- crosswalk_app_ids: 66995
+- match_reason: Unique repository-linked DOI/PMID maps through UKB Schema 19/24 to one application.

@@ -38,10 +38,10 @@
 - rank 10: app_id=926220; score=27.33; components=data_type; notes_topic; paper_title_topic; readme_title_topic; title=AI-Driven Understanding of the Brain Imaging and Genetic Basis of Complex Diseases/Traits
 
 ## Application Enrichment Audit
-- final_match_grade: unresolved
-- candidate_app_id: 898202
-- evidence_class: 
-- evidence_components: notes_topic; paper_title_topic; readme_title_topic
-- crosswalk_pub_ids: 
-- crosswalk_app_ids: 
-- match_reason: Evidence is too generic to assign an application.
+- final_match_grade: confirmed
+- candidate_app_id: 87802
+- evidence_class: A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN
+- evidence_components: A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN; exact_publication_identifier
+- crosswalk_pub_ids: 16098
+- crosswalk_app_ids: 87802
+- match_reason: Unique repository-linked DOI/PMID maps through UKB Schema 19/24 to one application.

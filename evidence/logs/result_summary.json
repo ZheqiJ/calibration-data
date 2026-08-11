@@ -1,5 +1,5 @@
 {
-  "ambiguous": 4,
+  "ambiguous": 2,
   "cases_needing_extra_data": [
     "lineage_12sbxu_ukb-tools",
     "lineage_12sbxu_ukbb_data_r",
@@ -196,19 +196,21 @@
   "direct_app_id_confirmed_matches": 2,
   "doi_crosswalk_confirmed_matches": 0,
   "fixed_notice_count": 110,
-  "generated_at_utc": "2026-08-10T10:17:21+00:00",
-  "lineages_mapped_through_schema19_24": 0,
+  "generated_at_utc": "2026-08-11T05:06:39+00:00",
+  "lineages_mapped_through_schema19_24": 3,
   "lineages_with_doi": 1,
   "lineages_with_pmid": 0,
+  "lineages_with_publication_title": 4,
   "match_grade_counts": {
-    "ambiguous": 4,
-    "confirmed": 2,
-    "unresolved": 187
+    "ambiguous": 2,
+    "confirmed": 5,
+    "unresolved": 186
   },
   "matching_layer_contributions": {
     "A1_DIRECT_APP_ID": 2,
     "A2_DOI_UKB_CROSSWALK": 0,
-    "A3_PMID_UKB_CROSSWALK": 0
+    "A3_PMID_UKB_CROSSWALK": 0,
+    "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN": 3
   },
   "not_application_attributable": 0,
   "pmid_crosswalk_confirmed_matches": 0,
@@ -220,8 +222,9 @@
   "repository_owner_total": 170,
   "repository_url_total": 193,
   "target_repository_row_total": 1826,
+  "title_crosswalk_confirmed_matches": 3,
   "ukb_dmca_notice_total": 110,
-  "unique_application_count": 2,
-  "unique_application_match_ratio": 0.0104,
-  "unresolved": 187
+  "unique_application_count": 5,
+  "unique_application_match_ratio": 0.0259,
+  "unresolved": 186
 }
