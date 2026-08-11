@@ -194,11 +194,11 @@
     "lineage_zscu_sophia_cross_sectional"
   ],
   "direct_app_id_confirmed_matches": 2,
-  "doi_crosswalk_confirmed_matches": 0,
+  "doi_crosswalk_confirmed_matches": 1,
   "fixed_notice_count": 110,
-  "generated_at_utc": "2026-08-11T05:06:39+00:00",
+  "generated_at_utc": "2026-08-11T07:25:44+00:00",
   "lineages_mapped_through_schema19_24": 3,
-  "lineages_with_doi": 1,
+  "lineages_with_doi": 2,
   "lineages_with_pmid": 0,
   "lineages_with_publication_title": 4,
   "match_grade_counts": {
@@ -208,7 +208,7 @@
   },
   "matching_layer_contributions": {
     "A1_DIRECT_APP_ID": 2,
-    "A2_DOI_UKB_CROSSWALK": 0,
+    "A2_DOI_UKB_CROSSWALK": 1,
     "A3_PMID_UKB_CROSSWALK": 0,
     "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN": 3
   },
