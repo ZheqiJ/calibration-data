@@ -12,6 +12,24 @@ class EnrichedAppIdRunnerTests(unittest.TestCase):
         self.assertEqual(runner.normalize_doi("https://doi.org/10.1234/ABC."), "10.1234/abc")
         self.assertEqual(runner.normalize_pmid("PMID: 12345678"), "12345678")
 
+    def test_identifiers_extract_public_pubmed_urls(self):
+        ids = runner.identifiers(
+            "Cited at https://pubmed.ncbi.nlm.nih.gov/33568818/ and "
+            "https://europepmc.org/article/MED/12345678"
+        )
+
+        self.assertEqual(ids["pubmed_id"], ["33568818", "12345678"])
+
+    def test_identifiers_extract_deterministic_nature_article_doi(self):
+        ids = runner.identifiers("Paper page: https://www.nature.com/articles/s41588-023-01415-w")
+
+        self.assertEqual(ids["doi"], ["10.1038/s41588-023-01415-w"])
+
+    def test_identifiers_do_not_guess_ambiguous_nature_article_doi(self):
+        ids = runner.identifiers("Older article URL: https://www.nature.com/articles/ng2012190")
+
+        self.assertEqual(ids["doi"], [])
+
     def test_schema_crosswalk_doi_to_single_application(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
