@@ -297,11 +297,22 @@ def _split_ids(value: str) -> list[str]:
     return list(dict.fromkeys(re.findall(r"\d{2,8}", str(value or ""))))
 
 
+def _normalized_title(value: str) -> str:
+    text = re.sub(r"[^a-z0-9]+", " ", str(value or "").lower()).strip()
+    return re.sub(r"\s+", " ", text)
+
+
+def _usable_publication_title(value: str) -> str:
+    title = _normalized_title(value)
+    tokens = title.split()
+    return title if len(title) >= 25 and len(tokens) >= 5 else ""
+
+
 def load_schema_crosswalk(schema19: str, schema24: str) -> dict[str, Any]:
     """Load optional UKB publication metadata and publication-application map."""
     rows19, rows24 = _table_rows(schema19), _table_rows(schema24)
     if not rows19 or not rows24:
-        return {"by_doi": {}, "by_pmid": {}, "pub_to_apps": {}, "pub_meta": {}, "loaded": False}
+        return {"by_doi": {}, "by_pmid": {}, "by_title": {}, "pub_to_apps": {}, "pub_meta": {}, "loaded": False}
 
     headers19 = list(rows19[0])
     headers24 = list(rows24[0])
@@ -324,6 +335,7 @@ def load_schema_crosswalk(schema19: str, schema24: str) -> dict[str, Any]:
     pub_meta: dict[str, dict[str, str]] = {}
     by_doi: dict[str, list[str]] = defaultdict(list)
     by_pmid: dict[str, list[str]] = defaultdict(list)
+    by_title: dict[str, list[str]] = defaultdict(list)
     for row in rows19:
         pub_ids = _split_ids(_first_value(row, pub19))
         if not pub_ids:
@@ -331,8 +343,9 @@ def load_schema_crosswalk(schema19: str, schema24: str) -> dict[str, Any]:
         pub_id = pub_ids[0]
         doi = normalize_doi(_first_value(row, doi19))
         pmid = normalize_pmid(_first_value(row, pmid19))
+        title = _first_value(row, title19)
         pub_meta[pub_id] = {
-            "publication_title": _first_value(row, title19),
+            "publication_title": title,
             "publication_authors": _first_value(row, authors19),
             "doi": doi,
             "pubmed_id": pmid,
@@ -341,10 +354,14 @@ def load_schema_crosswalk(schema19: str, schema24: str) -> dict[str, Any]:
             by_doi[doi].append(pub_id)
         if pmid:
             by_pmid[pmid].append(pub_id)
+        normalized_title = _usable_publication_title(title)
+        if normalized_title:
+            by_title[normalized_title].append(pub_id)
 
     return {
         "by_doi": {k: list(dict.fromkeys(v)) for k, v in by_doi.items()},
         "by_pmid": {k: list(dict.fromkeys(v)) for k, v in by_pmid.items()},
+        "by_title": {k: list(dict.fromkeys(v)) for k, v in by_title.items()},
         "pub_to_apps": {k: sorted(v) for k, v in pub_to_apps.items()},
         "pub_meta": pub_meta,
         "loaded": True,
@@ -366,6 +383,38 @@ def _lineage_identifiers(lineage: dict[str, str]) -> tuple[list[str], list[str]]
     )
 
 
+def _lineage_publication_text(lineage: dict[str, str]) -> str:
+    return " ".join(
+        lineage.get(key, "")
+        for key in (
+            "paper_title",
+            "repo_linked_publication_title",
+            "evidence_urls",
+            "_evidence_text",
+        )
+    )
+
+
+def _lineage_title_hits(lineage: dict[str, str], crosswalk: dict[str, Any]) -> list[dict[str, str]]:
+    text = _normalized_title(_lineage_publication_text(lineage))
+    if not _usable_publication_title(text):
+        return []
+    hits = []
+    for title, pub_ids in crosswalk.get("by_title", {}).items():
+        if title not in text:
+            continue
+        for pub_id in pub_ids:
+            for app_id in crosswalk.get("pub_to_apps", {}).get(pub_id, []):
+                hits.append({
+                    "identifier_type": "title",
+                    "identifier": title,
+                    "pub_id": pub_id,
+                    "app_id": app_id,
+                    "evidence_class": "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN",
+                })
+    return hits
+
+
 def _crosswalk_hits(lineage: dict[str, str], crosswalk: dict[str, Any]) -> dict[str, Any]:
     dois, pmids = _lineage_identifiers(lineage)
     hits: list[dict[str, str]] = []
@@ -377,6 +426,16 @@ def _crosswalk_hits(lineage: dict[str, str], crosswalk: dict[str, Any]) -> dict[
         for pub_id in crosswalk.get("by_pmid", {}).get(pmid, []):
             for app_id in crosswalk.get("pub_to_apps", {}).get(pub_id, []):
                 hits.append({"identifier_type": "pmid", "identifier": pmid, "pub_id": pub_id, "app_id": app_id, "evidence_class": "A3_PMID_UKB_CROSSWALK"})
+    hits.extend(_lineage_title_hits(lineage, crosswalk))
+    deduped = []
+    seen = set()
+    for hit in hits:
+        key = (hit["identifier_type"], hit["identifier"], hit["pub_id"], hit["app_id"], hit["evidence_class"])
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(hit)
+    hits = deduped
     return {
         "hits": hits,
         "pub_ids": sorted({h["pub_id"] for h in hits}),
@@ -397,6 +456,25 @@ def _flag_components(components: str) -> tuple[str, str, str]:
 
 def _merge_components(*values: str) -> str:
     return base.uniq(part for value in values for part in _parts(value))
+
+
+def _read_lineage_evidence_text(output_dir: Path, lineage: dict[str, str]) -> str:
+    rel = lineage.get("evidence_file", "")
+    if not rel:
+        return ""
+    path = output_dir / rel
+    if not path.exists():
+        return ""
+    return path.read_text(encoding="utf-8", errors="replace")
+
+
+def _enrich_lineage_from_evidence(output_dir: Path, lineage: dict[str, str]) -> None:
+    text = _read_lineage_evidence_text(output_dir, lineage)
+    lineage["_evidence_text"] = text
+    ids = identifiers(text)
+    lineage["repo_linked_doi"] = base.uniq([*_parts(lineage.get("repo_linked_doi", "")), *_parts(lineage.get("doi", "")), *ids["doi"]])
+    lineage["repo_linked_pmid"] = base.uniq([*_parts(lineage.get("repo_linked_pmid", "")), *_parts(lineage.get("pubmed_id", "")), *ids["pubmed_id"]])
+    lineage["repo_linked_publication_title"] = lineage.get("repo_linked_publication_title") or lineage.get("paper_title", "")
 
 
 def _candidate_seed(lineage: dict[str, str], app: dict[str, str], hits: dict[str, Any]) -> dict[str, Any]:
@@ -451,11 +529,9 @@ def postprocess_outputs(raw_argv: list[str]) -> None:
 
     lineage_hits: dict[str, dict[str, Any]] = {}
     for lin in lineages:
+        _enrich_lineage_from_evidence(out, lin)
         hits = _crosswalk_hits(lin, crosswalk) if crosswalk.get("loaded") else {"hits": [], "pub_ids": [], "app_ids": [], "identifier_types": [], "identifiers": [], "evidence_classes": []}
         lineage_hits[lin["lineage_id"]] = hits
-        lin["repo_linked_doi"] = lin.get("repo_linked_doi") or lin.get("doi", "")
-        lin["repo_linked_pmid"] = lin.get("repo_linked_pmid") or lin.get("pubmed_id", "")
-        lin["repo_linked_publication_title"] = lin.get("repo_linked_publication_title") or lin.get("paper_title", "")
         lin["crosswalk_pub_ids"] = "; ".join(hits["pub_ids"])
         lin["crosswalk_app_ids"] = "; ".join(hits["app_ids"])
         lin["crosswalk_application_count"] = str(len(hits["app_ids"])) if hits["app_ids"] else ""
@@ -584,6 +660,8 @@ def postprocess_outputs(raw_argv: list[str]) -> None:
         "direct_app_id_confirmed_matches": sum(1 for f in final.values() if f["grade"] == "confirmed" and "direct_application_id" in (f.get("candidate") or {}).get("evidence_components", "")),
         "doi_crosswalk_confirmed_matches": sum(1 for f in final.values() if f["grade"] == "confirmed" and "A2_DOI_UKB_CROSSWALK" in (f.get("candidate") or {}).get("evidence_class", "")),
         "pmid_crosswalk_confirmed_matches": sum(1 for f in final.values() if f["grade"] == "confirmed" and "A3_PMID_UKB_CROSSWALK" in (f.get("candidate") or {}).get("evidence_class", "")),
+        "title_crosswalk_confirmed_matches": sum(1 for f in final.values() if f["grade"] == "confirmed" and "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN" in (f.get("candidate") or {}).get("evidence_class", "")),
+        "lineages_with_publication_title": sum(1 for l in lineages if _usable_publication_title(l.get("repo_linked_publication_title") or l.get("paper_title", ""))),
         "probable": grades.get("probable", 0),
         "ambiguous": grades.get("ambiguous", 0),
         "unresolved": grades.get("unresolved", 0),
@@ -594,6 +672,7 @@ def postprocess_outputs(raw_argv: list[str]) -> None:
             "A1_DIRECT_APP_ID": sum(1 for r in evidence_rows if r["evidence_type"] == "direct_application_id"),
             "A2_DOI_UKB_CROSSWALK": sum(1 for r in evidence_rows if r["evidence_type"] == "A2_DOI_UKB_CROSSWALK"),
             "A3_PMID_UKB_CROSSWALK": sum(1 for r in evidence_rows if r["evidence_type"] == "A3_PMID_UKB_CROSSWALK"),
+            "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN": sum(1 for r in evidence_rows if r["evidence_type"] == "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN"),
         },
     })
     summary_path.parent.mkdir(parents=True, exist_ok=True)
