@@ -34,6 +34,18 @@ DIRECT_APP_ID = re.compile(
     r"|\bapp(\d{2,6})\b",
     re.I,
 )
+NATURE_ARTICLE_URL = re.compile(
+    r"(?:https?://)?(?:www\.)?nature\.com/articles/([A-Za-z0-9][A-Za-z0-9._-]*)",
+    re.I,
+)
+PUBMED_URL = re.compile(
+    r"(?:https?://)?(?:www\.)?(?:pubmed\.ncbi\.nlm\.nih\.gov|ncbi\.nlm\.nih\.gov/pubmed)/(\d{6,9})(?:[/?#\s]|$)",
+    re.I,
+)
+EUROPE_PMC_MED_URL = re.compile(
+    r"(?:https?://)?(?:www\.)?europepmc\.org/article/MED/(\d{6,9})(?:[/?#\s]|$)",
+    re.I,
+)
 
 
 def normalize_doi(value: str) -> str:
@@ -49,15 +61,36 @@ def normalize_pmid(value: str) -> str:
     return match.group(0) if match else ""
 
 
+def _nature_slug_to_doi(slug: str) -> str:
+    clean = str(slug or "").strip(" \t\r\n<>[](){}.,;:").lower()
+    if re.match(r"^s\d{4,}[-a-z0-9]+$", clean) or re.match(r"^(?:nature|ncomms|srep)\d+$", clean) or "." in clean:
+        return normalize_doi(f"10.1038/{clean}")
+    return ""
+
+
+def _publication_url_dois(text: str) -> list[str]:
+    return list(dict.fromkeys(doi for doi in (_nature_slug_to_doi(m.group(1)) for m in NATURE_ARTICLE_URL.finditer(text or "")) if doi))
+
+
+def _publication_url_pmids(text: str) -> list[str]:
+    values = [m.group(1) for m in PUBMED_URL.finditer(text or "")]
+    values.extend(m.group(1) for m in EUROPE_PMC_MED_URL.finditer(text or ""))
+    return list(dict.fromkeys(normalize_pmid(v) for v in values if normalize_pmid(v)))
+
+
 def identifiers(text: str) -> dict[str, list[str]]:
     app_ids = []
     for match in DIRECT_APP_ID.finditer(text or ""):
         app_id = next((x for x in match.groups() if x), "")
         if app_id:
             app_ids.append(app_id)
+    doi_values = [normalize_doi(x) for x in base.DOI.findall(text or "")]
+    doi_values.extend(_publication_url_dois(text or ""))
+    pmid_values = [normalize_pmid(x) for x in base.PMID.findall(text or "")]
+    pmid_values.extend(_publication_url_pmids(text or ""))
     return {
-        "doi": list(dict.fromkeys(normalize_doi(x) for x in base.DOI.findall(text or "") if normalize_doi(x))),
-        "pubmed_id": list(dict.fromkeys(normalize_pmid(x) for x in base.PMID.findall(text or "") if normalize_pmid(x))),
+        "doi": list(dict.fromkeys(x for x in doi_values if x)),
+        "pubmed_id": list(dict.fromkeys(x for x in pmid_values if x)),
         "app_id": list(dict.fromkeys(app_ids)),
     }
 
