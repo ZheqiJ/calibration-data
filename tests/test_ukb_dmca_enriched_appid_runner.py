@@ -44,6 +44,47 @@ class EnrichedAppIdRunnerTests(unittest.TestCase):
             self.assertEqual(hits["pub_ids"], ["200"])
             self.assertEqual(hits["app_ids"], ["2002"])
 
+    def test_schema_crosswalk_exact_publication_title_to_application(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            schema19 = root / "schema19.tsv"
+            schema24 = root / "schema24.tsv"
+            title = "Population Modeling and Mental Health Prediction Replication Paper Code"
+            schema19.write_text(f"publication_id\tdoi\ttitle\tauthors\nP300\t\t{title}\tA Lee\n", encoding="utf-8")
+            schema24.write_text("publication_id\tapp_id\nP300\t3003\n", encoding="utf-8")
+
+            crosswalk = runner.load_schema_crosswalk(str(schema19), str(schema24))
+            hits = runner._crosswalk_hits({"paper_title": f"Repo for paper: {title}. Extra README text."}, crosswalk)
+
+            self.assertEqual(hits["pub_ids"], ["300"])
+            self.assertEqual(hits["app_ids"], ["3003"])
+            self.assertEqual(hits["evidence_classes"], ["A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN"])
+
+    def test_short_publication_title_is_not_crosswalked(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            schema19 = root / "schema19.tsv"
+            schema24 = root / "schema24.tsv"
+            schema19.write_text("publication_id\tdoi\ttitle\tauthors\nP400\t\tUKB GWAS\tA Lee\n", encoding="utf-8")
+            schema24.write_text("publication_id\tapp_id\nP400\t4004\n", encoding="utf-8")
+
+            crosswalk = runner.load_schema_crosswalk(str(schema19), str(schema24))
+            hits = runner._crosswalk_hits({"paper_title": "This repository performs UKB GWAS analysis."}, crosswalk)
+
+            self.assertEqual(hits["app_ids"], [])
+
+    def test_lineage_evidence_text_adds_repo_linked_doi(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "evidence/lineages").mkdir(parents=True)
+            evidence = root / "evidence/lineages/lineage-1.md"
+            evidence.write_text("README cites DOI https://doi.org/10.7777/evidence.", encoding="utf-8")
+            lineage = {"evidence_file": "evidence/lineages/lineage-1.md", "doi": "", "pubmed_id": ""}
+
+            runner._enrich_lineage_from_evidence(root, lineage)
+
+            self.assertEqual(lineage["repo_linked_doi"], "10.7777/evidence")
+
     def test_postprocess_confirms_unique_crosswalk_application(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
