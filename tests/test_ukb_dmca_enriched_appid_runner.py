@@ -103,6 +103,19 @@ class EnrichedAppIdRunnerTests(unittest.TestCase):
 
             self.assertEqual(lineage["repo_linked_doi"], "10.7777/evidence")
 
+    def test_lineage_evidence_urls_add_publication_url_doi_without_evidence_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            lineage = {
+                "evidence_file": "evidence/lineages/missing.md",
+                "doi": "",
+                "pubmed_id": "",
+                "evidence_urls": "https://www.nature.com/articles/s41588-023-01415-w",
+            }
+
+            runner._enrich_lineage_from_evidence(Path(tmp), lineage)
+
+            self.assertEqual(lineage["repo_linked_doi"], "10.1038/s41588-023-01415-w")
+
     def test_postprocess_confirms_unique_crosswalk_application(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
