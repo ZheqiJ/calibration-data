@@ -154,7 +154,7 @@ jobs:
           if [ -f ukb_dmca_notices.csv ]; then
             FIXED_NOTICE_ARGS+=(--fixed-notices-csv ukb_dmca_notices.csv)
           fi
-          python3 scripts/ukb_dmca_enriched_appid_runner.py \
+          python3 scripts/ukb_dmca_public_metadata_runner.py \
             --applications data/applications.tsv \
             --output-dir . \
             --cache-dir .cache/ukb_dmca \
