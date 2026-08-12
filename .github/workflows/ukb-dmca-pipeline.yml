@@ -1,4 +1,4 @@
-# Touching this workflow can trigger a fresh output build on main.
+# Public metadata runner enabled; touching this workflow triggers a fresh output build on main.
 name: Build UKB DMCA Outputs
 
 on:
