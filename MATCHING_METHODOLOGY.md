@@ -13,10 +13,11 @@ It does not mean that the application, PI, institution, or original research tea
 The pipeline uses public metadata only:
 
 - GitHub DMCA notice text and target URLs.
-- GitHub repository metadata, fork/source/parent metadata, public owner profile name/company, README, and citation metadata files.
+- GitHub repository metadata, fork/source/parent metadata, public owner profile name/company, README, and citation metadata files. Citation metadata is searched both at repository root and in public tree locations such as nested `CITATION.cff`, `codemeta.json`, `.zenodo.json`, `DESCRIPTION`, `pyproject.toml`, and `package.json`.
 - Exact targeted commit metadata when a DMCA URL contains a 40-character commit SHA.
 - GitHub file commit history for the targeted path when available.
-- Internet Archive CDX metadata as a fallback for inaccessible repositories.
+- Internet Archive CDX metadata as a fallback for inaccessible repositories, plus README/raw README snapshots when available.
+- Public package/archive metadata reached from repository evidence, including Zenodo records, PyPI project metadata, and CRAN/R `DESCRIPTION` package metadata.
 - Public DOI/PubMed/Crossref metadata.
 - Optional UK Biobank Schema 19 publication metadata and Schema 24 publication-to-application mappings.
 - UKB approved application `title`, `pi`, `institution`, and `notes`.
@@ -38,6 +39,13 @@ URLs. For example, a PubMed URL contributes its PMID, and deterministic Nature
 article URLs such as `/articles/s41588-...` contribute the corresponding
 `10.1038/...` DOI. Ambiguous legacy URL slugs are left unresolved rather than
 guessed.
+
+If a live repository points to Zenodo, PyPI, or CRAN, the pipeline fetches only
+public package/archive metadata such as title, DOI, PMID, authors, related
+identifiers, project URLs, and descriptions. It does not fetch targeted data
+files. For deleted repositories, Wayback is used only to recover README-like
+public metadata snapshots; `wayback_readme_first_capture` is an archival
+observation date, not a creation date or leakage date.
 
 If a DOI/PMID maps to multiple applications, the lineage is `ambiguous` unless independent identity/context evidence clearly favors one candidate; that case can become `probable`, not `confirmed`.
 
@@ -74,7 +82,7 @@ Generic words such as `cancer`, `genetic`, `imaging`, `risk`, `disease`, `UKB`, 
 
 - `ukb_dmca_application_candidates.csv` preserves all retained candidates and scores.
 - `ukb_dmca_application_match_evidence.csv` stores one row per lineage x candidate application x evidence component.
-- `evidence/lineages/*.md` records public repository metadata, target commit metadata, publication IDs, crosswalk details, and candidate reasons.
+- `evidence/lineages/*.md` records public repository metadata, README/citation/package/Wayback sources, target commit metadata, publication IDs, crosswalk details, and candidate reasons.
 - `evidence/logs/result_summary.json` reports method contribution counts, including direct app ID, DOI crosswalk, PMID crosswalk, probable, ambiguous, unresolved, and unique applications linked.
 
 ## Current Limitations
