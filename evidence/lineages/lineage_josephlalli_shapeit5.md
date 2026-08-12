@@ -4,7 +4,7 @@
 - repo_urls: https://github.com/JosephLalli/shapeit5
 - notice_ids: 2025-11-13-uk-biobank
 - final_match_grade: ambiguous
-- paper_title: Accurate rare variant phasing of whole-genome and whole-exome sequencing data in the UK Biobank; If you use SHAPEIT5 in your research work, please cite the following paper; Accurate rare variant phasing of whole-genome and whole-exome sequencing data in the UK Biobank
+- paper_title: Accurate rare variant phasing of whole-genome and whole-exome sequencing data in the UK Biobank; If you use SHAPEIT5 in your research work, please cite the following paper
 - doi: 10.1038/s41588-023-01415-w
 - pubmed_id: 
 - paper_authors: Robin J. Hofmeister; Diogo M. Ribeiro; Simone Rubinacci; Olivier Delaneau

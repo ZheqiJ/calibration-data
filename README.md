@@ -141,3 +141,19 @@ Application matching now enriches each lineage with public README, DOI, PubMed,
 Crossref, citation metadata, Wayback README, Zenodo, PyPI, and CRAN evidence
 where available, but still avoids treating third-party uploads as proof of
 conduct by a UKB application team.
+
+## Current Result Summary
+
+- UKB DMCA notices: 110
+- Unique repository URLs: 193
+- Unique repository owners: 170
+- Deduplicated repository lineages: 193
+- Confirmed: 2
+- Probable: 0
+- Ambiguous: 4
+- Unresolved: 187
+- Unique-application match ratio: 0.0104
+- Unique applications linked: 2
+- Application input used: `data/applications.tsv`
+
+See `evidence/logs/result_summary.json` for remaining cases and role counts.
