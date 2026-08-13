@@ -49,3 +49,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Evidence is too generic to assign an application.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 45761
+- evidence_class: A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN
+- evidence_components: public_metadata_seed; A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN; exact_publication_identifier
+- evidence_urls: https://www.medrxiv.org/content/10.1101/2022.10.12.22280908v1; https://www.ukbiobank.ac.uk/publications/multi-cancer-risk-stratification-based-on-national-health-data-a-retrospective-modelling-and-validation-study/; https://www.ukbiobank.ac.uk/projects/genetics-of-cancer-risk-and-therapy-response/; https://doi.org/10.1016/s2589-7500(24)00062-1
+- match_reason: Public metadata seed records a unique repository-publication-application evidence chain.

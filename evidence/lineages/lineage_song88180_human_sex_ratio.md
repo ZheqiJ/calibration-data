@@ -37,3 +37,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Evidence is too generic to assign an application.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 177030
+- evidence_class: A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN
+- evidence_components: public_metadata_seed; A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN; exact_publication_identifier
+- evidence_urls: https://datadryad.org/dataset/doi:10.5061/dryad.vdncjsz43; https://www.ukbiobank.ac.uk/publications/in-search-of-the-genetic-variants-of-human-sex-ratio-at-birth-was-fisher-wrong-about-sex-ratio-evolution/; https://www.ukbiobank.ac.uk/projects/impacts-of-rapid-environmental-societal-changes-on-the-genetic-architecture-of-and-selection-on-human-traits/; https://doi.org/10.1098/rspb.2024.1876
+- match_reason: Public metadata seed records a unique repository-publication-application evidence chain.

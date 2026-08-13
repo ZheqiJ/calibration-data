@@ -37,3 +37,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Evidence is too generic to assign an application.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 66995
+- evidence_class: A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN
+- evidence_components: public_metadata_seed; A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN; exact_publication_identifier
+- evidence_urls: https://www.nature.com/articles/s41588-023-01415-w; https://biobank.ndph.ox.ac.uk/ukb/pub.cgi?id=7739; https://www.ukbiobank.ac.uk/projects/prediction-of-haplotypes-genotypes-parental-of-origin-and-applications-in-biobanks/; https://doi.org/10.1038/s41588-023-01415-w
+- match_reason: Public metadata seed records a unique repository-publication-application evidence chain.

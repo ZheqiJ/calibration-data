@@ -193,32 +193,36 @@
     "lineage_zren94_ukbiobank_knockoffs",
     "lineage_zscu_sophia_cross_sectional"
   ],
+  "confirmed": 8,
   "direct_app_id_confirmed_matches": 2,
   "doi_crosswalk_confirmed_matches": 1,
   "fixed_notice_count": 110,
-  "generated_at_utc": "2026-08-13T08:33:45+00:00",
+  "generated_at_utc": "2026-08-13T09:33:28+00:00",
   "lineages_mapped_through_schema19_24": 3,
   "lineages_with_citation_metadata": 1,
   "lineages_with_doi": 2,
   "lineages_with_metadata_publication_links": 0,
   "lineages_with_package_metadata": 1,
   "lineages_with_pmid": 0,
+  "lineages_with_public_metadata_seeds": 3,
   "lineages_with_publication_title": 4,
   "lineages_with_wayback_readme": 0,
   "match_grade_counts": {
     "ambiguous": 2,
-    "confirmed": 5,
-    "unresolved": 186
+    "confirmed": 8,
+    "unresolved": 183
   },
   "matching_layer_contributions": {
     "A1_DIRECT_APP_ID": 2,
     "A2_DOI_UKB_CROSSWALK": 1,
     "A3_PMID_UKB_CROSSWALK": 0,
-    "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN": 3
+    "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN": 6
   },
   "not_application_attributable": 0,
   "pmid_crosswalk_confirmed_matches": 0,
   "probable": 0,
+  "public_metadata_seed_matched_lineages": 3,
+  "public_metadata_seed_rows": 3,
   "repo_role_counts": {
     "unknown": 193
   },
@@ -228,7 +232,7 @@
   "target_repository_row_total": 1826,
   "title_crosswalk_confirmed_matches": 3,
   "ukb_dmca_notice_total": 110,
-  "unique_application_count": 5,
-  "unique_application_match_ratio": 0.0259,
-  "unresolved": 186
+  "unique_application_count": 7,
+  "unique_application_match_ratio": 0.0415,
+  "unresolved": 183
 }
