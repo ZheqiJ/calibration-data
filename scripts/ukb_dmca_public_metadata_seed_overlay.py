@@ -317,26 +317,50 @@ def _append_seed_audit(output_dir: Path, lineage: dict[str, str], seeds: list[di
     path.write_text(text + "\n" + "\n".join(audit) + "\n", encoding="utf-8")
 
 
+def _usable_publication_title(value: str) -> bool:
+    text = re.sub(r"[^a-z0-9]+", " ", str(value or "").lower()).strip()
+    return len(text) >= 25 and len(text.split()) >= 5
+
+
 def _summary_update(output_dir: Path, manual_rows: list[dict[str, Any]], evidence_rows: list[dict[str, Any]], seeds: dict[str, list[dict[str, str]]]) -> dict[str, Any]:
     grade_by_lineage = {}
     app_by_lineage = {}
+    row_by_lineage = {}
     for row in manual_rows:
         lineage_id = row.get("lineage_id", "")
         if not lineage_id:
             continue
         grade_by_lineage[lineage_id] = row.get("match_grade", "unresolved")
         app_by_lineage[lineage_id] = row.get("candidate_app_id", "")
+        row_by_lineage[lineage_id] = row
     grades = Counter(grade_by_lineage.values())
     unique_apps = {
         app_by_lineage[lineage_id]
         for lineage_id, grade in grade_by_lineage.items()
         if grade in ("confirmed", "probable") and app_by_lineage.get(lineage_id)
     }
+    lineage_rows, _ = _read_csv(output_dir / "ukb_dmca_lineages.csv")
     summary_path = output_dir / "evidence/logs/result_summary.json"
     summary = json.loads(summary_path.read_text(encoding="utf-8")) if summary_path.exists() else {}
+    existing_cases = summary.get("cases_needing_extra_data", [])
+    if not isinstance(existing_cases, list):
+        existing_cases = sorted(lineage_id for lineage_id, grade in grade_by_lineage.items() if grade not in ("confirmed", "probable"))
     summary.update({
         "fixed_notice_count": 110,
         "repository_lineage_total": len(grade_by_lineage),
+        "cases_needing_extra_data": [
+            lineage_id
+            for lineage_id in existing_cases
+            if grade_by_lineage.get(lineage_id, "unresolved") not in ("confirmed", "probable")
+        ],
+        "lineages_with_doi": sum(1 for row in lineage_rows if row.get("doi") or row.get("repo_linked_doi")),
+        "lineages_with_pmid": sum(1 for row in lineage_rows if row.get("pubmed_id") or row.get("repo_linked_pmid")),
+        "lineages_with_publication_title": sum(
+            1
+            for row in lineage_rows
+            if _usable_publication_title(row.get("repo_linked_publication_title") or row.get("paper_title", ""))
+        ),
+        "lineages_mapped_through_schema19_24": sum(1 for row in lineage_rows if row.get("crosswalk_app_ids")),
         "match_grade_counts": dict(grades),
         "confirmed": grades.get("confirmed", 0),
         "probable": grades.get("probable", 0),
@@ -345,6 +369,26 @@ def _summary_update(output_dir: Path, manual_rows: list[dict[str, Any]], evidenc
         "not_application_attributable": grades.get("not_application_attributable", 0),
         "unique_application_count": len(unique_apps),
         "unique_application_match_ratio": round((grades.get("confirmed", 0) + grades.get("probable", 0)) / len(grade_by_lineage), 4) if grade_by_lineage else 0,
+        "direct_app_id_confirmed_matches": sum(
+            1
+            for lineage_id, row in row_by_lineage.items()
+            if grade_by_lineage.get(lineage_id) == "confirmed" and "direct_application_id" in row.get("evidence_components", "")
+        ),
+        "doi_crosswalk_confirmed_matches": sum(
+            1
+            for lineage_id, row in row_by_lineage.items()
+            if grade_by_lineage.get(lineage_id) == "confirmed" and "A2_DOI_UKB_CROSSWALK" in row.get("evidence_class", "")
+        ),
+        "pmid_crosswalk_confirmed_matches": sum(
+            1
+            for lineage_id, row in row_by_lineage.items()
+            if grade_by_lineage.get(lineage_id) == "confirmed" and "A3_PMID_UKB_CROSSWALK" in row.get("evidence_class", "")
+        ),
+        "title_crosswalk_confirmed_matches": sum(
+            1
+            for lineage_id, row in row_by_lineage.items()
+            if grade_by_lineage.get(lineage_id) == "confirmed" and "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN" in row.get("evidence_class", "")
+        ),
         "public_metadata_seed_rows": sum(len(rows) for rows in seeds.values()),
         "lineages_with_public_metadata_seeds": len(seeds),
         "public_metadata_seed_matched_lineages": sum(1 for lineage_id in seeds if grade_by_lineage.get(lineage_id) in ("confirmed", "probable")),
