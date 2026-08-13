@@ -40,6 +40,7 @@ on:
       - data/schema_19*
       - data/schema24*
       - data/schema_24*
+      - data/public_metadata_seeds.*
 
 permissions:
   contents: write
