@@ -8,9 +8,11 @@ from pathlib import Path
 
 try:
     import ukb_dmca_enriched_appid_runner as runner
+    import ukb_dmca_public_metadata_seed_overlay as seed_overlay
     import ukb_public_metadata_enrichment as public_meta
 except ImportError:
     from scripts import ukb_dmca_enriched_appid_runner as runner
+    from scripts import ukb_dmca_public_metadata_seed_overlay as seed_overlay
     from scripts import ukb_public_metadata_enrichment as public_meta
 
 
@@ -49,6 +51,8 @@ def install() -> None:
 def postprocess_outputs(raw_argv: list[str]) -> None:
     _ORIG_POSTPROCESS_OUTPUTS(raw_argv)
     out = Path(runner._arg_value(raw_argv, "--output-dir") or ".")
+    apps_path = Path(runner._arg_value(raw_argv, "--applications") or "data/applications.tsv")
+    seed_overlay.apply_public_metadata_seeds(out, apps_path)
     summary_path = out / "evidence/logs/result_summary.json"
     lineages = runner._read_csv(out / "ukb_dmca_lineages.csv")
     summary = json.loads(summary_path.read_text(encoding="utf-8")) if summary_path.exists() else {}
