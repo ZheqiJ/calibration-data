@@ -89,7 +89,10 @@ class PublicMetadataSeedOverlayTests(unittest.TestCase):
                 "manual_review_needed": "true",
             }])
             self._write_csv(root / "ukb_dmca_application_match_evidence.csv", evidence_fields, [])
-            (root / "evidence/logs/result_summary.json").write_text('{"match_grade_counts": {"unresolved": 1}}', encoding="utf-8")
+            (root / "evidence/logs/result_summary.json").write_text(
+                '{"cases_needing_extra_data": ["lineage_seeded"], "match_grade_counts": {"unresolved": 1}}',
+                encoding="utf-8",
+            )
             (root / "evidence/lineages/lineage_seeded.md").write_text("# lineage_seeded\n", encoding="utf-8")
 
             summary = overlay.apply_public_metadata_seeds(root, apps)
@@ -111,6 +114,9 @@ class PublicMetadataSeedOverlayTests(unittest.TestCase):
             self.assertTrue(any(row["evidence_type"] == "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN" for row in evidence))
             self.assertEqual(summary["match_grade_counts"]["confirmed"], 1)
             self.assertEqual(summary["public_metadata_seed_matched_lineages"], 1)
+            self.assertEqual(summary["cases_needing_extra_data"], [])
+            self.assertEqual(summary["lineages_with_doi"], 1)
+            self.assertEqual(summary["lineages_with_pmid"], 1)
             self.assertIn("Public Metadata Seed Audit", (root / "evidence/lineages/lineage_seeded.md").read_text(encoding="utf-8"))
 
             persisted_summary = json.loads((root / "evidence/logs/result_summary.json").read_text(encoding="utf-8"))
