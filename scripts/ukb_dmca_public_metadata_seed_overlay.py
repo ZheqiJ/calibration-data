@@ -13,6 +13,22 @@ from pathlib import Path
 from typing import Any
 
 SEED_FILENAMES = ("public_metadata_seeds.tsv", "public_metadata_seeds.csv")
+PROJECT_FAMILY_EVIDENCE_CLASS = "B2_PROJECT_FAMILY_NAME_PROPAGATION"
+GENERIC_PROJECT_KEYS = {
+    "001",
+    "biobank",
+    "data",
+    "dataset",
+    "example",
+    "examples",
+    "gwas",
+    "phenotype",
+    "ukb",
+    "ukbb",
+    "ukbbdata",
+    "ukbiobank",
+    "ukbiobankdata",
+}
 SEED_REASON = {
     "confirmed": "Public metadata seed records a unique repository-publication-application evidence chain.",
     "probable": "Public metadata seed records strong but non-deterministic repository-publication-application evidence.",
@@ -51,6 +67,134 @@ def _normalize_doi(value: str) -> str:
 def _normalize_pmid(value: str) -> str:
     match = re.search(r"\d{6,9}", str(value or ""))
     return match.group(0) if match else ""
+
+
+def _repo_basename(value: str) -> str:
+    text = str(value or "").strip()
+    if not text:
+        return ""
+    match = re.search(r"github\.com/([^/\s]+)/([^/\s#?]+)", text, re.I)
+    if match:
+        return match.group(2).strip()
+    if "/" in text:
+        return text.rstrip("/").rsplit("/", 1)[-1]
+    return text
+
+
+def _project_key(value: str) -> str:
+    name = urllib_unquote(_repo_basename(value))
+    name = re.sub(r"([a-z])([A-Z])", r"\1 \2", name)
+    key = re.sub(r"[^a-z0-9]+", "", name.lower())
+    if len(key) < 6 or key in GENERIC_PROJECT_KEYS:
+        return ""
+    return key
+
+
+def urllib_unquote(value: str) -> str:
+    try:
+        from urllib.parse import unquote
+
+        return unquote(str(value or ""))
+    except Exception:
+        return str(value or "")
+
+
+def _lineage_project_keys(lineage: dict[str, str]) -> set[str]:
+    keys: set[str] = set()
+    for field in ("source_repo", "repo_urls", "evidence_urls"):
+        for value in _parts(lineage.get(field, "")):
+            key = _project_key(value)
+            if key:
+                keys.add(key)
+    lineage_id = lineage.get("lineage_id", "")
+    if "_" in lineage_id:
+        key = _project_key(lineage_id.rsplit("_", 1)[-1])
+        if key:
+            keys.add(key)
+    return keys
+
+
+def _seed_project_keys(seed: dict[str, str]) -> set[str]:
+    keys: set[str] = set()
+    for field in ("repo_or_project", "repository_url", "project_name", "evidence_urls"):
+        for value in _parts(seed.get(field, "")):
+            key = _project_key(value)
+            if key:
+                keys.add(key)
+    return keys
+
+
+def _derived_project_family_seed(
+    lineage: dict[str, str],
+    anchor_lineage_id: str,
+    anchor_seed: dict[str, str],
+    app_id: str,
+    key: str,
+    ambiguous: bool,
+) -> dict[str, str]:
+    row = dict(anchor_seed)
+    row.update({
+        "lineage_id": lineage["lineage_id"],
+        "repo_or_project": lineage.get("repo_urls") or lineage.get("source_repo", ""),
+        "candidate_app_id": app_id,
+        "match_grade": "ambiguous" if ambiguous else "probable",
+        "evidence_class": PROJECT_FAMILY_EVIDENCE_CLASS,
+        "source_relation": (
+            f"DMCA-targeted lineage has the same normalized public repository/package name "
+            f"'{key}' as seeded lineage {anchor_lineage_id}; no GitHub-displayed fork/source "
+            "proof is asserted."
+        ),
+        "notes": _uniq([
+            _seed_value(anchor_seed, "notes"),
+            "Auto-derived project-family metadata only; use as probable empirical linkage, not attribution or legal finding.",
+        ]),
+        "_derived_seed_type": "project_family_name",
+        "_anchor_lineage_id": anchor_lineage_id,
+        "_project_key": key,
+    })
+    row["evidence_urls"] = _uniq([lineage.get("evidence_urls", ""), _seed_value(anchor_seed, "evidence_urls")])
+    return row
+
+
+def _derive_project_family_seeds(
+    lineages: list[dict[str, str]],
+    seeds: dict[str, list[dict[str, str]]],
+) -> dict[str, list[dict[str, str]]]:
+    """Propagate existing public metadata seeds across exact project-name families.
+
+    This is intentionally a B-level empirical linkage. It never creates a
+    confirmed match and never asserts a GitHub fork/source relation.
+    """
+    anchors_by_key: dict[str, list[tuple[str, dict[str, str], str]]] = defaultdict(list)
+    for lineage_id, rows in seeds.items():
+        for row in rows:
+            app_id = _seed_app_id(row)
+            if not app_id or row.get("evidence_class") == PROJECT_FAMILY_EVIDENCE_CLASS:
+                continue
+            for key in _seed_project_keys(row):
+                anchors_by_key[key].append((lineage_id, row, app_id))
+
+    out: dict[str, list[dict[str, str]]] = {}
+    for lineage in lineages:
+        lineage_id = lineage.get("lineage_id", "")
+        if not lineage_id or lineage_id in seeds:
+            continue
+        matches: list[tuple[str, dict[str, str], str, str]] = []
+        for key in _lineage_project_keys(lineage):
+            for anchor_lineage_id, anchor_seed, app_id in anchors_by_key.get(key, []):
+                if anchor_lineage_id != lineage_id:
+                    matches.append((key, anchor_seed, app_id, anchor_lineage_id))
+        if not matches:
+            continue
+        by_app: dict[str, tuple[str, dict[str, str], str]] = {}
+        for key, seed, app_id, anchor_lineage_id in matches:
+            by_app.setdefault(app_id, (key, seed, anchor_lineage_id))
+        ambiguous = len(by_app) > 1
+        out[lineage_id] = [
+            _derived_project_family_seed(lineage, anchor_lineage_id, seed, app_id, key, ambiguous)
+            for app_id, (key, seed, anchor_lineage_id) in sorted(by_app.items())
+        ]
+    return out
 
 
 def _read_csv(path: Path) -> tuple[list[dict[str, str]], list[str]]:
@@ -215,7 +359,12 @@ def _candidate_from_seed(lineage: dict[str, str], app: dict[str, str], seed: dic
     app_id = app["app_id"]
     grade = seed.get("match_grade") or "candidate"
     evidence_class = seed.get("evidence_class") or "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN"
-    components = _uniq(["public_metadata_seed", evidence_class, "exact_publication_identifier" if evidence_class.startswith("A") else ""])
+    component_values = ["public_metadata_seed", evidence_class]
+    if evidence_class == "A1_DIRECT_APP_ID":
+        component_values.append("direct_application_id")
+    if evidence_class.startswith(("A2_", "A3_", "A4_")):
+        component_values.append("exact_publication_identifier")
+    components = _uniq(component_values)
     score = "100" if grade == "confirmed" else "85" if grade == "probable" else "70"
     details = {
         "public_metadata_seed": {
@@ -397,7 +546,21 @@ def _summary_update(output_dir: Path, manual_rows: list[dict[str, Any]], evidenc
             "A2_DOI_UKB_CROSSWALK": sum(1 for row in evidence_rows if row.get("evidence_type") == "A2_DOI_UKB_CROSSWALK"),
             "A3_PMID_UKB_CROSSWALK": sum(1 for row in evidence_rows if row.get("evidence_type") == "A3_PMID_UKB_CROSSWALK"),
             "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN": sum(1 for row in evidence_rows if row.get("evidence_type") == "A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN"),
+            "B1_AUTHOR_LAB_PROJECT_NAME_TOPIC_CONSISTENCY": sum(1 for row in evidence_rows if row.get("evidence_type") == "B1_AUTHOR_LAB_PROJECT_NAME_TOPIC_CONSISTENCY"),
+            PROJECT_FAMILY_EVIDENCE_CLASS: sum(1 for row in evidence_rows if row.get("evidence_type") == PROJECT_FAMILY_EVIDENCE_CLASS),
         },
+        "project_family_seed_rows": sum(1 for rows in seeds.values() for row in rows if row.get("_derived_seed_type") == "project_family_name"),
+        "lineages_with_project_family_seeds": sum(
+            1
+            for rows in seeds.values()
+            if any(row.get("_derived_seed_type") == "project_family_name" for row in rows)
+        ),
+        "project_family_seed_matched_lineages": sum(
+            1
+            for lineage_id, rows in seeds.items()
+            if any(row.get("_derived_seed_type") == "project_family_name" for row in rows)
+            and grade_by_lineage.get(lineage_id) in ("confirmed", "probable")
+        ),
     })
     summary_path.parent.mkdir(parents=True, exist_ok=True)
     summary_path.write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")
@@ -411,6 +574,9 @@ def apply_public_metadata_seeds(output_dir: Path, applications: Path) -> dict[st
 
     apps = _parse_applications(applications)
     lineages, lineage_fields = _read_csv(output_dir / "ukb_dmca_lineages.csv")
+    derived_seeds = _derive_project_family_seeds(lineages, seeds)
+    for lineage_id, rows in derived_seeds.items():
+        seeds.setdefault(lineage_id, []).extend(rows)
     repos, repo_fields = _read_csv(output_dir / "ukb_dmca_repositories.csv")
     candidates, candidate_fields = _read_csv(output_dir / "ukb_dmca_application_candidates.csv")
     matches, match_fields = _read_csv(output_dir / "ukb_dmca_application_matches.csv")
@@ -452,6 +618,7 @@ def apply_public_metadata_seeds(output_dir: Path, applications: Path) -> dict[st
                 if not (row.get("lineage_id") == lineage_id and row.get("candidate_app_id") == app_id and row.get("evidence_source") == "public_metadata_seed")
             ]
             for component in _parts(candidate["evidence_components"]):
+                deterministic = component.startswith("A") or component == "direct_application_id"
                 evidence.append({
                     "lineage_id": lineage_id,
                     "candidate_app_id": app_id,
@@ -460,7 +627,7 @@ def apply_public_metadata_seeds(output_dir: Path, applications: Path) -> dict[st
                     "evidence_value": candidate["score_details"],
                     "evidence_source": "public_metadata_seed",
                     "evidence_url": candidate["evidence_urls"],
-                    "deterministic_or_fuzzy": "deterministic" if component.startswith("A") else "fuzzy",
+                    "deterministic_or_fuzzy": "deterministic" if deterministic else "fuzzy",
                     "strength_level": candidate["evidence_level"],
                 })
             _append_seed_audit(output_dir, lineage, rows, candidate)
