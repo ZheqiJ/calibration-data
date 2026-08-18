@@ -21,7 +21,11 @@ The pipeline uses public metadata only:
 - Public DOI/PubMed/Crossref metadata.
 - Optional UK Biobank Schema 19 publication metadata and Schema 24 publication-to-application mappings.
 - UKB approved application `title`, `pi`, `institution`, and `notes`.
-- Optional `data/public_metadata_seeds.tsv` rows containing hand-curated public metadata chains for lineages where automated crawling cannot recover enough metadata after takedown. Seed rows are limited to DOI, PMID, publication title, authors, institution, UKB application number, repository/package/project name, source-relation notes, and evidence URLs.
+- Optional `data/public_metadata_seeds.tsv` rows containing hand-curated public
+  metadata chains for lineages where automated crawling cannot recover enough
+  metadata after takedown. Seed rows are limited to DOI, PMID, publication title,
+  authors, institution, UKB application number, repository/package/project name,
+  source-relation notes, and evidence URLs.
 
 The pipeline must not download, store, or reproduce files alleged to contain participant-level UKB data.
 
@@ -34,11 +38,31 @@ Deterministic evidence can produce `confirmed` only when it uniquely identifies 
 - `A3_PMID_UKB_CROSSWALK`: a repository-linked PMID maps through Schema 19 and Schema 24 to application(s).
 - `A4_EXACT_REPO_PUBLICATION_APPLICATION_CHAIN`: exact public repository-publication-application chains, including manually curated public metadata seed rows when the seed records an exact repository/publication link and a unique UKB publication/application link.
 
-Repository-linked DOI/PMID values include identifiers written directly in public repository evidence and conservative identifiers derived from public publication URLs. For example, a PubMed URL contributes its PMID, and deterministic Nature article URLs such as `/articles/s41588-...` contribute the corresponding `10.1038/...` DOI. Ambiguous legacy URL slugs are left unresolved rather than guessed.
+Repository-linked DOI/PMID values include identifiers written directly in public
+repository evidence and conservative identifiers derived from public publication
+URLs. For example, a PubMed URL contributes its PMID, and deterministic Nature
+article URLs such as `/articles/s41588-...` contribute the corresponding
+`10.1038/...` DOI. Ambiguous legacy URL slugs are left unresolved rather than
+guessed.
 
-If a live repository points to Zenodo, PyPI, or CRAN, the pipeline fetches only public package/archive metadata such as title, DOI, PMID, authors, related identifiers, project URLs, and descriptions. It does not fetch targeted data files. For deleted repositories, Wayback is used only to recover README-like public metadata snapshots; `wayback_readme_first_capture` is an archival observation date, not a creation date or leakage date.
+If a live repository points to Zenodo, PyPI, or CRAN, the pipeline fetches only
+public package/archive metadata such as title, DOI, PMID, authors, related
+identifiers, project URLs, and descriptions. It does not fetch targeted data
+files. For deleted repositories, Wayback is used only to recover README-like
+public metadata snapshots; `wayback_readme_first_capture` is an archival
+observation date, not a creation date or leakage date.
 
-Seeded publication/package search results can provide metadata evidence for a lineage, but they do not override GitHub fork/source metadata. Fork lineage is still determined by GitHub-displayed fork/source relationships when those are available.
+Seeded publication/package search results can provide metadata evidence for a
+lineage, but they do not override GitHub fork/source metadata. Fork lineage is
+still determined by GitHub-displayed fork/source relationships when those are
+available.
+
+When public metadata links a publication/code repository to a unique UKB
+application, but the DMCA-targeted lineage is a same-topic author, first-author,
+or lab-owned repository without GitHub-displayed fork/source proof, the seed may
+record the line as `B1_AUTHOR_LAB_PROJECT_NAME_TOPIC_CONSISTENCY`. B1 rows
+preserve empirical signal for manual review and sensitivity analyses, but they
+can produce only `probable`, never `confirmed`.
 
 If a DOI/PMID maps to multiple applications, the lineage is `ambiguous` unless independent identity/context evidence clearly favors one candidate; that case can become `probable`, not `confirmed`.
 
@@ -53,6 +77,10 @@ B-level evidence supports candidate ranking and `probable` labels:
 - Commit author to paper author match.
 - Institution match.
 - Multiple mutually consistent public metadata sources.
+- `B1_AUTHOR_LAB_PROJECT_NAME_TOPIC_CONSISTENCY`: a manually curated seed where
+  a unique public publication/application chain exists for a closely matching
+  project, and the DMCA-targeted lineage matches an author/lab owner plus
+  repository or package name, but exact GitHub fork/source proof is unavailable.
 
 C-level evidence is weak and is used only for candidate generation/ranking:
 
