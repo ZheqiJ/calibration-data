@@ -64,6 +64,14 @@ record the line as `B1_AUTHOR_LAB_PROJECT_NAME_TOPIC_CONSISTENCY`. B1 rows
 preserve empirical signal for manual review and sensitivity analyses, but they
 can produce only `probable`, never `confirmed`.
 
+When an unresolved lineage has the same normalized repository/package basename
+as a seeded public metadata chain, the overlay can derive
+`B2_PROJECT_FAMILY_NAME_PROPAGATION`. B2 is a probable-only empirical linkage:
+it preserves the anchor publication/application evidence and records the target
+lineage's public repository URLs, but it does not assert that GitHub displayed a
+fork/source relationship. Generic project names such as `ukb`, `ukbiobank`,
+`001`, `data`, and `phenotype` are excluded from propagation.
+
 If a DOI/PMID maps to multiple applications, the lineage is `ambiguous` unless independent identity/context evidence clearly favors one candidate; that case can become `probable`, not `confirmed`.
 
 ## Supporting Evidence
@@ -81,6 +89,11 @@ B-level evidence supports candidate ranking and `probable` labels:
   a unique public publication/application chain exists for a closely matching
   project, and the DMCA-targeted lineage matches an author/lab owner plus
   repository or package name, but exact GitHub fork/source proof is unavailable.
+- `B2_PROJECT_FAMILY_NAME_PROPAGATION`: an automated seed overlay where an
+  unresolved lineage shares an exact normalized repository/package basename with
+  an existing public metadata seed. This is useful for sensitivity analyses over
+  repeated forks/reuploads, but remains `probable` or `ambiguous`, never
+  `confirmed`.
 
 C-level evidence is weak and is used only for candidate generation/ranking:
 
