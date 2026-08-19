@@ -79,3 +79,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Evidence is too generic to assign an application.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 55955
+- evidence_class: B1_AUTHOR_LAB_PROJECT_NAME_TOPIC_CONSISTENCY
+- evidence_components: public_metadata_seed; B1_AUTHOR_LAB_PROJECT_NAME_TOPIC_CONSISTENCY
+- evidence_urls: https://www.nature.com/articles/s42255-024-01061-4; https://pmc.ncbi.nlm.nih.gov/articles/PMC11272584/; https://github.com/HauserGroup/gogoGPCR; https://doi.org/10.1038/s42255-024-01061-4
+- match_reason: Public metadata seed records strong but non-deterministic repository-publication-application evidence.

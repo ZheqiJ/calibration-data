@@ -37,3 +37,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Evidence is too generic to assign an application.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 28784
+- evidence_class: A1_DIRECT_APP_ID
+- evidence_components: public_metadata_seed; A1_DIRECT_APP_ID; direct_application_id
+- evidence_urls: https://elifesciences.org/articles/71862; https://pmc.ncbi.nlm.nih.gov/articles/PMC9255967/; https://github.com/yochaiedlitz/T2DM_UKB_predictions; https://doi.org/10.7554/elife.71862
+- match_reason: Public metadata seed records a unique repository-publication-application evidence chain.

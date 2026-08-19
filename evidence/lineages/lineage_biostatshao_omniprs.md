@@ -37,3 +37,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Evidence is too generic to assign an application.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 88159
+- evidence_class: A1_DIRECT_APP_ID
+- evidence_components: public_metadata_seed; A1_DIRECT_APP_ID; direct_application_id
+- evidence_urls: https://pmc.ncbi.nlm.nih.gov/articles/PMC12230236/; https://www.sciencedirect.com/science/article/pii/S2666979X25001065; https://github.com/biostatShao/OmniPRS; https://doi.org/10.1016/j.xgen.2025.100850
+- match_reason: Public metadata seed records a unique repository-publication-application evidence chain.

@@ -79,3 +79,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Evidence is too generic to assign an application.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 55955
+- evidence_class: B2_PROJECT_FAMILY_NAME_PROPAGATION
+- evidence_components: public_metadata_seed; B2_PROJECT_FAMILY_NAME_PROPAGATION
+- evidence_urls: https://github.com/github/dmca/blob/master/2025/12/2025-12-08-uk-biobank.md; https://github.com/deepgohil/gogoGPCR/blob/c9df069580c277fe60d2bf67c9532201f056b887/notebooks/0_import_matrixtable.ipynb; https://github.com/deepgohil/gogoGPCR; https://github.com/deepgohil/gogoGPCR/blob/c2cb03d8ca76cd454688782f468867e170a7d798/notebooks/0_burden_files.ipynb; https://github.com/deepgohil/gogoGPCR/blob/0b3457853125a88ecb11bc1763c63ea7c8879aab/notebooks/1_burden_files.ipynb; https://github.com/deepgohil/gogoGPCR/blob/a3ba973a555acb8d23d5594be1969a105e9f324b/data/withdrawn_samples.csv; https://github.com/deepgohil/gogoGPCR/blob/daf3eb012558a373ff3e3534278c6be9786e8588/notebooks/04_fix_phesant_output.ipynb; https://github.com/deepgohil/gogoGPCR/blob/a06d7f313cba51625b28ef71e2e575180f5342f6/notebooks/02_covariates.ipynb; https://github.com/deepgohil/gogoGPCR/blob/173114a4ef37b99bca5010892053bbf904b43c22/notebooks/01_sample_hard_filter.ipynb; https://github.com/deepgohil/gogoGPCR/blob/8113a4e453f6fe6958e58eaab0258606d3630ba2/notebooks/1_sample_hard_filter.ipynb; https://www.nature.com/articles/s42255-024-01061-4; https://pmc.ncbi.nlm.nih.gov/articles/PMC11272584/; https://github.com/HauserGroup/gogoGPCR; https://doi.org/10.1038/s42255-024-01061-4
+- match_reason: Public metadata seed records strong but non-deterministic repository-publication-application evidence.

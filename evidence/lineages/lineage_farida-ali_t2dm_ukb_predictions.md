@@ -37,3 +37,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Evidence is too generic to assign an application.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 28784
+- evidence_class: B2_PROJECT_FAMILY_NAME_PROPAGATION
+- evidence_components: public_metadata_seed; B2_PROJECT_FAMILY_NAME_PROPAGATION
+- evidence_urls: https://github.com/github/dmca/blob/master/2025/10/2025-10-14-uk-biobank.md; https://github.com/Farida-Ali/T2DM_UKB_predictions; https://elifesciences.org/articles/71862; https://pmc.ncbi.nlm.nih.gov/articles/PMC9255967/; https://github.com/yochaiedlitz/T2DM_UKB_predictions; https://doi.org/10.7554/elife.71862
+- match_reason: Public metadata seed records strong but non-deterministic repository-publication-application evidence.

@@ -37,3 +37,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Evidence is too generic to assign an application.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 66995
+- evidence_class: B2_PROJECT_FAMILY_NAME_PROPAGATION
+- evidence_components: public_metadata_seed; B2_PROJECT_FAMILY_NAME_PROPAGATION
+- evidence_urls: https://github.com/github/dmca/blob/master/2025/11/2025-11-13-uk-biobank.md; https://github.com/RimanB/shapeit5/blob/0b40edb8ef2678fd4ef0f0286dffe9ef0ba9b254/tasks/phasingUKB/step2_wgs/step9_imputation_rerun_new_chunks/data/1k_samples_wbi.txt#L1-L5; https://github.com/RimanB/shapeit5; https://www.nature.com/articles/s41588-023-01415-w; https://biobank.ndph.ox.ac.uk/ukb/pub.cgi?id=7739; https://www.ukbiobank.ac.uk/projects/prediction-of-haplotypes-genotypes-parental-of-origin-and-applications-in-biobanks/; https://doi.org/10.1038/s41588-023-01415-w
+- match_reason: Public metadata seed records strong but non-deterministic repository-publication-application evidence.

@@ -259,3 +259,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Evidence is too generic to assign an application.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 61666
+- evidence_class: B1_AUTHOR_LAB_PROJECT_NAME_TOPIC_CONSISTENCY
+- evidence_components: public_metadata_seed; B1_AUTHOR_LAB_PROJECT_NAME_TOPIC_CONSISTENCY
+- evidence_urls: https://www.sciencedirect.com/science/article/pii/S2666979X23000630; https://pubmed.ncbi.nlm.nih.gov/37228747/; https://biobank.ndph.ox.ac.uk/ukb/pub.cgi?id=7877; https://github.com/harpak-lab/amplification_gxsex; https://doi.org/10.1016/j.xgen.2023.100297
+- match_reason: Public metadata seed records strong but non-deterministic repository-publication-application evidence.

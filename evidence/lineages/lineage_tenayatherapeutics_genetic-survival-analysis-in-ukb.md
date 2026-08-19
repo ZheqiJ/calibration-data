@@ -133,3 +133,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Evidence is too generic to assign an application.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 84103
+- evidence_class: A1_DIRECT_APP_ID
+- evidence_components: public_metadata_seed; A1_DIRECT_APP_ID; direct_application_id
+- evidence_urls: https://link.springer.com/article/10.1186/s12872-025-04753-1; https://pubmed.ncbi.nlm.nih.gov/40335923/; https://github.com/tenayatherapeutics/Genetic-Survival-Analysis-in-UKB; https://doi.org/10.1186/s12872-025-04753-1
+- match_reason: Public metadata seed records a unique repository-publication-application evidence chain.

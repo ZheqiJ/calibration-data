@@ -38,3 +38,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Two or more candidate applications have similar evidence scores.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 822932
+- evidence_class: A1_DIRECT_APP_ID
+- evidence_components: public_metadata_seed; A1_DIRECT_APP_ID; direct_application_id
+- evidence_urls: https://www.medrxiv.org/content/10.64898/2026.06.19.26356057v1; https://cran.r-project.org/package=UKBAnalytica; https://github.com/Hinna0818/UKBAnalytica; https://hinna0818.github.io/UKBAnalytica/; https://doi.org/10.64898/2026.06.19.26356057
+- match_reason: Public metadata seed records a unique repository-publication-application evidence chain.

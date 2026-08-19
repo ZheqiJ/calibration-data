@@ -150,8 +150,8 @@ conduct by a UKB application team.
 - Deduplicated repository lineages: 193
 - Confirmed: 2
 - Probable: 0
-- Ambiguous: 4
-- Unresolved: 187
+- Ambiguous: 3
+- Unresolved: 188
 - Unique-application match ratio: 0.0104
 - Unique applications linked: 2
 - Application input used: `data/applications.tsv`

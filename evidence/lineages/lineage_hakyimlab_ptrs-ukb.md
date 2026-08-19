@@ -61,3 +61,11 @@
 - crosswalk_pub_ids: 
 - crosswalk_app_ids: 
 - match_reason: Evidence is too generic to assign an application.
+
+## Public Metadata Seed Audit
+- seed_rows: 1
+- candidate_app_id: 19526
+- evidence_class: B1_AUTHOR_LAB_PROJECT_NAME_TOPIC_CONSISTENCY
+- evidence_components: public_metadata_seed; B1_AUTHOR_LAB_PROJECT_NAME_TOPIC_CONSISTENCY
+- evidence_urls: https://link.springer.com/article/10.1186/s13059-021-02591-w; https://pmc.ncbi.nlm.nih.gov/articles/PMC8759285/; https://github.com/liangyy/ptrs-ukb; https://doi.org/10.1186/s13059-021-02591-w
+- match_reason: Public metadata seed records strong but non-deterministic repository-publication-application evidence.
